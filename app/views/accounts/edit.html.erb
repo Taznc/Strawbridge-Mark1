@@ -1,0 +1,22 @@
+<div id="deals" style="margin-top: 40px;">
+	<div id="dealsheader" style="height: 52px; margin-bottom: 20px;">
+		<h1>Change Password</h1>
+	</div>
+<div id="dealscontent" style="margin-left: 20px; clear:both;">
+<% form_tag session_path do %>
+<div>
+<p class="left">Old Password</p><p class="right"><%= password_field_tag 'old_password', @old_password, :size => 45 %></p>
+</div>
+<div style="clear:both;">
+<p class="left">New Password</p><p class="right"><%= password_field_tag 'password', {}, :size => 45 %></p>
+</div>
+<div style="clear:both;">
+<p class="left">Confirm New Password</p><p class="right"><%= password_field_tag 'password_confirmation', {}, :size => 45 %></p>
+</div>
+ 
+<p style="margin-left: 310px; clear: both;"><%= submit_tag 'Change Password' %></p>
+<% end %>
+</div>
+</div>
+
+

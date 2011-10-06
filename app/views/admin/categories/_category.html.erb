@@ -1,0 +1,4 @@
+<li id="category_<%= category.id %>">
+  	<%=h category.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_category_path(category) %> | <%= link_to_remote('Delete', :url => admin_category_path(category), :method => 'delete', :complete => "Effect.Puff('category_#{category.id}')")%></p>
+</li>
+	

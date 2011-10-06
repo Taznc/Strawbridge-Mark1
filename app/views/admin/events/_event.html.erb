@@ -1,0 +1,17 @@
+<% form_for([:admin, @event]) do |f| %>
+  <%= f.error_messages %>
+	<div id="headingbg"><h2>News and Event Details</h2></div>
+		<div id="inner">
+			<h3>Event Title</h3>
+			<%= f.text_field :title, :style=>"width: 685px;" %>
+			<h3>Event Permalink</h3>
+			<%= f.text_field :permalink, :style=>"width: 685px;" %>
+			<h3>Meta Description: One sentence to summarize article for search engines</h3>
+			<%= f.text_field :keywords, :style=>"width: 685px;" %>
+			<h3>Event Body</h3>
+			<%= fckeditor_textarea( "event", "body", :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+		</div>
+		<div id="inner" style="height: 30px;">
+ 			<p style="float: right;"><%= f.submit button_name %></p>
+		</div>
+<% end %>

@@ -1,0 +1,22 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'New event', new_admin_event_path %></p><h2>Your News and Events</h2></div>
+<div id="inner">
+
+<table width=100%>
+	<tr style="background-color: #579941; color: #fff;">
+		<th>Title</th>
+	    <th>Permalink</th>
+	</tr>
+
+<% @events.each do |event| %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%=h event.title %></td>
+    <td><%=h event.permalink %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_admin_event_path(event) %></td>
+    <td><%= link_to 'Destroy', [:admin, event], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+<%= link_to 'New event', new_admin_event_path %>

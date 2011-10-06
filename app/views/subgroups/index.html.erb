@@ -1,0 +1,18 @@
+<h1>Listing subgroups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @subgroups.each do |subgroup| %>
+  <tr>
+    <td><%=h subgroup.name %></td>
+    <td><%=h subgroup.position %></td>
+    <td><%=h subgroup.permalink %></td>
+    <td><%=h subgroup.description %></td>
+    <td><%= link_to 'Show', group_subgroup_path(@group,subgroup) %></td>
+  </tr>
+<% end %>
+</table>

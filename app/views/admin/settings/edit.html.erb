@@ -1,0 +1,28 @@
+<div id="headingbg"><h2>Edit Settings</h2></div>
+<div id="inner">
+<% form_for ([:admin, @setting]) do |f| %>
+  <%= f.error_messages %>
+  <p>Site Name</p>
+  <%= f.text_field :site_name %>
+  
+  <p>Article SEO ( EX: web, design, development)</p>
+    <%= f.text_field :article_seo %>
+  
+  <p>Page SEO ( EX: web, design, development)</p>
+    <%= f.text_field :page_seo %>
+	
+  <p>Site Description</p>
+    <%= f.text_field :site_desc %>
+  
+  <p>Articles to Display Per Page</p>
+    <%= f.text_field :articles_display %>
+  
+  <p>Full Article in RSS?</p>
+    <%= f.text_field :full_rss %>
+  
+  
+    <%= f.submit "Update" %>
+  
+<% end %>
+</div>
+<%= link_to 'Back', admin_settings_path %>

@@ -1,0 +1,15 @@
+<div id="headingbg"><h2>Editing Gallery Image</h2></div>
+<div id="inner">
+
+<% form_for([:admin, @page, @gallery], :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+	<h3>Position</h3>
+	<%= f.text_field :position %>
+  <h3>Replace Image</h3>
+  <%= f.file_field :photo %>
+</div>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+<%= link_to 'Back', admin_page_galleries_path(@page) %>

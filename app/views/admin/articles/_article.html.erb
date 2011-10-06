@@ -1,0 +1,88 @@
+<% form_for([:admin, @article]) do |f| %>
+  <%= f.error_messages %>
+	<div id="headingbg"><h2>Article Settings</h2></div>
+		<div id="inner">
+		<h3>Article Title</h3>
+		<%= f.text_field :title, :style=>"width: 685px;" %>
+		<h3>Article Permalink *Required and should be kept as originally defined due to inbound Linking and SEO</h3>
+		<%= f.text_field :permalink, :style=>"width: 685px;" %>
+		<h3>Author</h3>
+		<ul>
+			<% for user in User.find(:all, :order => "name ASC", :conditions => { :enabled => "1"}) %>
+				<li>
+					<%= check_box_tag "article[user_ids][]", user.id, @article.users.include?(user) %>
+		  			<%= user.name %>
+				</li>
+			<% end %>
+		</ul>
+		<div style="float:left; width: 50%;">
+		<h3>Categories</h3>
+		<ul>
+		<% for category in Category.find(:all, :order => "name ASC") %>
+				<li>
+					<%= check_box_tag "article[category_ids][]", category.id, @article.categories.include?(category) %>
+		  			<%= category.name %>
+				</li>
+			<% end %>
+		</ul>
+		</div>
+		<div style="float:left; width: 50%;">
+		<h3>Tags</h3>
+		<ul>
+			<% for tag in Tag.find(:all, :order => "name ASC") %>
+				<li>
+					<%= check_box_tag "article[tag_ids][]", tag.id, @article.tags.include?(tag) %>
+		  			<%= tag.name %>
+				</li>
+			<% end %>
+		</ul>
+		</div>
+		<p style="clear:both;"></p>
+		</div>
+	<div id="headingbg"><h2>Search Engine Settings</h2></div>
+	<div id="inner">
+		<h3>MetaTags: Used for Search Engine Keywords</h3>
+		<ul>
+			<% for metatag in Metatag.find(:all, :order => "name ASC") %>
+				<li>
+					<%= check_box_tag "article[metatag_ids][]", metatag.id, @article.metatags.include?(metatag) %>
+		  			<%= metatag.name %>
+				</li>
+			<% end %>
+		</ul>
+	<p style="clear: left;">
+		<h3>Meta Description: One sentence to summarize article for search engines</h3>
+		<%= f.text_field :keywords, :style=>"width: 685px;" %>
+	<p>
+	</div>
+	
+	<div id="headingbg"><h2>Write Your Article</h2></div>
+	<div id="inner">
+	<p>
+		<h3>Excerpt: 1-2 Sentences to summarize article</h3>
+        <%= fckeditor_textarea( "article", "excerpt", :toolbarSet => 'Simple', :width => '100%', :height => '200px') %>
+	</p>
+	<p>
+		<h3>Body: This is your main article</h3>
+		<%= fckeditor_textarea( "article", "body", :toolbarSet => 'Simple', :width => '100%', :height => '500px') %>
+	</p>
+	<p>
+		<h3>Extended: Second half of article that will show up on specific page</h3>
+		<%= fckeditor_textarea("article", "extended", :toolbarSet => 'Simple', :width => '100%', :height => '300px') %>
+	</p>
+	</div>
+	<div id="headingbg"><h2>Article Details</h2></div>
+	<div id="inner">
+	<p>
+		<h3>How the web address will appear:</h3>
+		<p>Example: <i>how to clean</i> would produce --yoursite.com/article/how-to-clean</p>
+		<%= f.text_field :permalink %>
+	</p>
+	<p>
+		<h3>Publish article?</h3>
+		<%= f.check_box :online %>
+	</p>
+	</div>
+<div id="inner" style="height: 30px;">
+  <p style="float: right;"><%= f.submit "Save Article" %></p></div>
+<% end %>

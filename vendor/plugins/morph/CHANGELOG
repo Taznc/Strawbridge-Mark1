@@ -1,0 +1,15 @@
+v0.2.1. better accomodation of unicode method names
+
+v0.2.0. added script_generate method; fixed bug occurring when two morph classes exist
+
+v0.1.5. added morph_attributes instance method
+
+v0.1.4. can now pass code block to customize the dynamically added methods
+
+v0.1.3. can now set hash of attributes via morph method
+
+v0.1.2. fixed problems in packaging of v0.1.1 gem
+
+v0.1.1. calling unknown reader method no longer adds accessor methods to class
+
+v0.1.0. initial release

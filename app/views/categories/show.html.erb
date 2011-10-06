@@ -1,0 +1,6 @@
+<h1>Articles in <i><%=h @category.name %></i> category</h1>
+<p style="margin-left: 20px;">
+  <% for article in @category.articles %>
+  <%= link_to article.title, article, :style=>"text-decoration: underline; padding-right: 10px;" %> written on <%= article.created_at.strftime('%b %d, %Y') %><br />
+  <% end %>
+</p>

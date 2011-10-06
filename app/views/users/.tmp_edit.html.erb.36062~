@@ -1,0 +1,42 @@
+<h1>Your Address and Shipping</h1>
+<h2>Step 1: Your Email</h2>
+<% form_for @user do |order_form| %>
+	<div style="width:371px;">
+		<p style="text-align:right;">Email* <%= order_form.text_field :email %></p>
+	</div>
+<div id="loginpagecheckout">
+	<div class="leftforty" style="width:371px;margin-left:0px;float:left;">
+		<h2>Step 2: Your Billing Address</h2>
+		<p style="text-align:right;">Country* <%= order_form.text_field :country %></p>
+		<p style="text-align:right;">First Name* <%= order_form.text_field :first_name %></p>
+		<p style="text-align:right;">Last Name* <%= order_form.text_field :last_name %></p>
+		<p style="text-align:right;">Company <%= order_form.text_field :company %></p>
+		<p style="text-align:right;">Address 1* <%= order_form.text_field :home_address %></p>
+		<p style="text-align:right;">Address 2 <%= order_form.text_field :home_address_two %></p>
+		<p style="text-align:right;">City* <%= order_form.text_field :city %></p>
+		<p style="text-align:right;">State* <%= us_state_select 'user', 'state'%></p>
+		<p style="text-align:right;">Postal Code* <%= order_form.text_field :zipcode %></p>
+		<p style="text-align:right;">Phone* <%= order_form.text_field :phone %></p>
+		<p style="margin-left:140px;"><%= order_form.check_box :same_address %> Billing address is the same as my shipping address.</p>
+	</div>
+	<div class="leftforty" style="width:371px;margin-left:55px;float:left;">
+	<div id="shipping">
+	<h2>Step 2a: Your Shipping Address</h2>
+	<% @user.build_address unless @user.address %>
+	<% order_form.fields_for :address do |shipping_form| %>
+		<p style="text-align:right;">Country* <%= shipping_form.text_field :country %></p>
+		<p style="text-align:right;">First Name* <%= shipping_form.text_field :first_name %></p>
+		<p style="text-align:right;">Last Name* <%= shipping_form.text_field :last_name %></p>
+		<p style="text-align:right;">Company <%= shipping_form.text_field :company %></p>
+		<p style="text-align:right;">Address 1* <%= shipping_form.text_field :address_1 %></p>
+		<p style="text-align:right;">Address 2* <%= shipping_form.text_field :address_2 %></p>
+		<p style="text-align:right;">City* <%= shipping_form.text_field :city %></p>
+		<p style="text-align:right;">State / Province* <%= shipping_form.text_field :state %></p>
+		<p style="text-align:right;">Postal Code* <%= shipping_form.text_field :zipcode %></p>
+		<p style="text-align:right;">Phone* <%= shipping_form.text_field :phone %></p>
+	<% end %>
+	</div>
+	</div>
+	<p style="text-align:right;clear:both;"><%= submit_tag 'Confirm Order' %></p>
+<% end %>
+</div>

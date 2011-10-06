@@ -1,0 +1,23 @@
+<p>
+  <b>Unit price:</b>
+  <%=h @line_items.unit_price %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @line_items.product_id %>
+</p>
+
+<p>
+  <b>Cart:</b>
+  <%=h @line_items.cart_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @line_items.quantity %>
+</p>
+
+
+<%= link_to 'Edit', edit_line_items_path(@line_items) %> |
+<%= link_to 'Back', line_items_path %>

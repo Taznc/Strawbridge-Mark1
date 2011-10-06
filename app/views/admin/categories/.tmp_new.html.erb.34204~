@@ -1,0 +1,22 @@
+<div id="headingbg"><h2>Add a Category</h2></div>
+<div id="inner">
+<% form_for([:admin, @category]) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :permalink %><br />
+    <%= f.text_field :permalink %>
+  </p>
+  <p>
+    <%= f.submit "Create Category" %>
+  </p>
+<% end %>
+</div>
+<%= link_to 'Back', admin_categories_path %>

@@ -1,0 +1,95 @@
+<% content_for :title, @article.title %>
+<div id="inner">
+<h1><%= @article.title %></h1>
+	<p> 
+	<%= @article.created_at.strftime('%b %d, %Y') %> by Dr. Rawls.
+	<!--<% for author in @article.users %>
+ 		<%=h author.name %> 
+	<% end %>!-->
+	</p>
+	<%= RedCloth.new(@article.excerpt).to_html %>
+	<%= RedCloth.new(@article.body).to_html %>
+	<%= RedCloth.new(@article.extended).to_html %>
+	<div style="background-color: #F8F5DE; border: 1px solid #EDE9B7; height: 40px;">
+			<p style="float:left; width: 80%; margin-left: 5px; color: #B33332;">Categories:  
+			<% for category in @article.categories %>
+			<%= link_to category.name, category_path(category) %>, 
+			<% end %></p>
+	</div>
+	<p><b>Tags(s):</b>
+  	<% for tag in @article.tags %>
+ 		<%= link_to tag.name, tag_path(tag) %>,  
+	<% end %>
+	</p>
+
+<script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#tabs=web%2Cpost%2Cemail&amp;charset=utf-8&amp;style=default&amp;publisher=22558df4-02d9-43bf-9584-b3a56be127a9"></script>
+<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> 
+<!-- comments -->
+<% unless @article.comments.empty? %>
+  <div style="background-color: rgb(236, 234, 225); margin-top: 10px; padding-top: 2px;">
+  <h2 style="padding: 0px; margin: 0px; margin-left: 16px;">Previous Comments</h2>
+  </div>
+  <% @article.comments.each do |comment| %>
+    <% if comment.approved? %>
+      <div style="border: 1px solid #CBC5B0; padding-left: 20px;">
+      <p style=""><a href="http://<%= comment.url %>"><%= comment.author %></a>- <%= comment.created_at.strftime('%b %d, %Y') %>
+      <p style=""><%=h comment.body %></p>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<!-- new comment -->
+<div style="background-color: #ECEAE1; margin-top: 20px; padding-top: 10px;">
+<div id="comment">
+	<h2 style="padding: 0px; margin: 0px; margin-left: 16px;">Make a Comment</h2>
+	<% form_for [@article,@commentable, Comment.new] do |f| %>
+		<%= f.error_messages %>
+		<p style="margin-left: 24px;"><%= f.label :name %><%= f.text_field :author %></p>
+		<p style="margin-left: 26px;"><%= f.label :email %><%= f.text_field :email %></p>
+		<p style="margin-left: 42px;"><%= f.label :URL %><%= f.text_field :url %></p>
+		<p style="margin-left: 72px;"><label>Spam: What is 7 - 3?</label><%= f.text_field :spam, :style =>"width: 40px;" %></p>
+		<p><label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 445px; height: 100px;" %></p>
+		<p style="text-align:right; margin-right: 46px; padding-bottom: 10px;"><%= submit_tag 'Add Comment' %></p>
+	<% end %>
+</div>
+</div>
+<p style="clear:both; height: 20px;"></p>
+</div>
+<div id="sidebar">
+  <%= image_tag("../images/theme/sidebartop.jpg", :alt => "First Do No Harm Product Group") %>
+	<div class="sidebarpiece">
+	<img height="234" width="271" src="/uploads/Image/drrawlspic4.jpg" id="drrawlspic" alt="" />
+	<h4>Categories</h4>
+	<%= render :partial => "categories/index" %>
+	</div>
+	<div class="sidebarpiece">
+	<h4>Tags</h4>
+	<%= render :partial => "tags/list" %>
+	</div>
+	<div class="sidebarpiece">
+	<h4>Archives</h4>
+	<% @article_months.sort.each do |month, articles| %>
+  	<p style="color:#E44E01;margin:0;padding:0;"><%= link_to month.strftime('%B'), articles_path(:search => month.strftime('%m')) %> (<%= articles.size %>)</p>
+	<% end %>
+	</div>
+	<div class="sidebarpiece">
+	<h4>RSS</h4>
+	<a href="/articles.rss">Subscribe to RSS Feed</a>
+	</div>
+          <div class="sidebarpiece">
+          <h4>Newsletter</h4>
+          <style type="text/css">
+            .link,#SignUp .signupframe {
+            color: #226699;
+            font-family: Arial, Helvetica, sans-serif;}
+            .link {text-decoration: none;}
+            #SignUp .signupframe {
+            border: 1px solid #000000;
+            background: #ffffff;}
+          </style>
+          <script type="text/javascript" src="http://app.icontact.com/icp/loadsignup.php/form.js?c=575836&l=18069&f=3597"></script>
+          <a class="link" href="http://www.icontact.com"><font size="2">Email Marketing You Can Trust</font></a>
+        </div>
+  <%= image_tag("../images/theme/sidebarbottom.jpg", :alt => "First Do No Harm Product Group") %>
+</div>

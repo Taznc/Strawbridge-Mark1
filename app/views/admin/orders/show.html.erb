@@ -1,0 +1,71 @@
+<div id="headingbg"><h2>Order Number <%= @order.id %></h2></div>
+<div id="inner">
+	<h3>Customer Name</h3>
+		<p><%= @order.first_name.capitalize %> <%= @order.last_name.capitalize %></p>
+	<h3>Customer Email Address</h3>
+		<p><%= @order.user.email %></p>
+	<h3>Customer Company</h3>
+		<p><%= @order.user.company %></p>
+	<h3>Ip Address</h3>
+		<p><%= @order.ip_address %></p>
+	<br />
+	<div style="float:left;width:40%;">
+	<h3>Billing Address</h3>
+		<p>Address 1: <%= @order.user.home_address %></p>
+		<p>Address 2: <%= @order.user.home_address_two %></p>
+		<p>City: <%= @order.user.city %></p>
+		<p>State: <%= @order.user.state %></p>
+		<p>Zipcode: <%= @order.user.zipcode %></p>
+		<p>Country: <%= @order.user.country %></p>
+	</div>
+	<div style="float:left;width:40%;">
+          <% if @order.user.same_address == "0" %>
+	<h3>Shipping Address</h3>
+		<p>Address 1: <%= @order.user.address.address_1 %></p>
+		<p>Address 2: <%= @order.user.address.address_2 %></p>
+		<p>City: <%= @order.user.address.city %></p>
+		<p>State: <%= @order.user.address.state %></p>
+		<p>Zipcode: <%= @order.user.address.zipcode %></p>
+		<p>Country: <%= @order.user.address.country %></p>
+	<% end %>
+	</div>
+	<p style="clear:both;"></p>
+</div>
+
+<div id="headingbg"><h2>Payment Info</h2></div>
+<div id="inner">
+<p>Card Type: <%= @order.card_type %></p>
+<p>Card Expires on: <%= @order.card_expires_on.strftime('%b-%y') %></p>
+<p>Order Date: <%= @order.created_at.strftime('%b-%d-%Y') %></p>
+</div>
+<div id="headingbg"><h2>Individual Items Ordered (Line Items)</h2></div>
+<div id="inner">
+<% unless @order.cart_id.blank? %>
+<% @order.cart.line_items.each_with_index do |item, index| %>
+	<p><b><%= item.product.name %></b></p>
+	<p style="margin-left:30px;font-size:14px;">Quantity: <%=item.quantity %></p>
+	<p style="margin-left:30px;font-size:14px;padding-bottom:5px;border-bottom:1px gray solid;">Unit Price: <%= number_to_currency(item.unit_price) %></p>
+	<p style="margin-left:30px;font-size:14px;padding-bottom:15px;">Item Total Price: <%= number_to_currency(item.full_price) %></p>
+<% end %>
+</div>
+<div id="headingbg"><h2>Order Details</h2></div>
+<div id="inner">
+<p>Items Ordered: <%= @order.total_quantity %></p>
+<p>Sub Total: <%= number_to_currency @order.total_price %></p>
+<p><%=h (@order.cart.discount + @order.cart.user_discount_percent) * 100 %>% Discount</p>
+<p>Shipping <%= @order.cart.shipping_choice %></p>
+<p><b>Grand Total: <%= number_to_currency(@order.cart.grand_total + + @order.tax) %></b></p>
+<% else %>
+<p>Failed Order</p>
+<% end %>
+<br />
+<% for trans in @order.transactions %>
+<p><% if trans.success? %>
+Order was Successfully Processed
+<% else %>
+Order Failed to Process
+<% end %>
+</p>
+<p>Order Transaction Message: <%= trans.message %></p>
+<% end %>
+</div>

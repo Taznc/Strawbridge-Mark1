@@ -1,0 +1,17 @@
+<div id="sidebar">
+  <%= image_tag("../images/theme/sidebartop.jpg", :alt => "First Do No Harm Product Group") %>
+  <p><%= owner_desc.description %></p><br />
+  <h4>Topic Categories</h4>
+    <%= render :partial => "categories/index" %>
+  <br />
+  <h4>Topic Tags</h4>
+    <%= render :partial => "tags/list" %>
+  <br />
+  <a href="/articles.rss"><%= image_tag("../images/CSBlogTheme/rsslogo.jpg", :alt => "Subscribe to RSS Feed", :style => "") %></a>
+  <br />
+  <h4>Newsletter</h4>
+    <div>Email<br /><input id='signup_email' name='signup[email]' type='text' /><input name='commit' type='submit' value='Sign Up' /></div>
+  </form>
+  <form action='http://madmimi.com/signups/subscribe/922' method='post'>
+  <script type="text/javascript" src="http://pub.mybloglog.com/newwithme.php?b=sidebar&id=TUwWsPsRqdEjUxruxM74anIvPF47mbENdf30Pg--"></script>
+</div>

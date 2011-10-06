@@ -1,0 +1,21 @@
+<h1>Listing producttags</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Position</th>
+  </tr>
+
+<% @producttags.each do |producttag| %>
+  <tr>
+    <td><%=h producttag.name %></td>
+    <td><%=h producttag.position %></td>
+    <td><%= link_to 'Edit', edit_admin_producttag_path(producttag) %></td>
+    <td><%= link_to 'Destroy', [:admin, producttag], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New producttag', new_admin_producttag_path %>

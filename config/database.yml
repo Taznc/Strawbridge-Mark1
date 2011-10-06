@@ -1,0 +1,24 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: strawsite
+  username: strawbridge
+  password: cleverstart
+  host: localhost 
+
+
+test:
+  adapter: mysql
+  encoding: utf8
+  database: james_blog
+  username: james_jamesbl
+  password: james
+  host: localhost
+
+production:
+  adapter: mysql
+  encoding: utf8
+  database: strawsite
+  username: strawbridge
+  password: cleverstart
+  host: localhost 

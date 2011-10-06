@@ -1,0 +1,13 @@
+<h1>Listing tags</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for tag in @tags %>
+  <tr>
+    <td><%=h tag.name %></td>
+  </tr>
+<% end %>
+</table>

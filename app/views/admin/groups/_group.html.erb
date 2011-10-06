@@ -1,0 +1,4 @@
+<li id="group_<%= group.id %>">
+  	<%=h group.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_group_path(group) %> | <%= link_to_remote('Delete', :url => admin_group_path(group), :method => 'delete', :complete => "Effect.Puff('group_#{group.id}')")%></p>
+</li>
+	

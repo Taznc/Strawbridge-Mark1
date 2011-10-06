@@ -1,0 +1,26 @@
+<h1>Listing line_items</h1>
+
+<table>
+  <tr>
+    <th>Unit price</th>
+    <th>Product</th>
+    <th>Cart</th>
+    <th>Quantity</th>
+  </tr>
+
+<% @line_items.each do |line_items| %>
+  <tr>
+    <td><%=h line_items.unit_price %></td>
+    <td><%=h line_items.product_id %></td>
+    <td><%=h line_items.cart_id %></td>
+    <td><%=h line_items.quantity %></td>
+    <td><%= link_to 'Show', line_items %></td>
+    <td><%= link_to 'Edit', edit_line_items_path(line_items) %></td>
+    <td><%= link_to 'Destroy', line_items, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New line_items', new_line_items_path %>

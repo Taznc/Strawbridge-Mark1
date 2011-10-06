@@ -1,0 +1,27 @@
+</div></div>
+<div id="home_buttons">
+  <div class="container">
+    <div class="home_buttons">
+      <p id="home_button_one"><a href="/pages/2-school-potraits">School Portraits</a></p>
+
+    </div>
+    <div id="home_button_two" class="home_buttons_other">
+      <a href="/pages/3-senior-expressions">Senior Expressions</a>
+    </div>
+    <div id="home_button_three" class="home_buttons_other">
+      <a href="/pages/4-yearbooks">Yearbooks</a>
+    </div>
+  </div>
+
+</div>
+<div class="container" style="padding:20px 0;">  
+	<div style="width:570px;background-color:#F6F1EA;text-align:center;margin-left:207px;">
+		<h1 style="padding-top:49px;text-align:left;margin:0px 0 10px 47px;">Login to Your CMS</h1>
+		<% form_tag session_path do %>
+			<p style="margin-left:28px;"><span style="margin-right:5px;">Login:</span> <%= text_field_tag 'login', '', :style=>'font-size:13px;height:13px;padding:12px;width:349px; ' %></p><br />
+			<p style=""><span style="margin-right:5px;">Password:</span> <%= password_field_tag 'password', '', :style=>'font-size:13px;height:13px;padding:12px;width:349px;' %></p><br />
+			<p style="margin-left:207px;"><span style="margin-right:5px;">Remember me:</span> <%= check_box_tag 'remember_me' %> <%= submit_tag 'Login', :style=>'margin-left:72px;' %></p>
+		<% end %>
+		<br />
+	</div> 
+</div>

@@ -1,0 +1,36 @@
+<div id="deals" style="margin-top: 40px;">
+<div id="dealscontent" style="margin-left: 0px; clear:both;">
+	<div id="dealsheader" style="height: 52px; margin-bottom: 20px;">
+		<h1>Sign Up</h1>
+	</div>
+<%= error_messages_for :user %>
+
+<% form_for :user, :url => users_path do |f| %>
+	<p class="left">Desired Login</p><p class="right"><%= f.text_field :login %></p>
+	</div>
+	<div style="clear:both;">
+	<p class="left">Email Address</p><p class="right"><%= f.text_field :email %></p>
+	</div>
+	<div style="clear:both;">
+	<p class="left">Password</p><p class="right"><%= f.password_field :password %></p>
+	</div>
+	<div style="clear:both;">
+	<p class="left">Confirm Password</p><p class="right"><%= f.password_field :password_confirmation %></p>
+	</div>
+  	<p style="margin-left: 240px; clear: both;"><%= submit_tag 'Sign Up' %></p>
+ <% end %>
+</div>
+</div>
+
+<div>
+
+ 
+
+
+
+
+
+
+
+
+ 

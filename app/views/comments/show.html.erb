@@ -1,0 +1,35 @@
+<p>
+  <b>Title:</b>
+  <%=h @comment.title %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @comment.author %>
+</p>
+
+
+
+<p>
+  <b>Url:</b>
+  <%=h @comment.url %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @comment.body %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @comment.status %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%=h @comment.ip %>
+</p>
+
+
+<%= link_to 'Edit', [:edit, @article, @comment] %> |
+<%= link_to 'Back', article_comments_path %>

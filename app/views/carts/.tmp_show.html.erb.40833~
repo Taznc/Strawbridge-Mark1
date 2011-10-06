@@ -1,0 +1,34 @@
+<h1 style="border-bottom: 1px solid white;">Cart Contents</h1>
+<table id="line_items">
+  <tr>
+  	<th width="19%">Quantity</th>
+    <th width="10%">Product</th>
+	<th width="40%">Description</th>
+    <th class="price">Price</th>
+    <th class="price">Subtotal</th>
+  </tr>
+  <% for line_item in @cart.line_items %>
+    <tr class="<%= cycle :odd, :even %>">
+      <% form_for(line_item) do |f| %>
+      <td class="qty" ><%= f.text_field :quantity, :size=>1, :style=>"text-align:center; float:left;" %><%= f.submit "Update Quantity", :style=>"float:right;" %></td>
+	  <% end %>
+	  <td><%=h line_item.product.name %></td>
+	  <td><%=h line_item.product.description %></td>
+      <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+      <td class="price"><%= number_to_currency(line_item.full_price) %></td>
+	  <td><%= link_to "Remove from Cart", remove_from_cart_path(:product_id => line_item.product_id), :method => :post %></td>
+	</tr>
+  <% end %>
+  <tr>
+  	<td class="total"></td>
+    <td class="total" colspan="4">
+      Total: <%= number_to_currency @cart.total_price %>
+    </td>
+	<td><%= link_to "Checkout", new_order_path %></td>
+  </tr>
+</table>
+
+<p style="text-align:right;">
+  <%= link_to "Continue Shopping", products_url %> |
+  <%= link_to "Checkout", new_order_path %>
+</p>

@@ -1,0 +1,32 @@
+<div id="headingbg"><h2>Listing Comments</h2></div>
+<div id="inner">
+<% form_tag deleteall_admin_comments_path, :method => :put do %>
+  <%= submit_tag "Delete Checked Comments" %><br />
+  <table width=100% id="category">
+    <tr style="background-color: #579941; color: #fff;">
+      <th></th>
+      <th>Author</th>
+      <th>Url</th>
+      <th>Body</th>
+      <th>Comment Type</th>
+      <th>Ip</th>
+      <th>Email Address</th>
+    </tr>
+  <% for comment in @comments %>
+      <tr>
+        <td><%= check_box_tag "comment_ids[]", comment.id %></td>
+        <td><%=h comment.author %></td>
+        <td><%=h comment.url %></td>
+        <td><%=h comment.body %></td>
+        <td><%=h comment.commentable_type %> Comment</td>
+        <td><%=h comment.ip %></td>
+        <td><a href="mailto:<%=h comment.email %>"><%=h comment.email %></a></td>
+        <td><%= link_to 'Show', admin_comment_path(comment) %></td>
+        <td><%= link_to 'Edit', edit_admin_comment_path(comment) %></td>
+      </tr>
+  <% end %>
+  </table>
+  <br />
+  <%= submit_tag "Delete Checked Comments" %>
+<% end %>
+</div>

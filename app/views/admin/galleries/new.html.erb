@@ -1,0 +1,83 @@
+<%
+dialog_file_description = 'Galleries'
+allowed_extensions = [:jpg, :jpeg, :gif, :png]
+max_size = 30.megabyte
+allow_multiple_files = true
+url = admin_galleries_path
+photo_field = '#gallery_photo'
+%>
+<%- session_key_name = ActionController::Base.session_options[:key] -%>
+<% content_for :jstemplates do -%>
+<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+<script type="text/javascript" src="/javascripts/uploadify/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts/uploadify/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('<%= photo_field %>').uploadify({
+    uploader      : '/javascripts/uploadify/uploadify.swf',
+    script        : '<%= url %>',
+    fileDataName  : $('#photo_uploader input:file')[0].name, // Extract correct name of upload field from form field
+    cancelImg     : '/images/cancel.png',
+    buttonText    : 'Browse',
+    //buttonImg     : '/images/browse-background.png',
+    fileDesc      : '<%= dialog_file_description %> (<%= allowed_extensions.collect { |ext| "*.#{ext}" }.join(';') %>)',
+    fileExt       : '<%= allowed_extensions.collect { |ext| "*.#{ext}" }.join(';') %>',
+    //'auto'      : true,
+    sizeLimit     : <%= max_size %>,
+    multi         : <%= allow_multiple_files %>,
+    onComplete    : function(event, queueID, fileObj, response, data) { var data = eval('(' + response + ')');$.getScript(data.photo)},
+    onAllComplete : function(event, data){
+      $('#uploadify_cancel').hide('blind');
+      $('#uploadify_submit').show('blind');
+    },
+    onSelect: function(event, queueID, fileObj){
+      if (fileObj.size > <%= max_size %>) {
+        alert('The image' + fileObj.name + ' is too large.')
+        return false;
+      }
+    },
+    scriptData  : {
+        'format': 'json',
+        'page_id' : '<%= params[:page_id] %>',
+        '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+        'authenticity_token'  : encodeURIComponent('<%= u form_authenticity_token if protect_against_forgery? %>')
+    }
+  });
+
+  $('#uploadify_submit').click(function(event){
+    event.preventDefault();
+    $('<%= photo_field %>').uploadifyUpload();
+    $('#uploadify_submit').hide();
+    $('#uploadify_cancel').show();
+  });
+
+  $('#uploadify_cancel').click(function(event){
+    event.preventDefault();
+    $('<%= photo_field %>').uploadifyClearQueue();
+    $('#uploadify_cancel').hide();
+    $('#uploadify_submit').show();
+  });
+});
+</script>
+<% end -%>
+<div class="galleries">
+<%= link_to "Back to Gallery", admin_page_galleries_path(@page) %>
+<% @page.galleries.each do |gallery| %>
+<%= render :partial => 'gallery', :object => gallery %>
+<% end %>
+</div>
+<p class="clear" style="margin-bottom:40px;"></p>
+<h1 style="margin-bottom:0px;">Add Photos</h1>
+<p style="margin-bottom:24px;">(Maximum Photo Size 30 Megabytes)</p>
+<% form_for([:admin, @gallery], :id => 'photo_upload', :html => { :multipart => true}) do |f| %>
+  <% if protect_against_forgery? -%>
+    <%= f.hidden_field :authenticity_token, :value => (u form_authenticity_token) -%>
+  <% end -%>
+    <%= f.error_messages %>
+  <div id="photo_uploader">
+    <%= f.file_field :photo %>
+  </div>
+  <div id="photo_submit">
+    <a href="#" class="button" id="uploadify_submit"><%= image_tag("../images/theme/upload.gif", :alt => "Pixfo shoot share and connect") %></a><a href="#" id="uploadify_cancel" style="display:none"><%= image_tag("../images/theme/cancel.gif", :alt => "Pixfo shoot share and connect") %></a>
+  </div>
+<% end %>

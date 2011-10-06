@@ -1,0 +1,5 @@
+<div id="blogcontent">
+	<h1><%=h @event.title %></h1>
+	<%= RedCloth.new(@event.body).to_html %>
+<p class="right"><%= link_to 'View more', events_path %></p>
+</div>

@@ -1,0 +1,25 @@
+<div id="header">
+  <div class="container">
+    <div id="logo">
+      <%= link_to image_tag("../images/theme/strawbridge_logo.gif"), "/" %>
+    </div>
+    <div id="menu">
+      <ul>
+        <li class="potraits"><a href="/pages/2-school-potraits">POTRAITS</a></li>
+        <li class="seniors"><a href="/pages/3-senior-expressions">SENIORS</a></li>
+        <li class="yearbooks"><a href="/pages/4-yearbooks">YEARBOOKS</a></li>
+        <li class="contact"><a href="/pages/62-contact-us-info">CONTACT</a></li>
+      </ul>
+    </div>
+    <p class="clear"></p>
+    <% if controller.controller_name == 'pages' and params[:id].to_s != '1' and params[:searchterm] == nil %>
+    	<%= RedCloth.new(@page.excerpt).to_html %>
+    <% end %>
+	<% if params[:searchterm] %>
+		<div style="height:179px"></div>
+	<% end %>
+  </div>
+	<% unless controller.controller_name == 'sessions' %>
+  		<div id="interior_bottom_header"></div>
+    <% end %>
+</div>

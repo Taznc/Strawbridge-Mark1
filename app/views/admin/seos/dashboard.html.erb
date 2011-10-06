@@ -1,0 +1,45 @@
+<div style="width: 35%; float: left; margin-right: 5%;">
+<div id="headingbg"><h2>Most Recent Articles</h2></div>
+	<div id="inner">
+	<% for article in @recentarticles %>
+	<p><%=h article.title %><br /><%= (pluralize(article.comments.size, 'comment')) %></p>
+	<% end %>
+	</div>
+</div>
+
+<div style="width: 35%; float: left; margin-right: 5%;">
+<div id="headingbg"><h2>Recent Comments</h2></div>
+	<div id="inner">
+	<% for comment in @recentcomments %>
+	<p><%=h comment.title %></p>
+	<% end %>
+	</div>
+</div>
+
+<div style="width: 20%; float: left;">
+<div id="headingbg"><h2>Statistics</h2></div>
+	<div id="inner">
+		<p>Articles Published: <%=h @articlecount.size %></p>
+		<p>Last Published Article: <%=h @lastarticle.title %></p>
+		<p>Comments: <%=h @comments.size %></p>
+	</div>
+</div>
+<p style="clear:left;"></p>
+<div style="padding-top: 10px; width: 35%; float: left; margin-right: 5%;">
+<div id="headingbg"><h2>Most Popular</h2></div>
+	<div id="inner">
+	</div>
+</div>
+
+<div style="padding-top: 10px; width: 35%; float: left; margin-right: 5%;">
+<div id="headingbg"><h2>SEO Pageviews</h2></div>
+	<div id="inner">
+	</div>
+</div>
+
+<div style="padding-top: 10px; width: 20%; float: left;">
+<div id="headingbg"><h2>SEO Statistics</h2></div>
+	<div id="inner">
+		
+	</div>
+</div>

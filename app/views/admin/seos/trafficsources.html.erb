@@ -1,0 +1,45 @@
+<h1><%= @reportname %></h1>
+<h3><%= @reportstart.strftime("%A, %B, %d %Y") %> - <%= @reportend.strftime("%A, %B, %d %Y") %></h3>
+<h3>Top Traffic Sources </h3>
+	<div style="margin-left: 40px;">
+	<div style="width: 40%; float:left;">
+	<h4>Sources</h4>
+	<% for source in @source %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= source %></p>
+	<% end %>
+	</div>
+	<div style="width: 15%; float:left;">
+	<h4>Visits</h4>
+	<% for sourcevisit in @sourcevisits %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= sourcevisit %></p>
+	<% end %>
+	</div>
+	<div style="width: 15%; float:left;">
+	<h4>% Visits</h4>
+	<% for percent in @percent %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= number_to_percentage(percent.to_f * 100, {:precision => 0}) %></p>
+	<% end %>
+	</div>
+	</div>
+	<div style="clear:left;"></div>
+	
+	<div style="margin-left: 40px;">
+	<div style="width: 40%; float:left;">
+	<h4>Keywords</h4>
+	<% for source in @ksource %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= source %></p>
+	<% end %>
+	</div>
+	<div style="width: 15%; float:left;">
+	<h4>Visits</h4>
+	<% for sourcevisit in @ksourcevisits %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= sourcevisit %></p>
+	<% end %>
+	</div>
+	<div style="width: 15%; float:left;">
+	<h4>% Visits</h4>
+	<% for percent in @kpercent %>
+		<p style="background-color:#3A4664; color: #fff; padding: 5px; margin: 2px;"><%= number_to_percentage(percent.to_f * 100, {:precision => 0}) %></p>
+	<% end %>
+	</div>
+	</div>

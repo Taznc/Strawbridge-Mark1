@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head><title>Analytics Settings - Google Analytics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="Stylesheet" type="text/css" href="/analytics/static/s/3101978544-ga-ltr.css">
+</head>
+<body>
+<div id="container" class="admin_container">
+<span class="">
+<div id="header">
+  <div id="main_header">
+    <p id="logo"><a href="/analytics/settings/home">Google Analytics</a></p>
+    <p id="skip_link"><a href="#main_content">Skip to main content</a></p>
+    <table id="global_header_nav">
+      <tr><td><span id="f_email" class="email_address">@gmail.com</span></td>
+      <td>|</td>
+      <td><a href="/analytics/settings/my_account?scid=1254221">Settings</a></td>
+      <td>|</td>
+      <td><a href="https://www.google.com/accounts/ManageAccount">My Account</a></td>
+      <td>|</td>
+      <td><a href="http://www.google.com/support/googleanalytics/" target="GoogleHelp">Help</a></td>
+      <td>|</td>
+      <td><a href="https://www.google.com/accounts/Logout?continue=https://www.google.com/analytics/settings/" id="logout">Sign Out</a></td>
+      </tr>
+    </table>
+  </div>
+  <div id="subheader">
+    <div id="account_profile_nav">
+      <form id="account_profile_selector" action="/analytics/reporting/" method="get">
+        <p id="profile_nav">
+          <input type="hidden" name="reset" value="1">
+          <input type="hidden" name="scid" value="3110135">
+          <a class="settings" href="/analytics/settings/home?scid=1254221">Analytics Settings</a>
+          <a class="view_report" href="/analytics/reporting/?id=5996429"> View Reports: </a>
+          <select name="id" id="profile" onchange="this.form.submit()">
+            <option selected value="2420755">blog.your_site.com</option>
+          </select>
+        </p>
+      </form>
+      <form id="account_selector" name="account_selector" action="/analytics/settings/home" method="get">
+        <p id="account_nav">
+          <label for="account"> My Analytics Accounts: </label>
+          <select name="scid" id="account" onchange="submitAccountSelectorForm(this.value)">
+            <option selected value="1254221">your_site.com</option>
+            <option value="344381">another_site.com</option>
+            <optgroup style="font-weight: normal" label="-------------------------------"></optgroup>
+            <option value="0">Create New Account...</option>
+          </select>
+        </p>
+      </form>
+      </div>
+   </div>
+</div>
+</span>
+</div>
+</body>
+</html>

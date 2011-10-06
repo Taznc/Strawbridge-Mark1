@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><%= yield(:title) ? "#{yield(:title)} " : '' %></title>
+		<% if controller.controller_name == 'articles' and controller.action_name != 'show' %>
+		<meta name="Description" content="<%= this_blog.site_desc %>" />
+		<meta name="Keywords" content="<%= this_blog.article_seo %>" />
+		<% elsif controller.controller_name == 'pages' and controller.action_name != 'show' %>
+		<meta name="Description" content="<%= this_blog.site_desc %>" />
+		<meta name="Keywords" content="<%= this_blog.page_seo %>" />
+		<% elsif controller.controller_name == 'articles' and controller.action_name == 'show' %>
+		<meta name="Description" content="<%= @article.keywords %>" />
+		<meta name="Keywords" content="<% for tag in @article.metatags -%><%=h tag.name -%>, <% end %>" />
+		<% elsif controller.controller_name == 'pages' and controller.action_name == 'show' %>
+		<meta name="Description" content="<%= @page.keywords %>" />
+		<meta name="Keywords" content="<% for tag in @page.metatags -%><%=h tag.name -%>, <% end %>" />
+		<% end %>
+		<%= stylesheet_link_tag 'application', :media => 'all' %>
+		<%= stylesheet_link_tag 'print', :media => 'print' %>
+		<%= javascript_include_tag :fckeditor %>
+		<% unless controller.controller_name == 'users' and controller.action_name ='checkout_address'%>
+		<script type="text/javascript" src="/javascripts/mootools.js"></script>
+		<script type="text/javascript" src="/javascripts/noobSlide.js"></script>
+		<script type="text/javascript" src="/javascripts/slide.js"></script>
+		<% else %>
+		<%= javascript_include_tag :defaults %>
+		<%= javascript_include_tag "livevalidation" %>
+		<% end %>
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.markonecms.com/articles.rss" />
+		<script>
+			function prefillClear(field) {
+			if (field.defaultValue==field.value) {field.value = '';}
+			else if (field.value == '') {field.value = field.defaultValue;}
+			}
+		</script>
+	</head>
+<body>
+	<div id="container">
+		<div id="header" style="clear:both;">
+			<div style="float:left;">
+				<a href="/"><%= image_tag("../images/theme/logo.png", :alt => "CleverStart logo") %></a>
+			</div>
+			<div id="cartstatus">
+				<% if logged_in? %>
+				<p style="margin-left:10px;">Currently Logged in as <%= current_user.login %> | <a href="/logout">Logout</a></p>
+				<% else %>
+				<p style="float:left;margin-right:4px;margin-left:2px;">Log In </p>
+				<p style="float:left;"><% form_tag session_path do %>
+					<%= text_field_tag 'login', "username*", :onfocus=>'prefillClear(this)', :onblur=>'prefillClear(this);' %><%= password_field_tag 'password', "password*", :onfocus=>'prefillClear(this)', :onblur=>'prefillClear(this);', :style=>"margin-right:0px;" %>
+					<%= image_submit_tag("../images/theme/loginsubmit.jpg" ) %><% end %>
+				</p>
+				<% end %>
+				<p id="cartbox">
+					<%= image_tag("../images/theme/carticon.jpg", :alt => "") %>
+					<% if current_cart != nil %>
+					<%= current_cart.total_quantity %><span> Item(s) in Shopping Cart, </span><%= link_to 'View Cart', current_cart_path %>
+					<% else %>
+					<span>0 Items in Shopping Cart</span>
+					<% end %>
+				</p>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="/" <%= 'class="current"' if controller.controller_name == 'pages' and params[:id].to_s == "1" %>>Home</a></li>
+				<li><a href="/groups" <%= 'class="current"' if controller.controller_name == 'groups' or controller.controller_name == 'products' %>>Product Guide</a></li>
+				<li><a href="/pages/2-about-nutraceuticals" <%= 'class="current"' if controller.controller_name == 'pages' and params[:id].to_s == '2-about-nutraceuticals' %>>About Nutraceuticals</a></li>
+				<li><a href="/pages/5-our-story" <%= 'class="current"' if controller.controller_name == 'pages' and params[:id].to_s == '5-our-story' %>>Our Story</a></li>
+				<li><a href="/articles" <%= 'class="current"' if controller.controller_name == 'articles' %>>Our Blog</a></li>
+				<li><a href="/pages/4-contact-us" <%= 'class="current"' if controller.controller_name == 'pages' and params[:id].to_s == '4-contact-us' %>>Contact Us</a></li>
+			</ul>
+		</div>
+		<% if controller.controller_name == 'pages' and params[:id].to_s == '4-contact-us' %>
+			<div id="slideother">
+				<%= image_tag("../images/theme/contactheader.jpg", :alt => "CleverStart logo", :style => "") %>
+			</div>
+		<% elsif controller.controller_name == 'pages' and params[:id].to_s == '3-why-we-are-unique' or params[:id].to_s == '5-our-story' %>
+			<div id="slideother">
+				<%= image_tag("../images/theme/ourstoryheader.jpg", :alt => "CleverStart logo", :style => "") %>
+			</div>
+		<% elsif controller.controller_name == 'pages' and params[:id].to_s == '2-about-nutraceuticals' %>
+			<div id="slideother">
+				<%= image_tag("../images/theme/aboutheader.jpg", :alt => "CleverStart logo", :style => "") %>
+			</div>
+		<% elsif controller.controller_name == 'groups' or controller.controller_name == 'subgroups' %>
+			<div id="slideother">
+				<%= image_tag("../images/theme/productsheader.jpg", :alt => "CleverStart logo", :style => "") %>
+			</div>
+		<% else %>
+			<%= render :partial => "shared/slider" %>
+		<% end %>
+	<div id="content" style="overflow: hidden;">
+		<% flash.each do |key, msg| %>
+		  <%= content_tag :div, msg, :id => key %>
+		<% end %>
+		<%= yield %>
+		<% if controller.controller_name == "pages" and controller.action_name == "show" and params[:id].to_s == "4-contact-us" %>
+			<%= render :partial => "shared/contactus" %>
+		<% end %>
+	</div>
+	<% if controller.controller_name == 'pages' %><% end %>
+	<div style="clear:both;"></div>
+	<div id="footer">
+		<p style="font-size:10px;">The products and the claims made about specific products on or through this site have not been evaluated by the United States Food and Drug Administration and are not intended to diagnose, treat, cure or prevent disease. The information provided on this site is for informational purposes only and is not intended as a substitute for advice from your physician or other health care professional or any information contained on or in any product label or packaging. You should not use the information on this site for diagnosis or treatment of any health problem or for prescription of any medication or other treatment. You should consult with a healthcare professional before starting any diet, exercise or supplementation program, before taking any medication, or if you have or suspect you might have a health problem. </p>
+		<p style="height: 1px; border-bottom: 1px #333 solid; clear: left; padding-top: 10px;"></p>
+		<div>
+			<p style="color: #333;">&copy; Copyright 2009, MarkOneCMS.com</p>
+			<p style="color: #333;">Website Design By <a href="http://cleverstart.com" style="color: #333;">Clever Start</a>, Powered by <a href="http://markonecms.com" style="color: #333;">Mk1</a></p>
+		</div>
+	</div>
+</div><!-- End of Container !-->
+</body>
+</html>

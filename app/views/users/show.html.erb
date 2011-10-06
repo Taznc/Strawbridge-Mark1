@@ -1,0 +1,24 @@
+<% if current_user.id == @user.id %>
+<h1>Account Profile for <%=h @user.login %></h1>
+<div style="margin-left:15px;">
+  <p>Registered Email: <%=h @user.email %></p>
+  <p>Account Created On: <%= @user.created_at.to_s(:long) %></p>
+</div>
+<h1>Your Past Orders</h1>
+<div style="margin-left:15px;">
+<% for order in @orders %>
+<h3>Order Number: <%=h order.id %></h3>
+<p>Date Ordered: <%=h order.created_at.strftime('%b %d, %Y') %></p>
+  <% for line in order.cart.line_items %>
+    <%= line.product.name %> (<%= line.quantity %>)
+  <% end %>
+<% end %>
+</div>
+<% else %>
+<h1>Oops this isn't your account.</h1>
+  <% if logged_in? %>
+  <p>View your account <%= link_to "here", user_path(current_user) %></p>
+  <% else %>
+  <p>You are required to login to view past orders. Login <a href="/login">here</a>.</p>
+  <% end %>
+<% end %>

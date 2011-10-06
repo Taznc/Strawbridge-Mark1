@@ -1,0 +1,23 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'New page', new_admin_page_path %></p><h2>Your Pages</h2></div>
+<div id="inner">
+
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th></th>
+	<th>Title</th>
+    <th>Seo Keywords</th>
+	<th>Created On</th>
+  </tr>
+
+<% for page in @pages %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+  	<td><%= link_to 'View Page', page %></td>
+    <td><%=h page.title %></td>
+	<td><%= (pluralize(page.metatags.size, 'metatags')) %></td>
+	<td><%= page.created_at.strftime('%b-%d-%Y') %></td>
+    <td><%= link_to 'Edit', edit_admin_page_path(page) %></td>
+    <td><%= link_to 'Destroy', [:admin, page], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>

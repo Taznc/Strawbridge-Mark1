@@ -1,0 +1,51 @@
+<p>
+  <b>Title:</b>
+  <%=h @article.title %>
+</p>
+
+<p>
+  <b>Permalink:</b>
+  <%=h @article.permalink %>
+</p>
+
+
+	<p>
+		<b>Category(s):</b>
+	  	<% for category in @article.categories %>
+	 		<%=h category.name %>, 
+		<% end %>
+	</p>
+
+	<p>
+		<b>Tags(s):</b>
+	  	<% for tag in @article.tags %>
+	 		<%=h tag.name %>, 
+		<% end %>
+	</p>
+	
+	<p>
+		<b>MetaTag(s):</b>
+	  	<% for metatag in @article.metatags %>
+	 		<%=h metatag.name %>, 
+		<% end %>
+	</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @article.author %>
+</p>
+
+<p>
+  <b>Excerpt:</b>
+  <%= RedCloth.new(@article.excerpt).to_html %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= RedCloth.new(@article.body).to_html %>
+</p>
+
+<p>
+  <b>Extended:</b>
+  <%= RedCloth.new(@article.extended).to_html %>
+</p>

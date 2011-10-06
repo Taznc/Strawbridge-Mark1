@@ -1,0 +1,7 @@
+<% for tag in list_tags %>
+    <% if tag.articles.size != 0 %>
+	<p style="color:#E44E01;margin:0;padding:0;"><%= link_to tag.name, tag_path(tag) %>
+	(<%= link_to tag.articles.size, tag_path(tag) %>)
+	</p>
+	<% end %>
+<% end %>

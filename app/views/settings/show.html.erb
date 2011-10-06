@@ -1,0 +1,28 @@
+<p>
+  <b>Article seo:</b>
+  <%=h @setting.article_seo %>
+</p>
+
+<p>
+  <b>Page seo:</b>
+  <%=h @setting.page_seo %>
+</p>
+
+<p>
+  <b>Site desc:</b>
+  <%=h @setting.site_desc %>
+</p>
+
+<p>
+  <b>Articles display:</b>
+  <%=h @setting.articles_display %>
+</p>
+
+<p>
+  <b>Full rss:</b>
+  <%=h @setting.full_rss %>
+</p>
+
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

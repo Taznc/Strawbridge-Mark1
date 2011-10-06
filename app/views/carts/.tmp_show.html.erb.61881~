@@ -1,0 +1,28 @@
+<table id="line_items">
+  <tr>
+    <th>Product</th>
+    <th>Qty</th>
+    <th class="price">Unit Price</th>
+    <th class="price">Full Price</th>
+	<th></th>
+  </tr>
+  <% for line_item in @cart.line_items %>
+    <tr class="<%= cycle :odd, :even %>">
+      <td><%=h line_item.product.name %></td>
+      <td class="qty"><%= line_item.quantity %></td>
+      <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+      <td class="price"><%= number_to_currency(line_item.full_price) %></td>
+	  <td><%= link_to "Remove from Cart", remove_from_cart_path(:product_id => line_item.product_id), :method => :post %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td class="total" colspan="5">
+      Total: <%= number_to_currency @cart.total_price %>
+    </td>
+  </tr>
+</table>
+
+<p>
+  <%= link_to "Continue Shopping", products_url %> |
+  <%= link_to "Checkout", @cart.paypal_url(products_url, payment_notifications_url) %>
+</p>

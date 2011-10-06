@@ -1,0 +1,31 @@
+<% form_for([:admin, @subgroup]) do |f| %>
+  <%= f.error_messages %>
+	<div id="headingbg"><h2>Subgroup Details</h2></div>
+	<div id="inner">
+		<h3>Parent Group</h3>
+		<%= collection_select :subgroup, :group_id, Group.find(:all), :id, :name, {:selected => subgroup.group_id } %>
+		<h3>Name</h3>
+		<%= f.text_field :name %>
+                <h3><%= f.check_box :has_product %> This Subgroup has products</h3>
+		<h3>Permalink</h3>
+		<%= f.text_field :permalink %>
+                <div>
+                  <h3>Tags</h3>
+                  <ul>
+                    <% for tag in Metatag.find(:all, :order => "name ASC") %>
+                      <li>
+                        <%= check_box_tag "subgroup[metatag_ids][]", tag.id, @subgroup.metatags.include?(tag) %>
+                        <%= tag.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+		<h3>Description</h3>
+		<%= fckeditor_textarea( "subgroup", "description", :toolbarSet => 'Simple', :width => '100%', :height => '200px') %>
+		<br />
+                <h3>Hide / Show text for Health Briefs</h3>
+                <%= fckeditor_textarea( "subgroup", "hidden_text", :toolbarSet => 'Simple', :width => '100%', :height => '600px') %>
+                <p style="text-align:right;"><%= f.submit 'Create' %></p>
+
+<% end %>
+	</div>

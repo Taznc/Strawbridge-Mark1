@@ -1,0 +1,9 @@
+<h1>Editing comment</h1>
+
+<%= error_messages_for :comment %>
+
+<%= render :partial => @comment, 
+  :locals => { :button_name => "Update Comment"} %>
+
+<%= link_to 'Show', admin_comment_path(@comment) %> |
+<%= link_to 'Back', admin_comments_path %>

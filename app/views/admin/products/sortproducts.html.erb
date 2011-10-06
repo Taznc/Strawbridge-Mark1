@@ -1,0 +1,16 @@
+<div id="inner">
+  <h2>Your Products</h2>
+    <p style="margin-left: 20px;">Drag and Drop items to determine their order on the main site</p>
+    <ul id="product">
+    <% for product in @products %>
+      <% content_tag_for :li, product do %>
+        <div class="handle">
+          <p><span class="product_position"><%=h product.position %></span>
+          <%=h product.name %></p>
+        </div>
+      <% end %>
+      <% end %>
+    </ul>
+    <%= sortable_element("product", :url => sort_admin_products_path, :handle => "handle")%>
+     
+  </div>

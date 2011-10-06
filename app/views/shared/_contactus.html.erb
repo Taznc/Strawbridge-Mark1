@@ -1,0 +1,39 @@
+<div id="interior_page_content" style="width:608px;">
+ <% form_tag :action => 'send_contactpage_form' do %>
+	<div class="contactbox">
+		<h3>Subject of Inquiry: 
+		<%= select( "author", "reason", ([["",""], ["Pre-K – 11 / Underclass", "Pre-K – 11 / Underclass"], ["Classroom Groups", "Classroom Groups"], ["Senior Expressions", "Senior Expressions"], ["Cap & Gown", "Cap & Gown"], ["Yearbooks", "Yearbooks"], ["Sports", "Sports"], ["Dance / Prom", "Dance / Prom"], ["Online Ordering", "Online Ordering"], ["Other", "Other"],]),{:selected => ""}) %></h3>
+	</div>
+	
+	<div class="contactbox">
+		<h3>Contact Information:</h3>
+		<h4>* denotes required fields</h4>
+		<p>Student First Name *: <%= text_field "author", "fname", :style=>"" ,:required=>"true"%></p>
+		<p>Student Last Name *: <%= text_field "author", "lname", :style=>"",:required=>"true" %></p>
+		<p>Address: <%= text_field "author", "address", :style=>"" %></p>
+		<p>City: <%= text_field "author", "city", :style=>"" %></p>
+		<p style="margin-right:238px;">State: <%= us_state_select "author", "state" %></p>
+		<p>Zip: <%= text_field "author", "zipcode", :style=>"" %></p>
+		<p>Phone *: <%= text_field "author", "number", :style=>"",:required=>"true"  %></p>
+		<p>Email *: <%= text_field "author", "email", :style=>"" ,:required=>"true" %></p>
+		
+		<p>School Name: <%= text_field "author", "school_name", :style=>"" %></p>
+		<p>Teacher's Name: <%= text_field "author", "teacher_name", :style=>"" %></p>
+		<p>Grade: <%= text_field "author", "grade", :style=>"" %></p>
+		<p>Team Name: <%= text_field "author", "team_name", :style=>"" %></p>
+		<p>Package Information: <%= text_field "author", "package_information", :style=>"" %></p>
+		<p>Parent/Guardian: <%= text_field "author", "parent", :style=>"" %></p>
+		
+    </div>
+	<div class="contactbox">
+		<h3>Message *: </h3>
+		<p><%= text_area "author", "message", :style=>'width:480px;height:135px;padding:15px;',:required=>"true" %></p>
+		<p style="padding-right:100px;margin-top:35px;">
+		<%= image_submit_tag "../images/theme/csubmit.png", :style => "width:227px;height:44px;padding:0px;border:none;",:onclick=>"validate(new contact_form(document.forms[0]));return false" %></p>
+	</div>
+	
+	
+<% end %>
+</div>
+
+<%= javascript_include_tag :defaults %>

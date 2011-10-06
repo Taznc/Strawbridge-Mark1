@@ -1,0 +1,59 @@
+<%= javascript_include_tag "jquery-1.3.2.min", "slide" %>
+<div id="home_header">
+  <div class="container">
+    <div id="logo">
+      <%= link_to image_tag("../images/theme/strawbridge_logo.gif"), "/" %>
+    </div>
+    <div id="menu">
+      <ul>
+        <li class="potraits"><a href="/pages/2-school-potraits">POTRAITS</a></li>
+        <li class="seniors"><a href="/pages/3-senior-expressions">SENIORS</a></li>
+        <li class="yearbooks"><a href="/pages/4-yearbooks">YEARBOOKS</a></li>
+        <li class="contact"><a href="/pages/62-contact-us-info">CONTACT</a></li>
+      </ul>
+    </div>
+    <p class="clear"></p>
+    <div id="main_message">
+		<div id="gallery"> 
+			<div class="images">
+				<% @page.galleries.each do |gallery| %>
+				    <div>
+				      <%= image_tag gallery.photo.url(:homeimage) %>
+				    </div>
+				  <% end %>         
+			</div>
+			<a class="backward">prev</a> 
+			<div class="tabs">
+				<% @page.galleries.each do |gallery| %>   
+				<a href="#"></a>
+				<% end %>     
+			</div>
+			<a class="forward">next</a> 
+			</div>
+    	</div>
+  </div>
+</div>
+<div id="home_buttons">
+  <div class="container">
+    <div class="home_buttons">
+      <p id="home_button_one"><%= link_to 'School Portraits', '/pages/2-school-potraits' %></p>
+    </div>
+    <div id="home_button_two" class="home_buttons_other">
+      <%= link_to 'Senior Expressions', '/pages/3-senior-expressions' %>
+    </div>
+    <div id="home_button_three" class="home_buttons_other">
+      <%= link_to 'Yearbooks', '/pages/4-yearbooks' %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"> 
+	$("div.tabs").tabs(".images > div", {  
+	        effect: 'fade', 
+	        fadeOutSpeed: "slow",  
+	        rotate: true  
+	    }).slideshow(	{
+			        	autopause: true,
+			        	autoplay: true,
+			        	interval: 3000});
+	 
+	</script>

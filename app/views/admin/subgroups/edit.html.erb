@@ -1,0 +1,8 @@
+<h1>Editing Subgroup</h1>
+
+<%= error_messages_for :subgroup %>
+
+<%= render :partial => @subgroup, 
+  :locals => { :button_name => "Update Subgroup"} %>
+
+<%= link_to 'Back', admin_subgroups_path %>

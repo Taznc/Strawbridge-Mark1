@@ -1,0 +1,35 @@
+<div id="inner">
+<h1>Products in <%=h @producttag.name %></h1>
+<% for product in @producttag.products %>
+  <% if product.active? %>
+  <div class="clear" style="padding-top:15px;">
+    <div id="relatedimage">
+      <%= link_to image_tag(product.image.url(:thumb)), product %>
+    </div>
+    <div id="relatedcontent">
+      <h2><%= link_to h(product.name), product %></h2>
+        <% if product.short_description != nil %>
+          <%= RedCloth.new(product.short_description).to_html %>
+        <% else %>
+          <p>No Description</p>
+        <% end %>
+        <%=h number_to_currency(product.price) %>
+      <div class="clear">
+        <p class="left" style="padding-top:10px;"><%= link_to image_tag("../images/theme/learnmore.jpg"), product %></p>
+        <div class="right">
+          <% form_tag :controller => 'line_items', :method => :post do%>
+            <span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2 %>
+            <%= hidden_field_tag(:product_id, product.id) %>
+            <%= hidden_field_tag(:weight, product.weight) %>
+            <%= image_submit_tag("../images/theme/addtocart.jpg") %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<div id="sidebar" style="text-align:left;">
+  <%= render :partial => "shared/cartsidebar" %>
+</div>

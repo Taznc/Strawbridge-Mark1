@@ -1,0 +1,21 @@
+<div id="headingbg"><h2>Your Orders</h2></div>
+<div id="inner">
+  <%= link_to 'Export as Excel Document', export_admin_orders_path %>
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Order Date</th>
+  </tr>
+
+<% for order in @orders %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+	<td><%=h order.first_name %></td>
+	<td><%=h order.last_name %></td>
+	<td><%= order.created_at.strftime('%b-%d-%Y') %></td>
+    <td><%= link_to 'Show', admin_order_path(order) %></td>
+    <td><%= link_to 'Delete', [:admin, order], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>

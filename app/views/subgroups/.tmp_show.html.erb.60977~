@@ -1,0 +1,25 @@
+<h1><%=h @subgroup.name %></h1>
+<div style="margin-bottom:30px;">
+<%= RedCloth.new(@subgroup.description).to_html %>
+</div>
+<% for product in @subgroup.products %>
+	<div class="clear" style="padding-bottom:20px;">
+		<div id="relatedimage">
+			<%= link_to image_tag(product.image.url(:thumb)), product %>
+		</div>
+	<div id="relatedcontent">
+		<h2><%= link_to h(product.name), product %></h2>
+		<p><%=h product.description%> <%=h number_to_currency(product.price) %></p>
+		<div class="clear">
+			<p class="left" style="margin-top:4px;"><%= link_to image_tag("../images/theme/learnmore.jpg"), product %></p>
+	  		<div class="right">
+	  			<% form_tag :controller => 'line_items', :method => :post do%>
+				<span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2 %>
+				<%= hidden_field_tag(:product_id, product.id) %>
+				<%= image_submit_tag("../images/theme/addtocart.jpg") %>
+				<% end -%>
+			</div>
+		</div>
+	</div>
+	</div>
+ <%end%>

@@ -1,0 +1,62 @@
+<% if @cart.line_items.count > 0 %>
+<h1 style="border-bottom: 1px solid white;">Your Shopping Cart</h1>
+<% else %>
+<h1 style="border-bottom: 1px solid white;">Your Shopping Cart is Empty.</h1>
+<% end %>
+<div id="cart">
+  <% for line_item in @cart.line_items %>
+    <div id="cartproduct">
+      <div id="cartproductname">
+        <h3><%= link_to line_item.product.name, product_path(line_item.product) %></h3>
+        <p><%= RedCloth.new(line_item.product.short_description).to_html %></p>
+      </div>
+      <div id="cartproductsize">
+        <p><%=h line_item.product.size %></p>
+      </div>
+      <div id="cartunitprice">
+        <p><%= number_to_currency(line_item.full_price) %></p>
+      </div>
+      <div id="cartquantity">
+        <% form_for(line_item) do |f| %>
+          <h3>Qty: </h3>
+          <p>
+            <%= f.text_field :quantity, :size=>1, :style=>"text-align:center;" %>
+            <%= f.submit "Update Qty" %>
+            <%= link_to "Remove", remove_from_cart_path(:product_id => line_item.product_id), :method => :post %>
+          </p>
+        <% end %>
+      </div>
+      <br class="clear" />
+    </div>
+  <% end %>
+  <div id="carttotals">
+    <div id="addtocartbook">
+    <%= link_to image_tag("../images/theme/addbooktocart.png"), line_items_path(:product_id => 53, :weight => 2), :method => :post %>
+    </div>
+    <div id="pricetotal">
+      <h3 style="border:none;text-align:right;font-size:14px;">Merchandise Total:  <%=h number_to_currency @cart.total_price %></h3>
+      <h3 style="border:none;text-align:right;font-size:14px;">Discount:  <%=h @cart.discount * 100 %>%</h3>
+      <% form_for(@cart) do |f| %>
+          <h3 style="border:none;text-align:right;font-size:14px;">Promotional Discount: <%=h @cart.user_discount_percent * 100 %>%</h3>
+          <p><%= f.text_field :user_discount, :size=>10, :style=>"text-align:center;" %></p>
+          <p><%= f.submit "Update Promo Code" %></p>
+        <% end %>
+      <h3 style="border:none;text-align:right;font-size:18px;font-weight:bold;font-family:Georgia;">Subtotal: <%=h number_to_currency @cart.total_discounts %></h3>
+    </div>
+    <div id="cartdiscount">
+      <p id="cartdiscounttext">Spend <%= number_to_currency(current_cart.nextlevel - current_cart.total_price) %> more and get a <%=h current_cart.discount * 100 + 5 %>% discount!</p>
+    </div>
+    <br class="clear" />
+  </div>
+  <br class="clear"
+  <p class="aright">
+    <%= link_to image_tag("../images/theme/keepshopping.jpg", :style=>"margin-right:10px;"), "/groups?step=basic" %>
+    <% if @cart.line_items.count > 0 %>
+      <% if logged_in? %>
+        <%= link_to image_tag("../images/theme/proceed.jpg"), edit_user_path(current_user) %>
+      <% else %>
+        <%= link_to image_tag("../images/theme/proceed.jpg"), checkout_address_path %>
+      <% end %>
+    <% end %>
+  </p>
+</div>

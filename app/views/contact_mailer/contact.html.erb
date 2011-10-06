@@ -1,0 +1,5 @@
+<h2>The following message has just been sent via the contact form on your website:</h2>
+	<p>From: <%= @name %> who works at <%= @company %> and they are from <%= @location %></p><br />
+	<p>Their email is <%= @email %> and you could call them at <%= @phone %></p><br />
+	<p><%= @name %> has a message for CleverStart: <%= @message %></p><br />
+	<p>They contacted us at <%=Time.now.to_s %></p>

@@ -1,0 +1,17 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'Add to Gallery', new_admin_page_gallery_path(@page) %></p><h2>Listing Images for <%= params[:page_id].to_s %> Gallery.</h2></div>
+<div id="inner">
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>Image Thumbnail</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @page.galleries.each do |gallery| %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+        <td><%= image_tag gallery.photo.url(:small) %></td>
+    <td><%= link_to 'Edit', edit_admin_page_gallery_path(@page, gallery) %></td>
+    <td><%= link_to 'Destroy', [:admin, @page, gallery], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>

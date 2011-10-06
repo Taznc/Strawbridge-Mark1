@@ -1,0 +1,11 @@
+<div id="comment">
+	<h2 style="padding: 0px; margin: 0px; margin-left: 16px;">Make a Comment</h2>
+	<% form_for [@commentable, Comment.new] do |f| %>
+		<%= f.error_messages %>
+		<p style="margin-left: 24px;"><%= f.label :name %><%= f.text_field :author %></p>
+		<p style="margin-left: 26px;"><%= f.label :email %><%= f.text_field :email %></p>
+		<p style="margin-left: 42px;"><%= f.label :URL %><%= f.text_field :url %></p>
+		<p><label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 445px; height: 100px;" %></p>
+		<p style="text-align:right; margin-right: 46px; padding-bottom: 10px;"><%= submit_tag 'Add Comment' %></p>
+	<% end %>
+</div>

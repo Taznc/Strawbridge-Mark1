@@ -1,0 +1,29 @@
+<div id="headingbg"><h2>Meta Tags</h2></div>
+<div id="inner">
+	<div id="add_subject">
+	<% form_remote_tag(:url => {:action => 'create'},
+	    :update => "metatag", :position => :bottom, :before => "Element.show('spinner')",
+        :success => "Element.hide('spinner')",
+	    :html => {:id => 'metatag_form'}) do %>
+	<%= text_field "metatag", "name" %>
+	<%= submit_tag 'Create MetaTag' %>
+	<% end %>
+	<p style="margin-left: 20px;">Refresh Browser to drag and drop new metatags</p>
+	</div>
+	<%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none; margin-left: 180px;" ) %>
+</div>
+
+<div id="inner">
+<h2>Your MetaTags</h2>
+<p style="margin-left: 20px;">Drag and Drop items to determine their order on the main site</p>
+<ul id="metatag">
+<% for metatag in @metatags %>
+	<% content_tag_for :li, metatag do %>
+	<span class="handle">[drag]</span>
+	<%=h metatag.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_metatag_path(metatag) %> | <%= link_to_remote('Delete', :url => admin_metatag_path(metatag), :method => 'delete', :complete => "Effect.Puff('metatag_#{metatag.id}')")%></p>
+  	<% end %>
+<% end %>
+</ul>
+<%= sortable_element("metatag", :url => sort_admin_metatags_path, :handle => "handle")%>
+</div>
+

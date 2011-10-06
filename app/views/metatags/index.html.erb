@@ -1,0 +1,17 @@
+<h1>Listing metatags</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for metatag in @metatags %>
+  <tr>
+    <td><%=h metatag.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New metatag', new_metatag_path %>

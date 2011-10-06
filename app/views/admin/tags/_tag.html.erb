@@ -1,0 +1,4 @@
+<li id="tag_<%= tag.id %>" class="tag" style="position: relative;">
+  	<%=h tag.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_tag_path(tag) %> | <%= link_to_remote('Delete', :url => admin_tag_path(tag), :method => 'delete', :complete => "Effect.Puff('tag_#{tag.id}')")%></p>
+
+	

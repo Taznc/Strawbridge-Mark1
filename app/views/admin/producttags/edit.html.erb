@@ -1,0 +1,20 @@
+<h1>Editing producttag</h1>
+
+<% form_for([:admin, @producttag]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :position %><br />
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @producttag %> |
+<%= link_to 'Back', producttags_path %>

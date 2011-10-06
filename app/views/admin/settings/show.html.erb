@@ -1,0 +1,33 @@
+<p>
+  <b>Site name:</b>
+  <%=h @settings.site_name %>
+</p>
+
+<p>
+  <b>Article seo:</b>
+  <%=h @settings.article_seo %>
+</p>
+
+<p>
+  <b>Page seo:</b>
+  <%=h @settings.page_seo %>
+</p>
+
+<p>
+  <b>Site desc:</b>
+  <%=h @settings.site_desc %>
+</p>
+
+<p>
+  <b>Articles displayed:</b>
+  <%=h @settings.articles_displayed %>
+</p>
+
+<p>
+  <b>Full rss:</b>
+  <%=h @settings.full_rss %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_setting_path(@settings) %> |
+<%= link_to 'Back', admin_settings_path %>

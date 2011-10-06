@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @subgroup.name %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%=h @subgroup.position %>
+</p>
+
+<p>
+  <b>Permalink:</b>
+  <%=h @subgroup.permalink %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @subgroup.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_subgroup_path(@subgroup) %> |
+<%= link_to 'Back', subgroups_path %>

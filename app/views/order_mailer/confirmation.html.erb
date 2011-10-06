@@ -1,0 +1,53 @@
+<% if @transaction.success? %>
+<h1>Your Order was Successful</h1>
+<p>Your order has been processed. Feel free to save this email for your records</p>
+<p>Your order number is: #<%= @transaction.order.id %></p>
+<h2>Billing Information:</h2>
+<p>Your order was billed as follows:
+<ul>
+  <li><%= @transaction.order.user.first_name %> <%= @transaction.order.user.last_name %></li>
+  <li><%= @transaction.order.user.home_address %> <%= @transaction.order.user.home_address_two %></li>
+  <li><%= @transaction.order.user.city %>, <%= @transaction.order.user.state %> <%= @transaction.order.user.zipcode %></li>
+</ul>
+
+<h2>Shipping Information:</h2>
+<p>Your order will be shipped to the following location:
+<ul>
+  <% if @transaction.order.user.same_address == '0' %>
+  <li><%= @transaction.order.user.address.first_name %> <%= @transaction.order.user.address.last_name %></li>
+  <li><%= @transaction.order.user.address.address_1%>  <%= @transaction.order.user.address.address_2%></li>
+  <li><%= @transaction.order.user.address.city %>, <%= @transaction.order.user.address.state %> <%= @transaction.order.user.address.zipcode %></li>
+  <% else %>
+  <li><%= @transaction.order.user.first_name %> <%= @transaction.order.user.last_name %></li>
+  <li><%= @transaction.order.user.home_address %>  <%=@transaction.order.user.home_address_two %></li>
+  <li><%= @transaction.order.user.city %>, <%= @transaction.order.user.state %> <%= @transaction.order.user.zipcode %></li>
+  <% end %>
+</ul>
+<h2>Order Summary</h2>
+<table id="line_items">
+  <tr>
+  	<th width="19%">Quantity</th>
+    <th width="10%">Product</th>
+	<th width="40%">Description</th>
+    <th class="price">Price</th>
+    <th class="price">Subtotal</th>
+  </tr>
+  <% for line_item in @transaction.order.cart.line_items %>
+    <tr class="<%= cycle :odd, :even %>">
+      <td class="qty" ><%=h line_item.quantity %></td>
+	  <td><%=h line_item.product.name %></td>
+	  <td><%= RedCloth.new(line_item.product.short_description).to_html %></td>
+      <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+      <td class="price"><%= number_to_currency(line_item.full_price) %></td>
+	</tr>
+  <% end %>
+</table>
+<p>Subtotal: <%= number_to_currency @transaction.order.cart.total_price %></p>
+<%=h (@transaction.order.cart.discount + @transaction.order.cart.user_discount_percent) * 100 %>% Discount
+<p>Shipping Charges: <%= @transaction.order.cart.shipping_choice %></p>
+<p>Sales Tax <%= number_to_currency @transaction.order.tax %></p>
+<p>Grand Total: <%= number_to_currency (@transaction.order.cart.grand_total + @transaction.order.tax) %></p>
+<% else %>
+  <h1>Order has Failed.</h1>
+<p>For unknown reasons, this credit card has been declined and your order has not been processed.  For more information please call 800-951-2414 or send an email to <a href="mailto:info@fdnhhealth.com?subject=I am contacting you about a failed order.">info@fdnhhealth.com</a> and a FDNH representative will be in touch with you shortly.</p>
+<% end %>

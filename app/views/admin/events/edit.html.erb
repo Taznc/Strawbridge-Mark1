@@ -1,0 +1,8 @@
+<h1>Editing News or Event</h1>
+
+<%= error_messages_for :event %>
+
+<%= render :partial => @event, 
+  :locals => { :button_name => "Update News or Events"} %>
+
+<%= link_to 'Back', admin_events_path %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyText
+  image: MyText
+  ski_region: MyText
+  telephone: MyText
+  website: MyText
+  address: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  description: MyText
+  stats: MyText
+  offerings: MyText
+  featured_resort: 1
+
+two:
+  name: MyText
+  image: MyText
+  ski_region: MyText
+  telephone: MyText
+  website: MyText
+  address: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  description: MyText
+  stats: MyText
+  offerings: MyText
+  featured_resort: 1

@@ -1,0 +1,1070 @@
+-- MySQL dump 10.11
+--
+-- Host: localhost    Database: strawsite
+-- ------------------------------------------------------
+-- Server version	5.0.77
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `addresses`
+--
+
+DROP TABLE IF EXISTS `addresses`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `addresses` (
+  `id` int(11) NOT NULL auto_increment,
+  `order_id` int(11) default NULL,
+  `address_type` varchar(255) default NULL,
+  `country` varchar(255) default NULL,
+  `address_1` varchar(255) default NULL,
+  `address_2` varchar(255) default NULL,
+  `zipcode` varchar(255) default NULL,
+  `city` varchar(255) default NULL,
+  `state` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `addresses`
+--
+
+LOCK TABLES `addresses` WRITE;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles`
+--
+
+DROP TABLE IF EXISTS `articles`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `author` varchar(255) default NULL,
+  `body` text,
+  `extended` text,
+  `excerpt` text,
+  `permalink` varchar(255) default NULL,
+  `keywords` varchar(255) default NULL,
+  `online` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `articles`
+--
+
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (1,'Welcome to Mk1!',NULL,'Article Body','Article Extended','Article Excerpt','welcome to Mk1',NULL,NULL,'2010-01-28 15:28:31','2010-01-28 15:28:31');
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles_categories`
+--
+
+DROP TABLE IF EXISTS `articles_categories`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `articles_categories` (
+  `article_id` int(11) default NULL,
+  `category_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `articles_categories`
+--
+
+LOCK TABLES `articles_categories` WRITE;
+/*!40000 ALTER TABLE `articles_categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles_metatags`
+--
+
+DROP TABLE IF EXISTS `articles_metatags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `articles_metatags` (
+  `article_id` int(11) default NULL,
+  `metatag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `articles_metatags`
+--
+
+LOCK TABLES `articles_metatags` WRITE;
+/*!40000 ALTER TABLE `articles_metatags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles_metatags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles_tags`
+--
+
+DROP TABLE IF EXISTS `articles_tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `articles_tags` (
+  `article_id` int(11) default NULL,
+  `tag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `articles_tags`
+--
+
+LOCK TABLES `articles_tags` WRITE;
+/*!40000 ALTER TABLE `articles_tags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles_tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles_users`
+--
+
+DROP TABLE IF EXISTS `articles_users`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `articles_users` (
+  `article_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `articles_users`
+--
+
+LOCK TABLES `articles_users` WRITE;
+/*!40000 ALTER TABLE `articles_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `carts` (
+  `id` int(11) NOT NULL auto_increment,
+  `purchased_at` datetime default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `carts`
+--
+
+LOCK TABLES `carts` WRITE;
+/*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `permalink` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `commentable_id` int(11) default NULL,
+  `commentable_type` varchar(255) default NULL,
+  `worked` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `author` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `url` varchar(255) default NULL,
+  `body` varchar(255) default NULL,
+  `status` varchar(255) default NULL,
+  `ip` varchar(255) default NULL,
+  `spam` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `galleries`
+--
+
+DROP TABLE IF EXISTS `galleries`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `galleries` (
+  `id` int(11) NOT NULL auto_increment,
+  `page_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  `photo_file_name` varchar(255) default NULL,
+  `photo_content_type` varchar(255) default NULL,
+  `photo_file_size` int(11) default NULL,
+  `photo_updated_at` datetime default NULL,
+  `position` int(11) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=289 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `galleries`
+--
+
+LOCK TABLES `galleries` WRITE;
+/*!40000 ALTER TABLE `galleries` DISABLE KEYS */;
+INSERT INTO `galleries` VALUES (197,7,'2010-09-20 17:02:44','2010-09-20 17:02:44','IMG_0076.jpg','image/jpeg',91494,'2010-09-20 17:02:44',NULL),(196,7,'2010-09-20 17:02:42','2010-09-20 17:02:42','IMG_0075.jpg','image/jpeg',112865,'2010-09-20 17:02:42',NULL),(194,7,'2010-09-20 17:02:38','2010-09-20 17:02:38','IMG_0073.jpg','image/jpeg',88813,'2010-09-20 17:02:37',NULL),(110,1,'2010-05-24 20:29:47','2010-06-01 18:38:33','Straw_Slide_E.png','image/png',175966,'2010-05-24 20:29:46',2),(105,1,'2010-05-21 15:43:31','2010-06-01 18:37:26','F51202079.png','image/png',142433,'2010-05-21 15:43:30',6),(109,1,'2010-05-24 20:29:22','2010-06-01 18:38:25','Straw_Slide_D.png','image/png',132848,'2010-05-24 20:29:21',3),(108,1,'2010-05-24 20:29:08','2010-06-01 18:38:16','Straw_Slide_C.png','image/png',152283,'2010-05-24 20:29:06',4),(107,1,'2010-05-24 20:23:55','2010-06-01 18:38:01','Straw_Slide_B.png','image/png',137374,'2010-05-24 20:23:53',5),(111,1,'2010-05-24 20:31:37','2010-06-01 18:38:43','Straw_Slide_F.png','image/png',183980,'2010-05-24 20:31:35',1),(195,7,'2010-09-20 17:02:41','2010-09-20 17:02:41','IMG_0074.jpg','image/jpeg',129527,'2010-09-20 17:02:40',NULL),(182,13,'2010-06-23 16:42:34','2010-06-23 16:42:34','IMG_0073.jpg','image/jpeg',115009,'2010-06-23 16:42:34',NULL),(192,52,'2010-06-23 16:43:58','2010-06-23 16:43:58','nd_ND_01673.jpg','image/jpeg',59566,'2010-06-23 16:43:57',NULL),(181,13,'2010-06-23 16:42:32','2010-06-23 16:42:32','IMG_0055.jpg','image/jpeg',132426,'2010-06-23 16:42:32',NULL),(180,13,'2010-06-23 16:42:30','2010-06-23 16:42:30','IMG_0043.jpg','image/jpeg',108802,'2010-06-23 16:42:30',NULL),(179,13,'2010-06-23 16:42:29','2010-06-23 16:42:29','IMG_0040.jpg','image/jpeg',111722,'2010-06-23 16:42:28',NULL),(178,13,'2010-06-23 16:42:27','2010-06-23 16:42:27','IMG_0039_2.jpg','image/jpeg',116966,'2010-06-23 16:42:27',NULL),(191,52,'2010-06-23 16:43:56','2010-06-23 16:43:56','nd_KS2_01598.jpg','image/jpeg',51259,'2010-06-23 16:43:56',NULL),(190,52,'2010-06-23 16:43:55','2010-06-23 16:43:55','nd_DAVID-B._01748.jpg','image/jpeg',65930,'2010-06-23 16:43:55',NULL),(189,52,'2010-06-23 16:43:54','2010-06-23 16:43:54','nd_01559.jpg','image/jpeg',89808,'2010-06-23 16:43:53',NULL),(188,52,'2010-06-23 16:43:53','2010-06-23 16:43:53','nd_00121.jpg','image/jpeg',85852,'2010-06-23 16:43:52',NULL),(187,52,'2010-06-23 16:43:51','2010-06-23 16:43:51','IMG_0937.jpg','image/jpeg',57297,'2010-06-23 16:43:51',NULL),(186,52,'2010-06-23 16:43:50','2010-06-23 16:43:50','IMG_0746.jpg','image/jpeg',83064,'2010-06-23 16:43:50',NULL),(185,52,'2010-06-23 16:43:49','2010-06-23 16:43:49','IMG_0604.jpg','image/jpeg',71696,'2010-06-23 16:43:48',NULL),(184,52,'2010-06-23 16:43:47','2010-06-23 16:43:47','HF_0010_00075.jpg','image/jpeg',75220,'2010-06-23 16:43:47',NULL),(183,52,'2010-06-23 16:43:46','2010-06-23 16:43:46','BD-_-CJ-04_1075760435_Powell_00269.jpg','image/jpeg',104969,'2010-06-23 16:43:45',NULL),(168,7,'2010-06-23 16:39:29','2010-06-23 16:39:29','IMG_0019.jpg','image/jpeg',124611,'2010-06-23 16:39:29',NULL),(169,7,'2010-06-23 16:39:31','2010-06-23 16:39:31','IMG_0030.jpg','image/jpeg',81628,'2010-06-23 16:39:30',NULL),(170,7,'2010-06-23 16:39:32','2010-06-23 16:39:32','IMG_0036.jpg','image/jpeg',98474,'2010-06-23 16:39:32',NULL),(171,7,'2010-06-23 16:39:34','2010-06-23 16:39:34','IMG_0060.jpg','image/jpeg',123506,'2010-06-23 16:39:33',NULL),(172,7,'2010-06-23 16:39:36','2010-06-23 16:39:36','IMG_0072.jpg','image/jpeg',142434,'2010-06-23 16:39:36',NULL),(198,7,'2010-09-20 17:02:46','2010-09-20 17:02:46','IMG_0077.jpg','image/jpeg',117771,'2010-09-20 17:02:46',NULL),(199,7,'2010-09-20 17:02:48','2010-09-20 17:02:48','IMG_0078.jpg','image/jpeg',96287,'2010-09-20 17:02:48',NULL),(200,7,'2010-09-20 17:02:50','2010-09-20 17:02:50','IMG_0079.jpg','image/jpeg',91208,'2010-09-20 17:02:50',NULL),(201,13,'2010-09-20 17:04:24','2010-09-20 17:04:24','IMG_0074.jpg','image/jpeg',37564,'2010-09-20 17:04:23',NULL),(202,13,'2010-09-20 17:04:26','2010-09-20 17:04:26','IMG_0075.jpg','image/jpeg',76337,'2010-09-20 17:04:25',NULL),(203,13,'2010-09-20 17:04:28','2010-09-20 17:04:28','IMG_0076.jpg','image/jpeg',75535,'2010-09-20 17:04:27',NULL),(204,13,'2010-09-20 17:04:30','2010-09-20 17:04:30','IMG_0077.jpg','image/jpeg',62145,'2010-09-20 17:04:29',NULL),(205,13,'2010-09-20 17:04:47','2010-09-20 17:04:47','IMG_0078.jpg','image/jpeg',86842,'2010-09-20 17:04:47',NULL),(206,13,'2010-09-20 17:04:50','2010-09-20 17:04:50','IMG_0079.jpg','image/jpeg',70351,'2010-09-20 17:04:49',NULL),(207,13,'2010-09-20 17:04:52','2010-09-20 17:04:52','IMG_0080.jpg','image/jpeg',51138,'2010-09-20 17:04:51',NULL),(208,13,'2010-09-20 17:04:54','2010-09-20 17:04:54','IMG_0081.jpg','image/jpeg',63347,'2010-09-20 17:04:53',NULL),(209,13,'2010-09-20 17:04:56','2010-09-20 17:04:56','IMG_0082.jpg','image/jpeg',35725,'2010-09-20 17:04:55',NULL),(285,80,'2011-09-19 20:12:59','2011-09-19 20:25:56','SC116.jpg','image/jpeg',49026,'2011-09-19 20:12:58',7),(284,80,'2011-09-19 20:12:56','2011-09-19 20:26:09','SC115.jpg','image/jpeg',95514,'2011-09-19 20:12:55',8),(283,80,'2011-09-19 20:12:52','2011-09-19 20:26:20','SC114.jpg','image/jpeg',81067,'2011-09-19 20:12:51',9),(282,80,'2011-09-19 20:12:48','2011-09-19 20:26:30','SC113.jpg','image/jpeg',59566,'2011-09-19 20:12:48',10),(281,80,'2011-09-19 20:12:46','2011-09-19 20:26:44','SC112.jpg','image/jpeg',68852,'2011-09-19 20:12:45',11),(280,80,'2011-09-19 20:12:42','2011-09-19 20:26:54','SC111.jpg','image/jpeg',76196,'2011-09-19 20:12:41',12),(279,80,'2011-09-19 20:12:39','2011-09-19 20:27:02','SC110.jpg','image/jpeg',55809,'2011-09-19 20:12:39',13),(278,80,'2011-09-19 20:12:37','2011-09-19 20:27:12','SC109.jpg','image/jpeg',70735,'2011-09-19 20:12:37',14),(277,80,'2011-09-19 20:12:33','2011-09-19 20:27:23','SC108.jpg','image/jpeg',66921,'2011-09-19 20:12:33',15),(276,80,'2011-09-19 20:12:30','2011-09-19 20:27:33','SC107.jpg','image/jpeg',49709,'2011-09-19 20:12:29',16),(275,80,'2011-09-19 20:12:28','2011-09-19 20:27:41','SC106.jpg','image/jpeg',92480,'2011-09-19 20:12:27',17),(274,80,'2011-09-19 20:12:22','2011-09-19 20:23:36','SC105.jpg','image/jpeg',58718,'2011-09-19 20:12:22',18),(273,80,'2011-09-19 20:12:20','2011-09-19 20:23:25','SC104.jpg','image/jpeg',52051,'2011-09-19 20:12:20',19),(272,80,'2011-09-19 20:12:18','2011-09-19 20:23:16','SC103.jpg','image/jpeg',161391,'2011-09-19 20:12:18',20),(271,80,'2011-09-19 20:12:13','2011-09-19 20:23:05','SC102.jpg','image/jpeg',131363,'2011-09-19 20:12:12',21),(270,80,'2011-09-19 20:12:07','2011-09-19 20:22:50','SC101.jpg','image/jpeg',115362,'2011-09-19 20:12:07',22),(269,80,'2011-09-19 20:12:03','2011-09-19 20:24:49','DC117.jpg','image/jpeg',121888,'2011-09-19 20:12:03',1),(268,80,'2011-09-19 20:12:00','2011-09-19 20:24:59','DC109.jpg','image/jpeg',56449,'2011-09-19 20:11:59',2),(267,80,'2011-09-19 20:11:57','2011-09-19 20:25:10','DC103.jpg','image/jpeg',83383,'2011-09-19 20:11:56',3),(266,80,'2011-09-19 20:11:52','2011-09-19 20:25:26','DC102.jpg','image/jpeg',83726,'2011-09-19 20:11:51',4),(286,80,'2011-09-19 20:13:05','2011-09-19 20:25:43','SC117.jpg','image/jpeg',169505,'2011-09-19 20:13:04',6),(287,80,'2011-09-19 20:13:08','2011-09-19 20:25:36','SC118.jpg','image/jpeg',58642,'2011-09-19 20:13:08',5);
+/*!40000 ALTER TABLE `galleries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `group_products`
+--
+
+DROP TABLE IF EXISTS `group_products`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `group_products` (
+  `product_id` int(11) default NULL,
+  `group_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `group_products`
+--
+
+LOCK TABLES `group_products` WRITE;
+/*!40000 ALTER TABLE `group_products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `group_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `grouped_products`
+--
+
+DROP TABLE IF EXISTS `grouped_products`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `grouped_products` (
+  `id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) default NULL,
+  `grouped_product_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `grouped_products`
+--
+
+LOCK TABLES `grouped_products` WRITE;
+/*!40000 ALTER TABLE `grouped_products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `grouped_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `permalink` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `groups`
+--
+
+LOCK TABLES `groups` WRITE;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `grouptagorizations`
+--
+
+DROP TABLE IF EXISTS `grouptagorizations`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `grouptagorizations` (
+  `id` int(11) NOT NULL auto_increment,
+  `group_id` int(11) default NULL,
+  `metatag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `grouptagorizations`
+--
+
+LOCK TABLES `grouptagorizations` WRITE;
+/*!40000 ALTER TABLE `grouptagorizations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `grouptagorizations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `line_items`
+--
+
+DROP TABLE IF EXISTS `line_items`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `line_items` (
+  `id` int(11) NOT NULL auto_increment,
+  `unit_price` decimal(10,0) default NULL,
+  `product_id` int(11) default NULL,
+  `cart_id` int(11) default NULL,
+  `quantity` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `line_items`
+--
+
+LOCK TABLES `line_items` WRITE;
+/*!40000 ALTER TABLE `line_items` DISABLE KEYS */;
+/*!40000 ALTER TABLE `line_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metatags`
+--
+
+DROP TABLE IF EXISTS `metatags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `metatags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `metatags`
+--
+
+LOCK TABLES `metatags` WRITE;
+/*!40000 ALTER TABLE `metatags` DISABLE KEYS */;
+INSERT INTO `metatags` VALUES (3,'school',1,'2010-06-10 18:31:45','2010-06-10 18:31:45'),(4,'photography',2,'2010-06-10 18:31:51','2010-06-10 18:31:51'),(6,'portrait',3,'2010-06-10 18:32:01','2010-06-10 18:32:01'),(7,'senior',4,'2010-06-10 18:32:09','2010-06-10 18:32:09'),(8,'yearbook',5,'2010-06-10 18:32:11','2010-06-10 18:32:11');
+/*!40000 ALTER TABLE `metatags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metatags_pages`
+--
+
+DROP TABLE IF EXISTS `metatags_pages`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `metatags_pages` (
+  `page_id` int(11) default NULL,
+  `metatag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `metatags_pages`
+--
+
+LOCK TABLES `metatags_pages` WRITE;
+/*!40000 ALTER TABLE `metatags_pages` DISABLE KEYS */;
+INSERT INTO `metatags_pages` VALUES (1,4,'2010-06-10 18:31:51','2010-06-10 18:31:51'),(1,6,'2010-06-10 18:32:01','2010-06-10 18:32:01'),(1,3,'2010-06-10 18:31:45','2010-06-10 18:31:45'),(1,7,'2010-06-10 18:32:09','2010-06-10 18:32:09'),(1,8,'2010-06-10 18:32:11','2010-06-10 18:32:11'),(81,4,'2010-06-10 18:31:51','2010-06-10 18:31:51'),(81,6,'2010-06-10 18:32:01','2010-06-10 18:32:01'),(81,3,'2010-06-10 18:31:45','2010-06-10 18:31:45'),(81,7,'2010-06-10 18:32:09','2010-06-10 18:32:09');
+/*!40000 ALTER TABLE `metatags_pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_transactions`
+--
+
+DROP TABLE IF EXISTS `order_transactions`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `order_transactions` (
+  `id` int(11) NOT NULL auto_increment,
+  `order_id` int(11) default NULL,
+  `action` varchar(255) default NULL,
+  `amount` int(11) default NULL,
+  `success` tinyint(1) default NULL,
+  `authorization` varchar(255) default NULL,
+  `message` varchar(255) default NULL,
+  `params` text,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `order_transactions`
+--
+
+LOCK TABLES `order_transactions` WRITE;
+/*!40000 ALTER TABLE `order_transactions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL auto_increment,
+  `cart_id` int(11) default NULL,
+  `ip_address` varchar(255) default NULL,
+  `first_name` varchar(255) default NULL,
+  `last_name` varchar(255) default NULL,
+  `card_type` varchar(255) default NULL,
+  `card_expires_on` date default NULL,
+  `has_shipping` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pages`
+--
+
+DROP TABLE IF EXISTS `pages`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `pages` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) default NULL,
+  `author` varchar(255) default NULL,
+  `body` text,
+  `extended` text,
+  `excerpt` text,
+  `permalink` varchar(255) default NULL,
+  `keywords` varchar(255) default NULL,
+  `online` varchar(255) default NULL,
+  `is_gallery` tinyint(1) NOT NULL default '0',
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `pages`
+--
+
+LOCK TABLES `pages` WRITE;
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` VALUES (1,'Welcome to Strawbridge Studios!',NULL,'<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/25-about-us\">About Us</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/25-about-us\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_left.png\" /></a></p>\r\n<p class=\"home_paragraph\" style=\"margin-left: 14px;\">Strawbridge Studios was founded in 1923 by Mr. J.E. Strawbridge in Durham, NC. Now in our fourth generation, President, Ken Strawbridge,  and CEO, Harold K. Strawbridge still continue to offer the best value received in the school picture industry.</p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/25-about-us\">Read More &gt;&gt;</a></p>\r\n</div>\r\n</div>\r\n<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/62-contact-us-info\">Customer Service</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/62-contact-us-info\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_right.png\" /></a></p>\r\n<p class=\"home_paragraph\" style=\"margin-left: 14px;\">Our Customer Service Department is committed to providing you with the highest quality of service in the industry. We respond to all inquires as quickly as possible. Your satisfaction is our foremost concern. Please review our Frequently Asked Questions before...</p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/62-contact-us-info\">Read More &gt;&gt;</a></p>\r\n</div>\r\n</div>\r\n<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/38-customer-service-order-online\">Order Online</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/38-customer-service-order-online\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_center.png\" /></a></p>\r\n<p class=\"home_paragraph\" style=\"margin-left: 14px;\">Whether prepaying for your child&rsquo;s package or ordering additional portraits, ordering online is convenient, easy, and you&rsquo;re protected!  Strawbridge Studios is committed to ensuring your satisfaction and we understand the importance of protecting your confidential information.</p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/38-customer-service-order-online\">Read More &gt;&gt;</a></p>\r\n</div>\r\n</div>','','','home','Website for Strawbridge Studios, Inc. Strawbridge Studios is the oldest school photography company in the southern United States region.','0',0,'2010-01-28 15:28:31','2010-06-10 18:34:23'),(2,'School Portraits',NULL,'<div class=\"mid_three_equal\"><a href=\"/pages/6-elementary-portraits-overview\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary_icon.png\" /></a>\r\n<h1><a href=\"/pages/6-elementary-portraits-overview\">Elementary</a></h1>\r\n<p><a href=\"/pages/6-elementary-portraits-overview\">With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/8-mid-high-overview\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/mid_high_icon.png\" /></a>\r\n<h1><a href=\"/pages/8-mid-high-overview\">Middle/High&nbsp;School</a></h1>\r\n<p><a href=\"/pages/8-mid-high-overview\">At Strawbridge Studios it has been our commitment since 1923 to provide you with outstanding quality and the best service in the industry.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/9-sports-groups-overview\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/school_portrait.png\" /></a>\r\n<h1><a href=\"/pages/9-sports-groups-overview\">League Sports</a></h1>\r\n<p><a href=\"/pages/9-sports-groups-overview\">Strawbridge Studios now brings this same commitment of quality and service to sports photography.</a></p>\r\n</div>\r\n<p>&nbsp;</p>','','<div id=\"main_message_other\"><img width=\"343\" height=\"117\" alt=\"\" src=\"/uploads/Image/school_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/school_portraits_header.jpg\" /></div>','School Portraits','','0',0,'2010-01-28 18:14:48','2010-06-14 19:29:57'),(3,'Senior Expressions',NULL,'<div class=\"mid_three_equal\"><a href=\"/pages/50-my-appointment\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/senior-portrait-thumb.png\" /></a>\r\n<h1><a href=\"/pages/50-my-appointment\">Portrait Sessions</a></h1>\r\n<p><a href=\"/pages/50-my-appointment\">Express your personality.&nbsp;We are dedicated to providing a fun, casual setting where you can express your true personality in your senior portraits.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/51-senior-expressions-products\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/products-thumb.png\" /></a>\r\n<h1><a href=\"/pages/51-senior-expressions-products\">Products</a></h1>\r\n<p><a href=\"/pages/51-senior-expressions-products\">Express yourself.&nbsp; Our photographers specialize in creating portraits and products that are as unique and special as you are.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/52-senior-expressions-gallery\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/gallery_thumb.png\" /></a>\r\n<h1><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></h1>\r\n<p><a href=\"/pages/52-senior-expressions-gallery\">Express your style. By using a variety of backgrounds and encouraging personal items and props in our photographs, you can truly create a style all your own. Visit our gallery.</a></p>\r\n</div>','','<div id=\"main_message_other\"><img height=\"117\" width=\"343\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','Senior Expressions','','0',0,'2010-01-28 18:14:48','2010-09-09 14:35:56'),(4,'Yearbooks',NULL,'<div class=\"mid_three_equal\"><a href=\"/pages/41-yearbooks-program-overview\"><img height=\"149\" width=\"276\" src=\"/uploads/Image/yearbook_panel_thumb.png\" alt=\"\" /></a>\r\n<h1><a href=\"/pages/41-yearbooks-program-overview\">Our Program</a></h1>\r\n<p><a href=\"/pages/41-yearbooks-program-overview\">Design the yearbook you\'re imagining! Choose between desktop or online. We have solutions for an easy, worry-free yearbook.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/43-yearbooks-contact-us\"><img height=\"149\" width=\"276\" src=\"/uploads/Image/yearbook_customerserv_thumb.png\" alt=\"\" /></a>\r\n<h1><a href=\"/pages/43-yearbooks-contact-us\">Yearbook Support</a></h1>\r\n<p><a href=\"/pages/43-yearbooks-contact-us\">Spend less time resolving technical issues by putting Strawbridge\'s technical expertise to work for you! We are committed to delivering quality service and support when you need it. Find answers to frequently asked questions (FAQs) right here online.</a></p>\r\n</div>\r\n<div class=\"mid_three_equal\"><a href=\"/pages/45-yearbook-proof-my-class\"><img height=\"149\" width=\"276\" src=\"/uploads/Image/yearbook_resources_thumb.png\" alt=\"\" /></a>\r\n<h1><a href=\"/pages/45-yearbook-proof-my-class\">Resources</a></h1>\r\n<p><a href=\"/pages/45-yearbook-proof-my-class\">We are always looking to provide you with useful information and resources that will assist you with your yearbook project.</a></p>\r\n</div>','','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" src=\"/uploads/Image/yearbook_services.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" src=\"/uploads/Image/yearbook_header_images2.jpg\" alt=\"\" /></div>','Yearbooks','','0',0,'2010-01-28 18:14:48','2010-06-08 15:17:35'),(5,'Elementary Portraits Programs',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portraits Programs</h1>\r\n<div id=\"interior_half_box\">\r\n<div class=\"interior_half_box\"><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-fall-thumb.png\" /></a>\r\n<h2><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\">Fall Portraits</a></h2>\r\n<p><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\">We make picture day easy!</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-Spring-thumb.png\" /></a>\r\n<h2><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\">Spring Portraits</a></h2>\r\n<p><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\">We bring the Studio to you!&nbsp;</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-ClassRoomGroup-thumb.png\" /></a>\r\n<h2><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\">Classroom Group</a></h2>\r\n<p><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\">Do you remember all the fun clothes and hairstyles from your elementary days?</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/19-elementary-portraits-programs-holiday-events\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary_christmas.png\" /></a>\r\n<h2><a href=\"/pages/19-elementary-portraits-programs-holiday-events\">Holiday / Events</a></h2>\r\n<p><a href=\"/pages/19-elementary-portraits-programs-holiday-events\">Holidays and Special Events provide a great opportunity to raise extra funds for your school or organization!</a></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.jpg\" /></div>','Elementary Portraits Programs','','0',0,'2010-01-28 18:14:48','2010-06-07 16:00:36'),(6,'Elementary Portraits Overview',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portraits Overview</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<h2>We Offer:</h2>\r\n<ul>\r\n    <li>The Best Commissions in the Industry<img width=\"136\" height=\"167\" align=\"right\" alt=\"\" src=\"/uploads/Image/elem_01.jpg\" /></li>\r\n    <li>Certified Commissions</li>\r\n    <li>The Latest in Digital Technology</li>\r\n    <li>Simple Ordering with Great Portrait Packages</li>\r\n    <li>Absentees and Retakes</li>\r\n    <li>Three-week Portrait Delivery</li>\r\n    <li>Complimentary Annual and Record Images</li>\r\n    <li>100% Satisfaction Guarantee</li>\r\n</ul>\r\n<p>Strawbridge Studios is a full-service organization and we provide everything connected with school photography &ndash; including all portraits, administrative software and CDs, yearbooks, student certificates and awards, custom printing, desk calendars, motivational banners, and much more!</p>\r\n<p>Portraits and Yearbooks delivered on-time - Guaranteed!</p>\r\n<p>We partner with you to help make &quot;Picture Day&quot; a success!</p>\r\n<h2>All Marketing Materials Provided:</h2>\r\n<ul>\r\n    <li>Picture Day Posters</li>\r\n    <li>Parent Letters and Envelopes that visually illustrate contents of each package</li>\r\n    <li>Next Day Notices to remind parents that tomorrow is &quot;picture day&quot;</li>\r\n    <li>Bilingual Correspondence</li>\r\n</ul>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.jpg\" /></div>','Elementary Portraits Overview','','0',0,'2010-01-28 18:14:48','2010-06-07 16:00:51'),(7,'Elementary Portraits Gallery',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portrait Gallery</h1>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li class=\"current\"><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.jpg\" /></div>','Elementary Portraits Gallery','','0',1,'2010-01-28 18:14:48','2010-06-09 20:49:19'),(8,'Middle School High School Portraits Overview',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle / High School Overview</h1>\r\n<div id=\"programs\">\r\n<p>At Strawbridge Studios it has been our commitment since 1923 to provide you with outstanding quality and the best service in the industry.</p>\r\n<h2>We Offer:</h2>\r\n<ul>\r\n    <li>The Best Commissions in the Industry</li>\r\n    <li>Certified Commissions</li>\r\n    <li>The Latest in Digital Technology</li>\r\n    <li>Professional Photographers</li>\r\n    <li>Absentees and Retakes</li>\r\n    <li>Three-week Portrait Delivery</li>\r\n    <li>Photos of your Clubs, Band, Chorus, and Sports</li>\r\n    <li>Complimentary Annual and Record Images</li>\r\n    <li>100% Satisfaction Guarantee</li>\r\n</ul>\r\nStrawbridge Studios is a full-service organization and we provide everything connected with school photography &ndash; including all portraits, administrative software and CDs, yearbooks, student certificates and awards, custom printing, desk calendars, motivational banners, and much more!\r\n<p>Portraits and Yearbooks delivered on-time - Guaranteed!</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/midhigh-header.jpg\" /></div>','Mid High Overview','','0',0,'2010-01-28 18:14:48','2010-06-08 14:39:58'),(9,'Sports Groups Overview',NULL,'<div id=\"interior_page_content\">\r\n<h1>Sports Overview</h1>\r\n<div id=\"programs\">\r\n<p>Since 1923, Strawbridge Studios has been committed to providing our customers with outstanding quality and &ldquo;best of service&rdquo; in the industry.  Strawbridge Studios now brings this same commitment to sports photography.<br />\r\n<br />\r\nStrawbridge Studios integrates with your league and team to ensure that picture day will be a fun experience for parents, coaches, and most of all the children being photographed in order to capture images that can be cherished for a lifetime.<br />\r\n<br />\r\nStrawbridge Studios can photograph all your league&rsquo;s sports teams on a schedule that is conducive to ensuring each team and team member has an opportunity to have their photograph taken in their athletic uniform.<br />\r\n<br />\r\nOur in-house lab allows Strawbridge Studios to offer our customers exclusive and customized products which will enhance the quality of the portrait taken on picture day. We have built a strong reputation of consistently offering quality service and products to our customer&rsquo;s as-well-as fresh new products and designs.</p>\r\n<h2>We Offer:</h2>\r\n<ul>\r\n    <li>Commissions to the League or Team</li>\r\n    <li>The Latest in Digital Technology</li>\r\n    <li>Complimentary Team Photographs</li>\r\n    <li>Fast Portrait Delivery</li>\r\n    <li>100% Satisfaction Guarantee</li>\r\n    <li>Professional Photographers trained to work with children of all ages</li>\r\n    <li>Flexible Scheduling to Include Rain Dates</li>\r\n    <li>Three-week portrait delivery</li>\r\n    <li>Portraits are packaged by team for easy distribution</li>\r\n</ul>\r\n<h2>Payment Plan:</h2>\r\n<p><strong>Prepay &ndash; </strong>We have found this plan to be very successful due to higher sales, minimal league or coach involvement, and a three-week delivery of finished portrait packages. Our pre-pay sports envelopes visually illustrate the content of each package enabling parents to actually see what they are buying. Sales on league photos will help your league to provide the great experiences you and your children enjoy every season!  We take pride in providing you a &quot;Hassle-Free&quot; team picture day experience!</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/11-sports-groups-programs\">Products</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"397\" height=\"117\" alt=\"\" src=\"/uploads/Image/league_sports_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/sports_header.png\" /></div>','Sports Groups Overview','','0',0,'2010-01-28 18:14:48','2010-06-04 20:07:20'),(10,'Middle School High School Programs',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle / High School Programs</h1>\r\n<div id=\"interior_half_box\">\r\n<div class=\"interior_half_box\"><a href=\"/pages/35-mid-high-programs-fall-portraits\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/midhigh-fall-thumb.png\" /></a>\r\n<h2><a href=\"/pages/35-mid-high-programs-fall-portraits\">Fall Portraits</a></h2>\r\n<p><a href=\"/pages/35-mid-high-programs-fall-portraits\">We are committed to excellence and dedicated to providing you with the best service and simplest programs in the industry.</a></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/36-mid-high-programs-buddy-personality\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/midhigh-buddy-thumb.png\" /></a>\r\n<h2><a href=\"/pages/36-mid-high-programs-buddy-personality\">Buddy and Personality Portraits</a></h2>\r\n<p><a href=\"/pages/36-mid-high-programs-buddy-personality\">With today&rsquo;s technology and social networking environment, friends are an important part of school! </a></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/33-mid-high-programs-prom-dance\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/midhigh-prom-thumb.png\" /></a>\r\n<h2><a href=\"/pages/33-mid-high-programs-prom-dance\">Proms, Dances, <br />\r\nand Graduation</a></h2>\r\n<p><a href=\"/pages/33-mid-high-programs-prom-dance\">Dances and Proms are some of the most memorable events in High School. Why not let Strawbridge Studios capture these special moments?</a></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/32-mid-high-sports-groups\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/team_program_thumb.png\" /></a>\r\n<h2><a href=\"/pages/32-mid-high-sports-groups\">Sports and Group Photography</a></h2>\r\n<p><a href=\"/pages/32-mid-high-sports-groups\">Strawbridge Studios can photograph all of your sports teams and athletes, musical groups, and organizations.</a></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.jpg\" /></div>','Mid High Programs','','0',0,'2010-01-28 18:14:48','2010-06-04 19:36:59'),(11,'Sports Groups Products',NULL,'<div id=\"interior_page_content\">\r\n<h1>League Sports Products</h1>\r\n<div id=\"programs\">\r\n<p>Since 1923 Strawbridge Studios has been committed to providing our customers with outstanding quality and &ldquo;best of service&rdquo; in the industry.  Strawbridge Studios now brings this same commitment to sports photography.<img height=\"665\" width=\"662\" alt=\"\" src=\"/uploads/Image/sports_products.jpg\" /></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/11-sports-groups-programs\">Products</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"397\" alt=\"\" src=\"/uploads/Image/league_sports_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/sports_header.png\" /></div>','Sports Groups Programs','','0',0,'2010-01-28 18:14:48','2010-06-04 19:38:54'),(62,'Contact Information and Address',NULL,'<div id=\"interior_page_content\">\r\n<h1>Contact Us</h1>\r\n<div id=\"programs\">\r\n<p>Our Customer Service Department is committed to providing you with the highest quality of service in the industry. We respond to all inquires as quickly as possible. Your satisfaction is our foremost concern.</p>\r\n<p>Please review our Frequently Asked Questions (FAQs) for answers to common questions. Should you need further assistance after reviewing our FAQ section, feel free to contact our friendly Customer Service Department.</p>\r\n<h2><img height=\"50\" width=\"50\" align=\"absMiddle\" alt=\"\" src=\"/uploads/Image/Phone-icon.png\" /> Phone</h2>\r\n<p><strong>Toll Free - </strong>866-624-6229&nbsp;&nbsp;</p>\r\n<h2><img height=\"50\" width=\"50\" align=\"absMiddle\" alt=\"\" src=\"/uploads/Image/fax_icon.jpg\" /> Fax</h2>\r\n<p>919-226-3073</p>\r\n<h2><img height=\"33\" width=\"50\" align=\"absMiddle\" alt=\"\" src=\"/uploads/Image/email_icon_24910.jpg\" /> Email Us</h2>\r\n<a href=\"/pages/31-contact-us\">Click Here</a> to fill out our online form\r\n<h2><img height=\"38\" width=\"50\" align=\"absMiddle\" alt=\"\" src=\"/uploads/Image/map_location2.jpg\" /> Locations</h2>\r\n<h3>Corporate Office</h3>\r\n<br />\r\n<p><strong>Physical Address</strong><br />\r\n3616 Hillsborough Road<br />\r\nDurham, NC&nbsp;27705<br />\r\n<br />\r\n<strong>Mailing Address</strong><br />\r\nPO Box 3005<br />\r\nDurham, NC&nbsp;27715-3005</p>\r\n<h3>Texas Division</h3>\r\n<br />\r\n<p>1004 N. Washington Street<br />\r\nBeeville, TX&nbsp;78102<br />\r\n<br />\r\n4455 S. Padre Island Drive Suite 29R<br />\r\nCorpus Christi, TX&nbsp;78411</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/62-contact-us-info\">Contact Information</a></li>\r\n    <li><a href=\"/pages/31-contact-us\">Contact Us Form</a></li>\r\n    <li><a href=\"/pages/26-customer-service-faq\">FAQs</a></li>\r\n    <li><a href=\"/pages/29-privacy-policy\">Privacy Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.jpg\" /></div>','Contact Us info','','0',0,'2010-01-28 18:14:48','2010-06-08 17:39:47'),(12,'Sports Groups Gallery',NULL,'<div id=\"interior_page_content\">\r\n<h1>Sports and Groups Gallery</h1>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/11-sports-groups-programs\">Products</a></li>\r\n    <li class=\"current\"><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"397\" height=\"117\" alt=\"\" src=\"/uploads/Image/league_sports_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/sports_header.png\" /></div>','Sports Groups Gallery','','0',1,'2010-01-28 18:14:48','2010-06-04 19:39:25'),(13,'Middle School High School Portraits Gallery',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle / High School Portrait Gallery</h1>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li class=\"current\"><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.jpg\" /></div>','Mid High Gallery','','0',1,'2010-01-28 18:14:48','2010-06-04 19:37:10'),(14,'Elementary Portraits PrePay',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portraits Prepay</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer Prepay</p>\r\n</div>\r\n</div>\r\n<p><img width=\"570\" height=\"186\" src=\"/uploads/Image/OrderGraphic.png\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/14-elementary-portraits-prepay\">PrePay</a></li>\r\n    <li><a href=\"/pages/15-elementary-portraits-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" src=\"/uploads/Image/elementary_portraits.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" src=\"/uploads/Image/elementery_portraits_header.png\" alt=\"\" /></div>','Elementary Portraits PrePay','','0',0,'2010-01-28 18:14:48','2010-05-03 15:09:16'),(15,'Elementary Portraits ReOrder',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portraits Reorder</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer reorder</p>\r\n</div>\r\n</div>\r\n<p><img width=\"570\" height=\"186\" src=\"/uploads/Image/OrderGraphic.png\" alt=\"\" /></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/14-elementary-portraits-prepay\">PrePay</a></li>\r\n    <li class=\"current\"><a href=\"/pages/15-elementary-portraits-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" src=\"/uploads/Image/elementary_portraits.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" src=\"/uploads/Image/elementery_portraits_header.png\" alt=\"\" /></div>','Elementary Portraits ReOrder','','0',0,'2010-01-28 18:14:48','2010-05-03 15:12:39'),(16,'Elementary Portraits Programs Fall Portraits',NULL,'<div id=\"interior_page_content\">\r\n<h1>Fall Portraits</h1>\r\n<div id=\"programs\">\r\n<p>We make Fall &ldquo;Picture Day&rdquo; easy!</p>\r\n<p>Strawbridge Studios will provide your school with the following:</p>\r\n<ul>\r\n    <li>Software that allows you to create seating charts, certificates and more</li>\r\n    <li>Complimentary portrait packages for all faculty and staff</li>\r\n    <li>Principal Award Certificates for outstanding students</li>\r\n    <li>Bookmarks for each student</li>\r\n    <li>A large desk calendar for school secretary</li>\r\n    <li>Yearbook and Administrative CDs</li>\r\n    <li>Teacher Academic Planners</li>\r\n    <li>Beautiful 16x20 Framed Portrait of the Faculty and Staff</li>\r\n</ul>\r\n<p>Three payment plans are available, prepay, proof, and speculative; however, our prepay plan is the most popular fall plan.  Because we capture every image digitally, it allows us to produce beautiful color portraits with realistic skin tones.  Our automated Packaging Department enables us to return completed packages with ID Cards, Admin and Yearbook CDs in just three weeks.  Absentee and retake portraits will be returned before the holidays.</p>\r\n<p>We are committed to providing your students (parents) with the highest quality school portraits.</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.png\" /></div>','Elementary Portraits Programs Fall Portraits','','0',0,'2010-01-28 18:14:48','2011-10-05 17:44:03'),(17,'Elementary Portraits Programs Spring Portraits',NULL,'<div id=\"interior_page_content\">\r\n<h1>Spring Portraits</h1>\r\n<div id=\"programs\">\r\n<p>We bring the Studio to you!</p>\r\n<p>Our Spring Portrait Program features scenic backgrounds, props, and lighting which provide a great atmosphere for creating professional studio full-length portraits.&nbsp; We offer a variety of packages and payment plans including prepay, proof, and speculation.</p>\r\n<h2>Our Three-Pose Spec Program is the Most Popular and Offers:</h2>\r\n<p><strong>Career Professional Photographers</strong><br />\r\nOur professional photographers will take the time to capture each student\'s individual personality!</p>\r\n<p><strong>More Choices</strong><br />\r\nWe provide <strong>three</strong> poses including a full-length, 3/4, and close-up of each student.&nbsp; A portrait package will be sent home for parents to view. They can purchase the entire package or create their own combination.</p>\r\n<p><strong>Best Commissions</strong><br />\r\nMore portrait choices for parents, with great prices, equal the &quot;Best&quot; Commissions.</p>\r\n<p style=\"text-align: left;\">&nbsp;<b>All packages are returned alphabetized by classroom for easy distribution.</b></p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.png\" /></div>','Elementary Portraits Programs Spring Portraits','','0',0,'2010-01-28 18:14:48','2010-06-04 14:50:21'),(18,'Elementary Portraits Programs Classroom Groups',NULL,'<div id=\"interior_page_content\">\r\n<h1>Classroom Groups</h1>\r\n<div id=\"programs\">\r\n<p>Do you remember all the fun clothes and hairstyles from your elementary days?<br />\r\nClass Photos are Priceless!</p>\r\n<p>With our 8x10 Color Classroom Group Program your school can earn money for every portrait purchased.</p>\r\n<h2>Our Color Classroom Group Programs offers:</h2>\r\n<ul>\r\n    <li>A beautiful 8x10 portrait</li>\r\n    <li>Over 20 digital themed and color borders</li>\r\n    <li>A complimentary class photo for each teacher</li>\r\n    <li>Money earned for each portrait purchased</li>\r\n    <li>A Principal Portrait Memory Album with all class photos</li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a><a href=\"/pages/15-elementary-portraits-reorder\"><br />\r\n    </a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.png\" /></div>','Elementary Portraits Programs Classroom Groups','','0',0,'2010-01-28 18:14:48','2010-06-04 14:51:06'),(19,'Elementary Portraits Programs Holiday Events',NULL,'<div id=\"interior_page_content\">\r\n<h1>Holiday &amp; Events</h1>\r\n<div id=\"programs\">\r\n<p>Holidays and Special Events provide a great opportunity to raise extra funds for your school or organization!</p>\r\n<h2>Fund Raising Events:</h2>\r\n<ul>\r\n    <li>Holiday Portraits</li>\r\n    <li>Kindergarten Graduation</li>\r\n    <li>5th or 8th Grade Graduation</li>\r\n    <li>School Dance</li>\r\n    <li>Daycare</li>\r\n</ul>\r\n<p>Our Holiday and Special Events Programs offer a variety of easy sell programs. Our goal is to help families celebrate those special memories and milestones in the lives of their children. Each program has a unique selection of packages that have been specifically designed with that event in mind.</p>\r\n<p>Special Event Portraits are a great way for families to share these memories with distant relatives, grandparents, aunts, uncles and friends!</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.png\" /></div>','Elementary Portraits Programs Holiday Events','','0',0,'2010-01-28 18:14:48','2010-06-04 14:53:40'),(20,'Middle High Portraits Prepay',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle High School PrePay</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer Prepay</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/20-middle-high-portraits-prepay\">PrePay</a></li>\r\n    <li><a href=\"/pages/22-middle-high-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" src=\"/uploads/Image/mid_high_title2.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Middle High Portraits Prepay','','0',0,'2010-01-28 18:14:48','2010-05-20 15:30:12'),(21,'Sports Groups Prepay',NULL,'<div id=\"interior_page_content\">\r\n<h1>Sports/Groups PrePay</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer Prepay</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/11-sports-groups-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/21-sports-groups-prepay\">PrePay</a></li>\r\n    <li><a href=\"/pages/23-sports-groups-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"397\" height=\"117\" src=\"/uploads/Image/league_sports_title2.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/other_pictures.png\" /></div>','Sports Groups Prepay','','0',0,'2010-01-28 18:14:48','2010-05-20 15:41:26'),(22,'Middle High Reorder',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle High School ReOrder</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer reorder</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/20-middle-high-portraits-prepay\">PrePay</a></li>\r\n    <li class=\"current\"><a href=\"/pages/22-middle-high-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" src=\"/uploads/Image/mid_high_title2.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Middle High Reorder','','0',0,'2010-01-28 18:14:48','2010-05-20 15:30:38'),(23,'Sports Groups Reorder',NULL,'<div id=\"interior_page_content\">\r\n<h1>Sports/Groups ReOrder</h1>\r\n<div id=\"programs\">\r\n<p>With over one million students photographed each year, Strawbridge Studios specializes in quality portraits for the parents and unsurpassed service for each school.</p>\r\n<p>We offer reorder</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/11-sports-groups-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/21-sports-groups-prepay\">PrePay</a></li>\r\n    <li class=\"current\"><a href=\"/pages/23-sports-groups-reorder\">ReOrder</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"397\" height=\"117\" src=\"/uploads/Image/league_sports_title2.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/other_pictures.png\" /></div>','Sports Groups Reorder','','0',0,'2010-01-28 18:14:48','2010-05-20 15:41:58'),(25,'About Us',NULL,'<div id=\"interior_page_content\">\r\n<h1>About Us</h1>\r\n<div id=\"programs\"><img hspace=\"10\" height=\"140\" width=\"100\" border=\"2\" align=\"right\" src=\"/uploads/Image/James-Edward-Strawbridge-Jim.jpg\" alt=\"\" />\r\n<p>Strawbridge Studios was founded in 1923 by Mr. J.E. Strawbridge                in Durham, NC. Now in our fourth generation,  Ken Strawbridge. President, and Harold K. Strawbridge, CEO, still continue to offer the best value received in the school picture industry.</p>\r\n<p>Around the year 1920, Mr. Robert E. Larramy,  Superintendent of                the Easton Pennsylvania City Schools, conceived the idea  of having                a picture attached to each student\'s accumulative record.</p>\r\n<p>This would enable him to give accurate recommendations to  businesses requesting information on job applicants who were his  former students. He negotiated with a friend, Mr. Thomas Carroll Willson.  Since there were no funds for this project, Mr. Willson proposed he  would give a picture of each student to the school, provided the  school would allow him to sell pictures to the students to recover his  cost. Mr. Willson used 35mm film and made seven contact prints  for each student. One contact he gave to the school, the other six  he offered for sale to the students at 10 cents each, or all six for  50 cents. Mr. Willson, who was somewhat of an inventor, had formed  the Willson Magazine Camera Company in Washington four years before moving to Philadelphia in 1902. Mr. Willson started making a spool  of film that could be inserted into, and removed from, camera  bodies in broad daylight. He sold these to several men, one of which  was Mr. S. Percy Barksdale of Philadelphia.</p>\r\n<p>When Mr. J.E. Strawbridge\'s father passed away in 1902, he was  forced to quit school in the third grade to help support the family.  He was a share-cropper on a Martin County, NC farm. During  Christmas of 1923, Mr. Barksdale, in business for himself, came to see  his sister who lived on the farm next to where J.E. Strawbridge  worked. He                offered the young Strawbridge a job which he readily  accepted. J.E.                Strawbridge went to work in Pennsylvania and New York  State. During                1926-1927, he opened up the territories of Tennessee,  Arkansas and                Texas. In 1930 he returned to his home state of North  Carolina and                started Strawbridge Finishing Service which, in 1954,  became Strawbridge Studios, Inc. On August 15, 1951, the Professional School  Photographers of America (PSPA) had its organizational meeting; Mr. J.E.  Strawbridge was a charter member.</p>\r\n<p><b>My how times have <img hspace=\"10\" height=\"114\" width=\"176\" border=\"2\" align=\"left\" src=\"/uploads/Image/lola_basement.jpg\" alt=\"\" />changed!</b></p>\r\n<p>Strawbridge Studios, Inc. has remained located in Durham,  North                Carolina since its beginning 87 years ago. There have been  many                changes and expansions along the way. We have expanded  from J.E.                Strawbridge\'s basement to a state of the art, 41,000  square foot                Photographic and Printing facility, located at 3616  Hillsborough                Rd, Durham, North Carolina.</p>\r\n<p>We are proud to be one of the founding members of the  Professional School Photographers Association, a division of the Photo  Marketing Association (PMAI). The PSPA is dedicated to the  principles of improving the quality and ethical standards of school photography.<img border=\"2\" align=\"right\" alt=\"\" style=\"width: 353px; height: 180px;\" src=\"/uploads/Image/AboutUs_today.jpg\" /></p>\r\n<p><b>FUTURE OF STRAWBRIDGE STUDIOS, INC.</b></p>\r\n<p>Under the leadership of Mr. Ken Strawbridge, President,  Strawbridge Studios became 100 % digital in August 2006.</p>\r\n<p>With the implementation of digital photography,  Strawbridge Studios will still provide the best value in the school picture  industry. Our photographers, armed with the latest cameras, laptops,  and technology, will be able to provide an even better picture experience.  Viewing images onsite will insure that our photographers capture  an image of your child sure to be a treasured keepsake for years to  come.</p>\r\n<p>In March of 2007, Mr. Ken Strawbridge became President of  the Photo Marketing Association International (PMAI). PMA is a  worldwide organization consisting of 25,000 members and representing 22  countries.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">About Us :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/25-about-us\">About Us</a></li>\r\n    <li><a href=\"/pages/28-our-history\">Living History</a></li>\r\n    <li><a href=\"/pages/57-our-mission\">Our Mission</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_HeaderImage.png\" /></div>','About Us','','0',0,'2010-01-28 18:14:48','2010-06-09 20:54:15'),(26,'Customer Service FAQ',NULL,'<div id=\"interior_page_content\">\r\n<h1>FAQs</h1>\r\n<div id=\"programs\">\r\n<p><b>Q.&nbsp;</b>I would like to place an order online. Is that possible?<br />\r\n<b>A.&nbsp;</b>&nbsp;If online ordering is available in your area, you will be notified by your school.</p>\r\n<p><b>Q.&nbsp;</b>I would like to order additional portraits online. Is that possible?<br />\r\n<b>A.&nbsp;</b>Yes. Simply click order online and type in the code found on your portrait envelope.<br />\r\n<br />\r\n<b>Q.&nbsp;&nbsp; </b>I wanted to purchase a portrait package but didn\'t get my payment in on time.&nbsp;Can I still get a package of pictures?<br />\r\n<b>A.&nbsp;&nbsp; </b>If a retake date is available at your school, Strawbridge Studios will retake your photo (Fall only).&nbsp;Simply bring the envelope with you on retake day and give it to the photographer.&nbsp;If a retake date is not available at your school, or if the retake day is past, often we are able to produce a package for you.&nbsp;We add an additional $10.00 handling charge to the package price which includes mailing your package directly to your home.&nbsp;You can expect delivery of your portraits in 3 - 4 weeks.&nbsp;Simply mail your envelope with payment and the additional $10.00 to:</p>\r\n<p>Strawbridge Studios, Inc.<br />\r\nAttention: Customer Service<br />\r\nP.O. Box 3005<br />\r\nDurham, NC 27715<br />\r\n<br />\r\n<b>Q. </b>&nbsp;&nbsp;What if I think my package is wrong or incomplete?<br />\r\n<b>A.&nbsp;</b>If your package is wrong or incomplete, we will gladly correct it!&nbsp;Please call our Customer Service Department at 866-624-6229 and have the package readily available for reference.<br />\r\n<br />\r\n<b>Q.&nbsp;&nbsp; </b>I purchased a portrait package, but my check was returned for insufficient funds. What should I do?<br />\r\n<b>A.&nbsp;</b>Please call 800-326-9080 or 919-286-9512 and ask for our Collections Department.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>What if I want a refund?<br />\r\n<b>A.&nbsp;</b>We\'re sorry you are unhappy with your portraits.&nbsp;To receive a refund, simply return your entire package within two weeks to Strawbridge Studios at the address shown at the bottom left of your portrait package.&nbsp;Please mark the envelope Attention: Refund Department.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>How long do you retain my child\'s portrait?<br />\r\n<b>A.&nbsp;</b>We usually keep images available for 6 months.</p>\r\n<p align=\"center\">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/62-contact-us-info\">Contact Information</a></li>\r\n    <li><a href=\"/pages/31-contact-us\">Contact Us Form</a></li>\r\n    <li class=\"current\"><a href=\"/pages/26-customer-service-faq\">FAQs</a></li>\r\n    <li><a href=\"/pages/29-privacy-policy\">Privacy Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" src=\"/uploads/Image/customer_service_Title.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" src=\"/uploads/Image/customer_service_Image.jpg\" alt=\"\" /></div>','customer service faq','','0',0,'2010-01-28 18:14:48','2010-06-08 15:51:15'),(65,'Sports Groups Products Copy',NULL,'<div id=\"interior_page_content\">\r\n<h1>League Sports Products</h1>\r\n<div id=\"programs\">\r\n<p>Since 1923 Strawbridge Studios has been committed to providing our customers with outstanding quality and &ldquo;best of service&rdquo; in the industry.  S<img height=\"665\" width=\"662\" alt=\"\" src=\"/uploads/Image/sports_products.jpg\" />trawbridge Studios now brings this same commitment to sports photography.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/11-sports-groups-programs\">Products</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/test\">Test Page</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"397\" alt=\"\" src=\"/uploads/Image/league_sports_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/sports_header.png\" /></div>','Sports Groups Programs','','0',0,'2010-01-28 18:14:48','2010-05-26 14:25:28'),(35,'Middle High School Fall Portraits',NULL,'<div id=\"interior_page_content\">\r\n<h1>Fall Portraits</h1>\r\n<div id=\"programs\">\r\n<p>We are committed to excellence and dedicated to providing you with the best service and simplest programs in the industry.</p>\r\n<h2>Strawbridge Studios Will Provide Your School With:</h2>\r\n<ul>\r\n    <li>Software that allows you to create custom name badges, ID cards, and more</li>\r\n    <li>Complimentary portrait packages for all faculty and staff</li>\r\n    <li>Large desk calendar and academic planner for school secretary and  Administration</li>\r\n    <li>Yearbook and Administrative CDs</li>\r\n    <li>Beautiful 16x20 framed portrait of the Faculty and Staff</li>\r\n    <li>Yearbook activity pictures</li>\r\n</ul>\r\n<p>Three payment plans are available, prepay, proof, and speculative; however, our prepay plan is the most popular fall plan.  Because we capture every image digitally it allows us to produce beautiful color portraits with realistic skin tones.  Our Automated Packaging Department enables us to return completed packages with ID Cards, Admin and Yearbook CDs in just three-weeks.  Absentee and retake portraits will be returned before the holidays.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Mid High programs fall portraits','','0',0,'2010-01-28 18:14:48','2010-06-04 15:27:31'),(27,'About Us: Vision and Values',NULL,'<div id=\"interior_page_content\">\r\n<h1>Our Vision and Values</h1>\r\n<div id=\"programs\">\r\n<h1>Vision &amp; Values</h1>\r\n<h2>V&amp;V bullet point title</h2>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">About Us :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/25-about-us\">About Us</a></li>\r\n    <li class=\"current\"><a href=\"/pages/27-vision-and-values\">Vision &amp; Values</a></li>\r\n    <li><a href=\"/pages/28-our-history\">Our History</a></li>\r\n    <li><a href=\"/pages/57-our-mission\">Our Mission</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_HeaderImage.png\" /></div>','vision and values','','0',0,'2010-01-28 18:14:48','2010-05-20 16:11:26'),(28,'About Us: Living History',NULL,'<div id=\"interior_page_content\">\r\n<h1>Living History</h1>\r\n<div id=\"programs\">Below is a short video displaying the history of Strawbridge Studios.  <object height=\"385\" width=\"480\">\r\n<param value=\"http://www.youtube.com/v/qh1_vS3EJao&amp;hl=en_US&amp;fs=1&amp;rel=0\" name=\"movie\" />\r\n<param value=\"true\" name=\"allowFullScreen\" />\r\n<param value=\"always\" name=\"allowscriptaccess\" /><embed height=\"385\" width=\"480\" allowfullscreen=\"true\" allowscriptaccess=\"always\" type=\"application/x-shockwave-flash\" src=\"http://www.youtube.com/v/qh1_vS3EJao&amp;hl=en_US&amp;fs=1&amp;rel=0\"></embed></object></div>\r\n<div>&nbsp;</div>\r\n<div>&nbsp;</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">About Us :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/25-about-us\">About Us</a><a href=\"/pages/27-vision-and-values\"><br />\r\n    </a></li>\r\n    <li class=\"current\"><a href=\"/pages/28-our-history\">Living History</a></li>\r\n    <li><a href=\"/pages/57-our-mission\">Our Mission</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" src=\"/uploads/Image/aboutSTRAW_Title.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" src=\"/uploads/Image/aboutSTRAW_HeaderImage.png\" alt=\"\" /></div>','our history','','0',0,'2010-01-28 18:14:48','2010-05-20 19:40:49'),(38,'Order Online',NULL,'<div id=\"interior_page_content\">\r\n<h1>Order Online</h1>\r\n<div id=\"programs\">\r\n<p>Please check the payment envelope or flyer sent home for your password or code.  Please Note:  Not all schools choose to participate in the online payment programs.</p>\r\n</div>\r\n<div id=\"interior_page_content\">\r\n<div id=\"interior_quarter_box\">\r\n<div class=\"interior_quarter_box\"><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/prepay_icon.png\" /></a>\r\n<h3><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php\">Pay For<br />\r\nPortraits</a></h3>\r\n<p><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php\">Click here to pay for your child\'s portrait package.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php \"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/proof_icon.png\" /></a>\r\n<h3><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php \">Pay For<br />\r\nProofs</a></h3>\r\n<p><a href=\"https://www.imagequix.com/vando/preorder/strawbridge/entry.php \">View K-11 proofs and place your order here.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://vando.imagequix.com/index.html?id=899Y99L\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/Grad_panel_thumb.png\" /></a>\r\n<h3><a href=\"https://vando.imagequix.com/index.html?id=899Y99L\">Miscellaneous<br />\r\nEvents</a></h3>\r\n<p><a href=\"https://vando.imagequix.com/index.html?id=899Y99L\">Tallulah Falls School, Special Events.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/reorder_icon.png\" /></a>\r\n<h3><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\">Reorders<br />\r\n&nbsp;</a></h3>\r\n<p><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\">Click here to place portrait reorders.<br />\r\n&nbsp;<br />\r\n&nbsp;</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://vando.imagequix.com/strawbridge/expressions/order\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/seniors_session_icon.png\" /></a>\r\n<h3><a href=\"https://vando.imagequix.com/strawbridge/expressions/order\"><font>Senior Session Fee</font></a></h3>\r\n<p><a href=\"https://vando.imagequix.com/strawbridge/expressions/order\">Save time, pay your session fee online.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"/pages/81-senior-expressions-ordering\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/seniors_icon.png\" /></a>\r\n<h3><a href=\"/pages/81-senior-expressions-ordering\">Senior<br />\r\nOrders</a></h3>\r\n<p><a href=\"/pages/81-senior-expressions-ordering\">View senior proofs and place your order here.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/sports_icon.png\" /></a>\r\n<h3><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\">Sports<br />\r\n&nbsp;</a></h3>\r\n<p><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeReorderSc/entry.php\">Order additional sports packages and products.</a></p>\r\n</div>\r\n<div class=\"interior_quarter_box\"><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeYB/login.php\"><img width=\"138\" height=\"75\" alt=\"\" src=\"/uploads/Image/yearbooks_icon.png\" /></a>\r\n<h3><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeYB/login.php\">Yearbooks<br />\r\n&nbsp;</a></h3>\r\n<p><a href=\"https://www.imagequix.com/vando/preorder/strawbridgeYB/login.php\">Click here to place your yearbook order.</a></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Order Online :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/38-customer-service-order-online\">Order Online</a></li>\r\n    <li><a href=\"/pages/61-return-policy\">Return Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','Order Online','','0',0,'2010-01-28 18:14:48','2011-10-04 16:08:47'),(29,'Customer Service: Privacy Policy',NULL,'<div id=\"interior_page_content\">\r\n<h1>Privacy Policy</h1>\r\n<div id=\"programs\">\r\n<p>This is the Website of Strawbridge Studios Inc.<br />\r\n<br />\r\nOur postal address is:<br />\r\nP.O. Box 3005  Durham, NC, 27715<br />\r\n<br />\r\nWe can be reached via e-mail at CService@strawbridge.net  or you can reach us by telephone at 919-286-9512.<br />\r\n<br />\r\nFor each visitor to our Web page, our Web server automatically recognizes no information regarding the domain or e-mail address.<br />\r\n<br />\r\nWe collect the e-mail addresses of those who communicate with us via e-mail, name and address, telephone number, payment information (e.g., credit card number and billing address).<br />\r\n<br />\r\nThe information we collect is used for internal review and is then discarded, disclosed when legally required to do so at the request of governmental authorities conducting an investigation, to verify or enforce compliance with the policies governing our Website and applicable laws or to protect against misuse or unauthorized use of our Website.<br />\r\n<br />\r\nStrawbridge Studios does not collect any private information from cookies or other resources.<br />\r\nIf you do not want to receive e-mail from us in the future, please let us know by sending us an &nbsp;e-mail at the above address.<br />\r\n<br />\r\nIf you supply us with your postal address online you will only receive the information for which you provided us your address.<br />\r\n<br />\r\nPersons who supply us with their telephone numbers online will only receive telephone contact from us with information regarding orders they have placed online. Please provide us with your name and phone number.<br />\r\n<br />\r\nWith respect to Ad Server: We do not partner with or have special relationships with any Ad Server companies. Strawbridge Studios, Inc. does not sell, trade or share the information you provide through this Website with unaffiliated third parties for their marketing purposes.<br />\r\n<br />\r\nFrom time-to-time, we may use customer information for new, unanticipated uses not previously disclosed in our privacy notice. If our information practices change at some time in the future, we will post the policy changes to our Website to notify you of these changes and we will use for these new purposes only data collected from the time of the policy change forward. If you are concerned about how your information is used, you should check back at our Website periodically.<br />\r\n<br />\r\nUpon request, we offer visitors the ability to have inaccuracies corrected in contact information, financial information, or transaction information.<br />\r\n<br />\r\nWith respect to security: When we transfer and receive certain types of sensitive information such as financial or health information, we redirect visitors to a secure server and will notify visitors through a pop-up screen on our site.<br />\r\n<br />\r\nIf you feel that this site is not following its stated information policy, you may contact us at the above address or phone number.<br />\r\n&nbsp;</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/62-contact-us-info\">Contact Information</a></li>\r\n    <li><a href=\"/pages/31-contact-us\">Contact Us Form</a></li>\r\n    <li><a href=\"/pages/26-customer-service-faq\">FAQs</a></li>\r\n    <li class=\"current\"><a href=\"/pages/29-privacy-policy\">Privacy Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" src=\"/uploads/Image/customer_service_Title.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" src=\"/uploads/Image/customer_service_Image.jpg\" alt=\"\" /></div>','privacy policy','','0',0,'2010-01-28 18:14:48','2010-06-08 15:51:36'),(36,'Middle School High School Programs Buddy Personality',NULL,'<div id=\"interior_page_content\">\r\n<h1>Buddy and Personality</h1>\r\n<div id=\"programs\">\r\n<p>With today\'s technology and social networking environment, friends are an important part of school!  Spring Personality and Buddy Programs can be made available to your students on a prepay plan.  Up to 8 friends may be photographed together.  Help your students preserve those special memories.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Mid High programs buddy personality','','0',0,'2010-01-28 18:14:48','2010-06-04 15:28:29'),(30,'Customer Service: Terms and Conditions',NULL,'<div id=\"interior_page_content\">\r\n<h1>Terms &amp; Conditions</h1>\r\n<div id=\"programs\">\r\n<p>Terms &amp; Conditions Body</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/26-customer-service\">Overview</a></li>\r\n    <li><a href=\"/pages/29-privacy-policy\">Privacy Policy</a></li>\r\n    <li class=\"current\"><a href=\"/pages/30-terms-and-conditions\">Terms &amp; Conditions</a></li>\r\n    <li><a href=\"/pages/38-customer-service-order-online\">Order Online</a></li>\r\n    <li><a href=\"/pages/31-contact-us\">Contact Us</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.png\" /></div>','Terms and Conditions','','0',0,'2010-01-28 18:14:48','2010-05-03 15:31:14'),(33,'Middle School High School Programs Prom Dance',NULL,'<div id=\"interior_page_content\">\r\n<h1>Prom and Dances</h1>\r\n<div id=\"programs\">\r\n<p>Dances and Prom Nights are some of the most memorable events in High School so why not let Strawbridge Studios capture these special moments.</p>\r\n<h2>We Offer:</h2>\r\n<ul>\r\n    <li>Themed Backgrounds</li>\r\n    <li>Professional and Courteous Photographers</li>\r\n    <li>Couple and Individual Full-Length Portraits</li>\r\n    <li>Group Portraits</li>\r\n    <li>Prom Books</li>\r\n    <li>King and Queen Crowning</li>\r\n    <li>Candid Photos</li>\r\n</ul>\r\n</div>\r\n<h1>Graduation Portraits</h1>\r\n<div id=\"programs\">\r\n<p>Cap and Gown portraits are a timeless tradition!</p>\r\n<p style=\"text-align: center;\"><img width=\"511\" height=\"264\" alt=\"\" src=\"/uploads/Image/gowns.png\" /></p>\r\n<p>Celebrate one of the greatest accomplishments in your student\'s lives; have your seniors photographed as they receive their diploma.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Mid High programs prom dance','','0',0,'2010-01-28 18:14:48','2010-06-04 15:31:41'),(31,'Customer Service Contact Form',NULL,'<div id=\"interior_page_content\">\r\n<h1>Contact Us</h1>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/62-contact-us-info\">Contact Information</a></li>\r\n    <li class=\"current\"><a href=\"/pages/31-contact-us\">Contact Us Form</a></li>\r\n    <li><a href=\"/pages/26-customer-service-faq\">FAQs</a></li>\r\n    <li><a href=\"/pages/29-privacy-policy\">Privacy Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.jpg\" /></div>','Contact Us','','0',0,'2010-01-28 18:14:48','2010-06-08 17:41:37'),(32,'Middle School High School Programs Sports Groups',NULL,'<div id=\"interior_page_content\">\r\n<h1>Sports and Group Photography</h1>\r\n<div id=\"programs\">\r\n<p>Strawbridge Studios can photograph all of your sports teams and athletes, musical groups, and organizations.   A copy of all team and group pictures will be supplied to each coach or leader plus the yearbook staff at no charge.</p>\r\n<h2>We Are Constantly Striving to Improve Our Products and Services.</h2>\r\n<ul>\r\n    <li>Hassle-free after school photography</li>\r\n    <li>Affordable pricing with competitive packages</li>\r\n    <li>Personalized photo products with student\'s name and stats</li>\r\n    <li>Fast Delivery</li>\r\n    <li>All team or group photos are customized with school name and year</li>\r\n    <li>Exciting new digital products</li>\r\n</ul>\r\n<p>As your sports team photographer, we will offer a special photography class to your yearbook staff where they can learn the art of capturing sports action shots.</p>\r\n<p>We also offer to be at select sporting events should you desire.</p>\r\n<p><strong>Scheduling &ndash; </strong>We&rsquo;ll work close with your sports director and yearbook sponsor to schedule a convenient photography time for players right before or after a game.</p>\r\n<p><strong>Online Reordering<strong> &ndash; </strong></strong>To help eliminate the extra &quot;paperwork&quot;, parents can go online to reorder all photo products.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/55-mid-high-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.png\" /></div>','Mid High Sports Groups','','0',0,'2010-01-28 18:14:48','2010-06-04 15:43:19'),(40,'Thank You for Contacting Us',NULL,'<div id=\"interior_page_content\">\r\n<h1>Thank You for Contacting Us</h1>\r\n<div id=\"programs\">\r\n<h2>A member of our team will be in touch with you within 24 hours!</h2>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/62-contact-us-info\">Contact Information</a></li>\r\n    <li class=\"current\"><a href=\"/pages/31-contact-us\">Contact Us Form</a></li>\r\n    <li><a href=\"/pages/26-customer-service-faq\">FAQs</a></li>\r\n    <li><a href=\"/pages/29-privacy-policy\">Privacy Policy</a><a href=\"/pages/30-terms-and-conditions\"><br />\r\n    </a></li>\r\n    <li><a href=\"/pages/38-customer-service-order-online\">Order Online</a><a href=\"/pages/31-contact-us\"><br />\r\n    </a></li>\r\n    <li><a href=\"/pages/61-return-policy\">Return Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.png\" /></div>','Thank You for Contacting Us','','0',0,'2010-01-28 18:14:48','2010-06-09 17:39:02'),(41,'Yearbooks Program Overview',NULL,'<div id=\"interior_page_content\">\r\n<h1>Yearbook Program Overview</h1>\r\n<div id=\"programs\">\r\n<p>Strawbridge Studios has been involved in creating memorable school annuals for over 50 years!  We offer the most innovative yearbook programs in the industry and we are committed to providing you with the highest level of customer satisfaction possible.</p>\r\n<p>Our yearbook programs provide a full selection of yearbook options including:</p>\r\n<ul>\r\n    <li>Full Color or Black &amp; White Printing</li>\r\n    <li>Multiple Binding Options</li>\r\n    <li>Standard and Custom Covers</li>\r\n    <li>User-Friendly Design Software</li>\r\n</ul>\r\n<p>Included with each of our yearbook programs is the &ldquo;Strawbridge Advantage&rdquo;.  What the Strawbridge Advantage means to you is no late fees or additional charges for the following:</p>\r\n<ul>\r\n    <li>Corrections</li>\r\n    <li>Image Manipulation</li>\r\n    <li>Photoshop Work</li>\r\n    <li>Custom Covers and much more&hellip;.</li>\r\n</ul>\r\n<p>Contact us for a no obligation yearbook quote.  Fast Turnaround &bull; Superior Quality &bull; Honest Value &bull; Competitive Pricing</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Program Overview</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/41-yearbooks-program-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/42-online-vs-desktop\">Online vs. Desktop</a></li>\r\n    <li><a href=\"/pages/63-available-plans\">Available Plans</a></li>\r\n    <li><a href=\"/pages/80-cover-designs\">Cover Designs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/yearbook_services.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" alt=\"\" src=\"/uploads/Image/yearbook_header_images2.jpg\" /></div>','Yearbooks Program Overview','','0',0,'2010-01-28 18:14:48','2010-10-27 14:25:47'),(42,'Yearbooks Program Online vs Desktop',NULL,'<div id=\"interior_page_content\">\r\n<h1>Online vs. Desktop</h1>\r\n<div id=\"programs\">\r\n<p>We offer both online and desktop programs, each with it&rsquo;s own strengths and weaknesses.  We encourage our yearbook committees to evaluate their needs before they determine if they want to use an online or a desktop program.</p>\r\n<h2>Desktop</h2>\r\n<ul>\r\n    <li>Stable desktop program</li>\r\n    <li>All data is stored locally</li>\r\n    <li>Perfect for classrooms and yearbook advisors</li>\r\n    <li>Can be installed at school or at home</li>\r\n    <li>Contains heavy volume design tools</li>\r\n    <li>Includes numerous design features</li>\r\n</ul>\r\n<h2>Online</h2>\r\n<ul>\r\n    <li>Work on your yearbook from anywhere with internet access</li>\r\n    <li>Great for sharing among multiple designers</li>\r\n    <li>Easy submission</li>\r\n    <li>Simple to use</li>\r\n</ul>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Online vs. Desktop</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/41-yearbooks-program-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/42-online-vs-desktop\">Online vs. Desktop</a></li>\r\n    <li><a href=\"/pages/63-available-plans\">Available Plans</a></li>\r\n    <li><a href=\"/pages/80-cover-designs\">Cover Designs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/yearbook_services.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" alt=\"\" src=\"/uploads/Image/yearbook_header_images2.jpg\" /></div>','Online vs Desktop','','0',0,'2010-01-28 18:14:48','2010-10-27 14:24:47'),(43,'Yearbooks Customer Support Contact',NULL,'<div id=\"interior_page_content\">\r\n<h1>Yearbook Support</h1>\r\n<div id=\"programs\">\r\n<p><b>Technical Support:</b><br />\r\n<br />\r\nEmail:&nbsp;<a href=\"mailto:Yearbooks@strawbridge.net\">Yearbooks@strawbridge.net</a><br />\r\nPhone: 866-624-6229 ext. 7</p>\r\n<p><b>Sales and Information:</b><br />\r\n<br />\r\nDave Ehinger<br />\r\n<a href=\"mailto:dehinger@strawbridge.net\">dehinger@strawbridge.net</a><br />\r\n800-326-9080 ext. 299</p>\r\n<p>John Gallagher<br />\r\n<a href=\"mailto:jgallagher@strawbridge.net\">jgallagher@strawbridge.net</a><br />\r\n800-326-9080 ext. 286</p>\r\n<p><b><u>Florida</u></b></p>\r\n<p>Todd Goodman<a href=\"mailto:tgoodman@strawbridge.net\"><br />\r\ntgoodman@strawbridge.net</a><br />\r\n941-539-4682</p>\r\n<p><b><u>Texas</u></b></p>\r\n<p>Janel Thrash<br />\r\n<a href=\"mailto:jthrash@strawbridge.net\">jthrash@strawbridge.net</a><br />\r\n361-549-0538</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Yearbook Support</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/43-yearbooks-contact-us\">Contact Us</a></li>\r\n    <li><a href=\"/pages/44-yearbook-faq\">FAQs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" src=\"/uploads/Image/yearbook_services.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" src=\"/uploads/Image/yearbook_header_images2.jpg\" alt=\"\" /></div>','Yearbooks Contact Us','','0',0,'2010-01-28 18:14:48','2010-06-08 15:44:23'),(44,'Yearbooks FAQ',NULL,'<div id=\"interior_page_content\">\r\n<h1>Yearbook FAQs</h1>\r\n<div id=\"programs\">\r\n<h2>Yearbook Creation</h2>\r\n<p><b>Q.&nbsp;</b>When will I receive my portrait CD?<br />\r\n<b>A.&nbsp;</b>You will receive a corrected student CD two and a half weeks after you submit your corrected MugBook.&nbsp;We need an appropriate amount of time to make the corrections, update our database and send you a corrected CD.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>I don&rsquo;t have my Student Portrait CD yet, what can I do for the yearbook in the meantime?<br />\r\n<b>A.&nbsp;</b>There are a number of steps you can take to make your yearbook layout process smooth and efficient.&nbsp;We recommend:</p>\r\n<ul>\r\n    <li>Fill out the page ladder so you can organize how your book is going to be laid out.&nbsp;You can start preparing the pages by placing backgrounds, clipart and text on the pages you intend to flow the students on.</li>\r\n    <li>Make sure you have pictures for each class, clubs, sports, and organization that you want to dedicate space to in your yearbook.&nbsp;It&rsquo;s always good to have an activity or a group shot of each class so you can decorate your page with diverse images.</li>\r\n    <li>Make sure you have extra activity shots and field trip pictures for your montage pages.&nbsp;To keep a book interesting, you will find that you have to create montage pages to end a section or fill pages in the yearbook.&nbsp;If you have extra pictures and you don&rsquo;t know if you can use them or where to place them, consider these pictures for your montage page, you&rsquo;d be surprised what you can come up with!</li>\r\n    <li>Organize all your pictures in a structured manner.&nbsp;Please see the section in the provided manual on <b>Organizing Candids.&nbsp;</b>The Pelican layout software imports your images based on the name of the folder you&rsquo;ve stored your images in, so give thought to how the images all relate to one another and where they will be placed in the book.</li>\r\n    <li>Get your hands on a few yearbooks.&nbsp;They could be from a previous year at your school, or yearbooks from other schools in the area.&nbsp;This will give you ideas and provide a loose guide to follow while laying out your yearbook.</li>\r\n    <li>Most importantly, make sure you receive and check your MugBook!&nbsp;The sooner the MugBook is corrected, the sooner you can start laying out the most important part of the book-&nbsp;your students!</li>\r\n</ul>\r\n<br />\r\n<p><b>Q.&nbsp;</b>The school has finished laying out the yearbook using the software.&nbsp;Once I submit my yearbook, when will I receive a proof?<br />\r\n<b>A.&nbsp;</b>A proof of your yearbook will be delivered four weeks after submission of the book.&nbsp;We need time to process the book, check for errors, and evaluate our printing schedule.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>Strawbridge Studios is laying out our yearbook at their lab.&nbsp;Once I submit the materials for my yearbook, when will I receive a proof?<br />\r\n<b>A.&nbsp;</b>A proof of your yearbook will be delivered eight weeks after submission of your materials.&nbsp;We need time to organize the digital materials, scan submitted materials, and lay out the book.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>Once my proof is returned, when will the book be delivered?<br />\r\n<b>A.&nbsp;</b>This depends on the number of corrections that need to be made, and when the book was submitted.&nbsp;We will make our best efforts to deliver the book before your last day of school, but if the book was turned in late or if there is an overwhelming number of corrections, we cannot guarantee a delivery date.&nbsp;If you submitted everything on time, communicated a due date to us, and don&rsquo;t need to make a lot of changes,&nbsp;we should be able to deliver the book at your request.&nbsp;Please call us after you send in your proof to schedule a delivery date. <br />\r\n<br />\r\n<b>Q.&nbsp;</b>How should I mark proof corrections?<br />\r\n<b>A.&nbsp;</b>Please mark all corrections in red ink.&nbsp;Write out clear, concise instructions for the changes that you want made.&nbsp;Once the corrections are marked, or if there are no corrections on a page, please place your initials in the bottom right hand corner.</p>\r\n<h2>Pelican Software</h2>\r\n<p><b>Q.&nbsp;</b>What kind of images can I use in the software?<br />\r\n<b>A.&nbsp;</b>We recommend using images that are sized appropriately (4.5x6 inches, 2241x3000 pixels), and have 300 DPI. &nbsp;If you want an image to cover an entire page, the size will have to be closer to 8.75x11.25 inches.&nbsp;To check the dimensions on your computer, right click on the image and select properties.&nbsp;Click on the Summary Tab, then click on the advanced button, and information about the images dimensions will appear.&nbsp;Images can be resized in programs like Gimp Shop, but the production quality of the image goes down, making it blurry and unrecognizable.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>What&rsquo;s the difference between a panel page and an activity page?<br />\r\n<b>A.&nbsp;</b>A panel page will have the student&rsquo;s pictures on it, an activity page will be composed of pictures the school has taken.&nbsp;Panel pages are laid-out using the Panel Wizard in the software.&nbsp;Your school&rsquo;s activity pictures are laid out using the candid images the school has collected.</p>\r\n<p style=\"text-align: left;\"><br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt=\"\" src=\"/uploads/Image/Panel-example.png\" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <br />\r\n<br />\r\nPicture of an Activity/Candid Page&nbsp;<br />\r\n&nbsp;</p>\r\n<p><b>Q.&nbsp;</b>How do I import candids?<br />\r\n<b>A.&nbsp;</b>We recommend organizing your school&rsquo;s candid images in folders on the desktop of the computer you are using.&nbsp;Name the folders after identifiable subjects, such as Field Trip, Mr Smith&rsquo;s Class, or Page 2 Candids.&nbsp;When you import your candid images into the software, they will be grouped by these folder names.&nbsp;This makes it easier to find images on your computer&rsquo;s desktop and in the software program.</p>\r\n<p align=\"center\"><img height=\"202\" width=\"576\" alt=\"\" src=\"/uploads/Image/candid-folder-structure.jpg\" /></p>\r\n<br />\r\n<p>Once inside the software, follow these instructions:</p>\r\n<ul>\r\n    <li>Click on the <b>Images</b> button on the left side of the screen.</li>\r\n    <li>To import a folder full of pictures you&rsquo;ve taken, click on the <b>Import Folder</b> button on the right of the screen.&nbsp;</li>\r\n    <li>A Windows browser will appear on screen, and you&rsquo;ll have to navigate to the folder of images you created earlier.</li>\r\n    <li>Highlight the designated folder, and click on open, and the software will start importing all the candid images in the folder.</li>\r\n</ul>\r\n<p>&nbsp;</p>\r\n<p align=\"center\"><img height=\"331\" width=\"576\" alt=\"\" src=\"/uploads/Image/import-candid-sample.jpg\" /></p>\r\n<p>&nbsp;</p>\r\n<p><b>Q.&nbsp;</b>How do I go about selecting a cover for my Yearbook?<br />\r\n<b>A.&nbsp;</b>Most schools will submit a picture of the school, a student&rsquo;s artwork, or a piece of clipart of the mascot.&nbsp;We also provide a catalog of our stock covers with your kit.&nbsp;We recommend trying to find a cover that follows a prevalent theme for the year, or that represents your school as a whole.<br />\r\n<br />\r\nIf you have a physical image you want scanned, please mail it to us and we&rsquo;ll scan it to create the cover.&nbsp;If it&rsquo;s a digital image, like a picture of the school or a stock image, please make sure it&rsquo;s large enough for us to work with.&nbsp;We prefer 300 DPI, 8.5 x 11.00 inches, but the bigger the better.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>How can I make sure all the students who have pictures are in the book?<br />\r\n<b>A.&nbsp;</b>Before you <b>Finalize </b>your book and submit it for proofing, run the <b>Final Checks Wizard.&nbsp;</b>To run the <b>Final Checks Wizard </b>to make sure all the students are placed, click on the <b>Finalize</b> button in the bottom left corner of your screen.&nbsp;You will see there are a number of options you can run, but the one you want to run is the &lsquo;All Students Placed&rsquo; check.</p>\r\n<h2>Submission Procedures/Production Questions</h2>\r\n<p><b>Q.&nbsp;</b>When I am finished laying out the book what do I need to do to submit it?<br />\r\n<b>A.&nbsp;</b>Please follow these steps for finalizing your yearbook:</p>\r\n<ul>\r\n    <li>Click on the Finalize button.</li>\r\n    <li>Click on the Next button until you can&rsquo;t click on Next anymore.&nbsp;This will take you to the Package page.</li>\r\n    <li>Click on the button that looks like a zipper and says Package Underneath.&nbsp;This process will take about 15 to 20 minutes to complete.</li>\r\n    <li>Once the package process is finished, the program should congratulate you and a windows browser will open up with the Zip file.</li>\r\n    <li>The Zip file is what you want to burn to a disc.&nbsp;Please use whatever software you feel comfortable with to burn a disc, or contact your IT department to help with the burning process.&nbsp;</li>\r\n    <li>If you have a large book (over 40 pages; every page has a background; used over 300 candid images), the program might break the Zip files into multiples.&nbsp;Each Zip file will have to be burned to a separate disc and sent to our lab.</li>\r\n    <li>Once you&rsquo;ve burned the Zip file to a disc, mail it to:</li>\r\n</ul>\r\n<p>Strawbridge Studios, Inc.<br />\r\nAttn: Yearbook Department<br />\r\n3616 Hillsborough Road<br />\r\nDurham, NC 27705</p>\r\n<br />\r\n<p><b>Q.&nbsp;</b>I&rsquo;m concerned about my corrections after the proof, what can I do to make sure all my corrections are made?<br />\r\n<b>A.&nbsp;</b>Please do not worry about corrections after the proof.&nbsp;As long as everything is marked clearly, we will make the changes and ensure that your books will be printed as close to the proof as possible.&nbsp;Extra instructions are always welcome, and if you need to print out a list or send us an e-mail of corrections, we highly recommend that.&nbsp;<u>Please <b>DO NOT</b> call to submit corrections!</u>&nbsp;We cannot guarantee corrections over the phone, this method has proven to be unreliable and time consuming to be efficient.&nbsp;If necessary, we will send you a second proof for a minimal shipping and printing charge, or even e-mail select pages to make sure all of your corrections have been made.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>We&rsquo;re worried about selling all the books we ordered, what can we do?&nbsp;<br />\r\n<b>A.&nbsp;</b>For ideas and tips to help sell your yearbooks, please call us and ask to speak to one of our Yearbook Sales Representatives.&nbsp;They will not only help you price your book accordingly, but assist you in the marketing of your book.&nbsp;They can help you create sales materials, organize fund raisers, and share tips that have helped other schools with the sale of their books.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>How do I go about making sure my book is delivered on the date we requested?<br />\r\n<b>A.&nbsp;</b>By submitting all materials by the recommended deadlines (list earliest and latest deadline), and requesting the minimum amount of corrections after your proof .&nbsp;We use a variety of press machines, and during the yearbook season (January to June)&nbsp;we run most of these machines for 12 to 24 hours a day.&nbsp;Depending upon the number of pages and the number of books ordered, we have to schedule each book very carefully.&nbsp;If you call with last minute changes or rearrange your whole book after proofing, its priority will be moved to the back of the line.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>How do I go about finding out the status of my School&rsquo;s yearbook?<br />\r\n<b>A.&nbsp;</b>Please call and ask to speak with the Yearbook Coordinator.&nbsp;The Yearbook Coordinator will either find out what the status of your book is, or put you in touch with someone who can determine when your book will be ready for delivery. <br />\r\n<br />\r\n<b>Q.&nbsp;</b>What is our deadline?<br />\r\n<b>A.&nbsp;</b>Please have all materials turned into our offices and the book laid out by March 1<sup>st</sup>.&nbsp;This will give us time to proof and print all of the books we receive before school ends for the year.&nbsp;If you need additional time or need to add a page after this deadline, please call us and we will see if we can accommodate you.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>What if I want to change the number of copies we ordered, or lower the number of pages in the book?<br />\r\n<b>A.&nbsp;</b>You can call our offices and speak with the Yearbook Coordinator to change the number of pages or copies of the book, however, this will result in an automatic price increase.&nbsp;The number of books ordered and the number of pages in a book determines the price of printing the book.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>What if I want to order more yearbooks?<br />\r\n<b>A.&nbsp;</b>You are more than welcome to call and order more books if the order is placed before the book is proofed, however, we do not print extra copies of the yearbook and we will not run the book again.&nbsp;We schedule our presses to run 24 hours a day based on the average number of pages and the amount of books we&rsquo;re printing, and to achieve maximum efficiency we cannot make exceptions to our schedule.<br />\r\n<br />\r\n<b>Q.&nbsp;</b>What kind of support can I expect from Strawbridge Studios, Inc.?<br />\r\n<b>A.&nbsp;</b>Strawbridge Studios will support all of your technical needs, and some direction for laying out your book.&nbsp;Please call our support hotline or e-mail us at <a href=\"mailto:ybsupport@strawbridge.net\">ybsupport@strawbridge.net.</a><br />\r\n&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>If the software is not acting properly, or you have a question on how to perform a certain function, please call and ask to speak with one of our technical support representatives.&nbsp;A friendly, Support Specialist or Production Supervisor will take your call and talk you through your problem.&nbsp;If the problem needs further attention, we can log onto your computer and try to fix it remotely, send a technician to your school to evaluate the problem, or provide you with hardware and an alternative solution to your yearbook issues.&nbsp;We can&rsquo;t layout the yearbook for you, but we can provide some guidance and suggestions for how to do your book.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Customer Support</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/43-yearbooks-contact-us\">Contact Us</a></li>\r\n    <li class=\"current\"><a href=\"/pages/44-yearbook-faq\">FAQs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/yearbook_services.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" alt=\"\" src=\"/uploads/Image/yearbook_header_images2.jpg\" /></div>','yearbook faq','','0',0,'2010-01-28 18:14:48','2010-06-08 19:31:00'),(74,'Senior Expressions Catalog',NULL,'<p>&nbsp;</p>\r\n<div id=\"interior_page_content\">\r\n<h1>Senior Catalog</h1>\r\n<div id=\"programs\">\r\n<p><a onclick=\"window.open(this.href,\'SeniorExpressionsCatalog\',\'resizable=no,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,fullscreen=no,dependent=no,width=1055,height=680,status\'); return false\" href=\"http://strawbridge.net/2011SeniorCatalog.html\">Click here to open our Senior Catalog.</a></p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : Senior Catalog</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"117\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','Senior Catalog','','0',0,'2010-01-28 18:14:48','2011-10-05 17:38:16'),(45,'Yearbook Resources Proof My Class',NULL,'<div id=\"interior_page_content\">\r\n<h1>Resources</h1>\r\n<div id=\"programs\">\r\n<p>Proof My Class is a secure, online data correction website that allows the school access to the student&rsquo;s data for corrections.  Strawbridge Studios incorporates PMC into it&rsquo;s yearbook production workflow to get the student images to the yearbook advisor faster and help rectify any data errors on the portraits.  This program is included by request in any type of yearbook program in which you are building your book.</p>\r\n<p><a href=\"http://proofmyclass.com\" target=\"_blank\">Click here to go to proofmyclass.com.</a></p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Resources</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/45-yearbook-proof-my-class\">Proof My Class</a></li>\r\n    <li><a href=\"/pages/46-yearbook-tutorials\">Tutorials</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" src=\"/uploads/Image/yearbook_services.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" src=\"/uploads/Image/yearbook_header_images2.jpg\" alt=\"\" /></div>','Yearbook Proof my Class','','0',0,'2010-01-28 18:14:48','2010-06-08 15:48:00'),(46,'Yearbook Resources Tutorials',NULL,'<div id=\"interior_page_content\">\r\n<h1>Tutorials</h1>\r\n<div id=\"programs\">\r\n<p><a href=\" /uploads/Files/QuickStartGuide.pdf\">Click Here To Download Our Pelican Software QuickStart Guide</a></p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Resources</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/45-yearbook-proof-my-class\">Proof My Class</a></li>\r\n    <li class=\"current\"><a href=\"/pages/46-yearbook-tutorials\">Tutorials</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" src=\"/uploads/Image/yearbook_services.png\" alt=\"\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" src=\"/uploads/Image/yearbook_header_images2.jpg\" alt=\"\" /></div>','yearbook tutorials','','0',0,'2010-01-28 18:14:48','2010-06-08 15:49:08'),(47,'Senior Expressions Portrait Sessions Getting Ready',NULL,'<div id=\"interior_page_content\">\r\n<h1>Getting Ready</h1>\r\n<div id=\"programs\">\r\n<h2>Formal &amp; Close Up</h2>\r\n<p>Professional portraits focus the attention on the face.  Choosing the clothing is an important key in achieving the best portrait.   Clothing should be simple in color and style.  Avoid whites and pastel colors, these tend to create a look that makes the face appear pale or washed out.  Medium to darker shades will draw attention to the face.  Long sleeves should be worn (if possible) to keep the focus on the face and not the arms.  Spaghetti straps and tops that show bare arms and shoulders tend to create a heavier look and draw attention away from the face.</p>\r\n<h2>Casual/Contemporary</h2>\r\n<p>This style of portrait allows a larger variety of clothing styles and colors.  Many of these will be a full body pose so be sure to complete your look with shoes and accessories that compliment your outfit.  Choose clothing that represents your unique style and personality.  Whites and pastels create a soft look while blacks and dark colors will create a more dramatic look.  Some ideas are: casual jeans or shorts, a favorite jacket, sports or cheerleading uniforms, a prom dress or suit.</p>\r\n<h2>Outdoor/Environmental</h2>\r\n<p>Bring outfits that represent you in an  outdoor activity.  Clothing should be simple in color and style.  Be sure to bring any sports gear or outdoor equipment that show your interests and hobbies (automobiles, bikes, etc. are photographed when outdoor sessions are offered).</p>\r\n<h2>Props &amp; Accessories</h2>\r\n<p>Bring along your favorite props.  Musical instruments, sports equipment, uniforms (sports, band, cheerleading, etc.), pets and friends are all great props.  Remember to check all of your details, manicures, facial hair and accessories such as earrings, necklaces, belts, ties, shoes, and class rings.  Be creative and have fun!</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : Getting Ready</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li class=\"current\"><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"343\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','Getting Ready','','0',0,'2010-01-28 18:14:48','2010-09-09 14:47:21'),(66,'Sports Groups Products Copy',NULL,'<div id=\"interior_page_content\">\r\n<h1>League Sports Products</h1>\r\n<div id=\"programs\">\r\n<p>Since 1923 Strawbridge Studios has been committed to providing our customers with outstanding quality and &ldquo;best of service&rdquo; in the industry.  S<img height=\"665\" width=\"662\" alt=\"\" src=\"/uploads/Image/sports_products.jpg\" />trawbridge Studios now brings this same commitment to sports photography.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Potraits : Sports</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/9-sports-groups-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/11-sports-groups-programs\">Products</a></li>\r\n    <li><a href=\"/pages/12-sports-groups-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/test\">Test Page</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"397\" alt=\"\" src=\"/uploads/Image/league_sports_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/sports_header.png\" /></div>','Sports Groups Programs','','0',0,'2010-01-28 18:14:48','2010-05-26 14:25:28'),(49,'Senior Expressions What\'s Next',NULL,'<div id=\"interior_page_content\">\r\n<h1>What\'s Next?</h1>\r\n<div id=\"programs\">\r\n<p>After your portrait session, you proofs and product catalog will arrive within 4-6 weeks.  There are two easy ways to order:  Fill out the order form and mail in with your full payment or order online (be sure to have your proofs available when placing your order).</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : What\'s Next</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li class=\"current\"><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"117\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','whats next','','0',0,'2010-01-28 18:14:48','2010-09-09 14:47:44'),(50,'Senior Expressions My Appointment',NULL,'<div id=\"interior_page_content\">\r\n<h1>My Appointment</h1>\r\n<div id=\"programs\">\r\n<p>Watch for your appointment card to arrive which will have important details about your photography session.  These details will include: session fees, dates and times along with helpful hints.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : My Appointment</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"117\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','my appointment','','0',0,'2010-01-28 18:14:48','2010-09-09 14:46:50'),(55,'Middle School High School Portraits Program Options',NULL,'<div id=\"interior_page_content\">\r\n<h1>Middle / High School Program Options</h1>\r\n<div id=\"programs\">\r\n<h3>You Can Select from 3 Easy Payment Plans:</h3>\r\n<br />\r\n<p><strong>Prepay </strong>&ndash; We have found this plan to be very successful due to higher sales, minimal teacher involvement, and three-week delivery of finished portrait packages.  Our prepay envelopes visually illustrate the content of each package enabling parents to actually see what they are buying.</p>\r\n<p><strong>Proof</strong> &ndash; Each student photographed will receive a proof for parental inspection.  Their proof is printed directly on the order form envelope.  Parents will be able to view their child&rsquo;s photo, complete their order form, and enclose their payment all on one easy form.</p>\r\n<p><strong>Speculative</strong> &ndash; All students photographed receive the same portrait package.  Parents may purchase the entire package or, depending on their needs, any part of that package.  We offer single pose and multi-pose spec programs with a variety of packages and bonus collages.</p>\r\n<p>Strawbridge Studios is a full-service organization and we provide everything connected with school photography &ndash; including all portraits, administrative software and CDs, yearbooks, student certificates and awards, custom printing, desk calendars, motivational banners, and much more!</p>\r\n<p>Portraits and Yearbooks delivered on-time - Guaranteed!</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Mid High</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/8-mid-high-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/10-mid-high-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/13-mid-high-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/20-middle-high-portraits-prepay\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/mid_high_title2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/midhigh-header.jpg\" /></div>','Mid High program options','','0',0,'2010-01-28 18:14:48','2010-06-04 19:37:22'),(54,'Elementary Portraits Program Options',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portrait Program Options</h1>\r\n<div id=\"programs\">\r\n<h3>You Can Select from 3 Easy Payment Plans:</h3>\r\n<br />\r\n<p><strong>Prepay </strong>&ndash; We have found this plan to be very successful due to higher sales, minimal teacher involvement, and three-week delivery of finished portrait packages. Our prepay envelopes visually illustrate the content of each package enabling parents to actually see what they are buying.</p>\r\n<p><strong>Proof </strong>&ndash; Each student photographed will receive a proof for parental inspection. Their proof is printed directly on the order form envelope. Parents will be able to view their child&rsquo;s photo, complete their order form, and enclose their payment all on one easy form.</p>\r\n<p><strong>Speculative </strong>&ndash; All students photographed receive the same portrait package. Parents may purchase the entire package or, depending on their needs, any part of that package. We offer single pose and multi-pose spec programs with a variety of packages and bonus collages.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.jpg\" /></div>','Elementary Portraits Program Options','','0',0,'2010-01-28 18:14:48','2010-06-07 16:04:33'),(51,'Senior Expressions Products',NULL,'<div id=\"interior_page_content\">\r\n<h1>Products</h1>\r\n<div id=\"programs\">\r\n<h2>Products Made to Order</h2>\r\n<p>Professional portraits focus the attention on the face.  Choosing the clothing is an important key in achieving the best portrait.   Clothing should be simple in color and style.</p>\r\n<p><img height=\"746\" width=\"662\" alt=\"\" src=\"/uploads/Image/Senior_products.jpg\" /></p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : Products</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li class=\"current\"><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"343\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','Senior Expressions Products','','0',0,'2010-01-28 18:14:48','2010-09-09 14:43:52'),(61,'Order Online: Return Policy',NULL,'<div id=\"interior_page_content\">\r\n<h1>Return Policy</h1>\r\n<div id=\"programs\">\r\n<p>If you\'re not satisfied with your portraits, and a retake date is available at your school, Strawbridge Studios will retake your photo (Fall only). Simply bring the entire package with you on retake day and return it to the photographer. If a retake date is not available at your school, you may request a refund.</p>\r\n<p>Complete satisfaction is guaranteed. Strawbridge Studios, Inc. will refund full payment if all portraits are returned within 10 days of receipt. To receive a refund, simply return the entire package to the address below:</p>\r\n<p>Attn Refund Department</p>\r\n<p>Strawbridge Studios, Inc.</p>\r\n<p>P.O. Box 3005</p>\r\n<p>Durham, NC 27715-3005</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/38-customer-service-order-online\">Order Online</a></li>\r\n    <li class=\"current\"><a href=\"/pages/61-return-policy\">Return Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','return policy','','0',0,'2010-01-28 18:14:48','2010-06-04 13:56:46'),(53,'Senior Expressions Order Online',NULL,'<div id=\"interior_page_content\">\r\n<h1>Order Online&nbsp;</h1>\r\n<div id=\"programs\">\r\n<p>Whether prepaying for your child&rsquo;s package or ordering additional portraits, ordering online is convenient, easy, and you&rsquo;re protected!&nbsp; Strawbridge Studios is committed to ensuring your satisfaction and we understand the importance of protecting your confidential information.</p>\r\n<p>&nbsp;</p>\r\n<p><img height=\"186\" width=\"570\" src=\"/uploads/Image/OrderGraphic.png\" alt=\"\" /></p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : Order Online</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li class=\"current\"><a href=\"/pages/53-senior-expressions-order-online\">Order Online</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.png\" /></div>','Senior Expressions Order Online','','0',0,'2010-01-28 18:14:48','2010-05-18 15:31:46'),(52,'Senior Expressions Gallery',NULL,'<div id=\"interior_page_content\">\r\n<h1>Senior Expressions Gallery</h1>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Senior Expressions : Gallery</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/50-my-appointment\">My Appointment</a></li>\r\n    <li><a href=\"/pages/47-getting-ready\">Getting Ready</a></li>\r\n    <li><a href=\"/pages/49-whats-next\">What\'s Next</a></li>\r\n    <li><a href=\"/pages/51-senior-expressions-products\">Products</a></li>\r\n    <li class=\"current\"><a href=\"/pages/52-senior-expressions-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/74-senior-catalog\">Senior Catalog</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"117\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','senior expressions gallery','','0',1,'2010-01-28 18:14:48','2010-09-09 14:44:31'),(57,'Our Mission',NULL,'<div id=\"interior_page_content\">\r\n<h1>Our Mission</h1>\r\n<div id=\"programs\">\r\n<p>To provide our customers with a high quality product in a timely manner, at a fair price, combined with the best customer service in the industry.  We resolve to maintain a never-ending commitment to stay on the cutting edge of technology, provide a product with honest value, and strive for continual improvement as a company.  These endeavors, combined with a work force that is the epitome of professionalism and integrity, will inspire unprecedented customer loyalty and allow us to remain the leader in our industry.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">About Us :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/25-about-us\">About Us</a></li>\r\n    <li><a href=\"/pages/28-our-history\">Living History</a></li>\r\n    <li class=\"current\"><a href=\"/pages/57-our-mission\">Our Mission<br />\r\n    </a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_HeaderImage.png\" /></div>','Our Mission','','0',0,'2010-01-28 18:14:48','2010-05-20 19:36:24'),(73,'About Us Copy',NULL,'<div id=\"interior_page_content\">\r\n<h1>About Us</h1>\r\n<div id=\"programs\">\r\n<p>Strawbridge Studios was founded in 1923 by Mr. J.E. Strawbridge                in Durham, NC. Now in our fourt generation,  Ken Strawbridge. President, and Harold K&nbsp;Strawbridge, CEO, still continue to offer the best value received in the school picture industry.</p>\r\n<p>Around the year 1920, Mr. Robert E. Larramy,  Superintendent of                the Easton Pennsylvania City Schools, conceived the idea  of having                a picture attached to each student\'s accumulative record.</p>\r\n<p>This would enable him to give accurate recommendations to  businesses requesting information on job applicants who were his  former students. He negotiated with a friend, Mr. Thomas Carroll Willson.  Since there were no funds for this project, Mr.</p>\r\n<p>&nbsp;Willson proposed he  would give a picture&nbsp;of each student to the school, provided the  school would                allow him to sell pictures to the students to recover his  cost.                Mr. Willson used 35mm film and made seven contact prints  for each                student. One contact he gave to the school, the other six  he offered                for sale to the students at 10 cents each, or all six for  50 cents.                Mr. Willson, who was somewhat of an inventor, had formed  the Willson                Magazine Camera Company in Washington four years before</p>\r\n<p>&nbsp;moving to                Philadelphia in 1902. Mr. Willson started making a spool  of film                that could be inserted into, and removed from, camera  bodies in                broad daylight. He sold these to several men, one of which  was Mr.                S. Percy Barksdale of Philadelphia.</p>\r\n<p>When Mr. J.E. Strawbridge\'s father passed away in 1902, he was  forced to                quit school in the third grade to help support the family.  He was                a share-cropper on a Martin County, NC farm. During  Christmas of                1923, Mr. Barksdale, in business for himself, came to see  his sister                who lived on the farm next to where J.E. Strawbridge  worked. He                offered the young Strawbridge a job which he readily  accepted. J.E.                Strawbridge went to work in Pennsylvania and New York  State. During                1926-1927, he opened up the territories of Tennessee,  Arkansas and                Texas. In 1930 he returned to his home state of North  Carolina and                started Strawbridge Finishing Service which, in 1954,  became Strawbridge                Studios, Inc. On August 15, 1951, the Professional School  Photographers                of America (PSPA) had itsorganizational meeting; Mr. J.E.  Strawbridge                was a charter member.</p>\r\n<p>My how times have changed!</p>\r\n<p>Strawbridge Studios, Inc. has remained located in Durham,  North                Carolina since its beginning 87 years ago. There have been  many                changes and expansions along the way. We have expanded  from J.E.                Strawbridge\'s basement to a state of the art, 41,000  square foot                Photographic and Printing facility, located at 3616  Hillsborough                Rd, Durham, North Carolina.</p>\r\n<p>We are proud to be one of the founding members of the  Professional                School Photographers Association, a division of the Photo  Marketing                Association (PMAI). The PSPA is dedicated to the  principles of improving                the quality and ethical standards of school photography.</p>\r\n<p><b>FUTURE OF STRAWBRIDGE STUDIOS, INC.</b></p>\r\n<p>Under the leadership of Mr. Ken Strawbridge, President,  Strawbridge                Studios became 100 % digital in August 2006.</p>\r\n<p>With the implementation of digital photography,  Strawbridge Studios                will still provide the best value in the school picture  industry.                Our photographers, armed with the latest cameras, laptops,  and technology,                will be able to provide an even better picture experience.  Viewing                images onsite will insure that our photographers capture  an image                of your child sure to be a treasured keepsake for years to  come.</p>\r\n<p>In March of 2007, Mr. Ken Strawbridge became President of  the Photo                Marketing Association International (PMAI). PMA is a  worldwide organization                consisting of 25,000 members and representing 22  countries.</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">About Us :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/25-about-us\">About Us</a></li>\r\n    <li><a href=\"/pages/28-our-history\">Living History</a></li>\r\n    <li><a href=\"/pages/57-our-mission\">Our Mission</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_Title.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/aboutSTRAW_HeaderImage.png\" /></div>','About Us','','0',0,'2010-01-28 18:14:48','2010-06-04 18:05:47'),(63,'Yearbooks Program Available Plans',NULL,'<div id=\"interior_page_content\">\r\n<h1>Available Plans</h1>\r\n<div id=\"programs\">\r\n<h2>Ultimate - Photography / Yearbook Combo</h2>\r\n<p>Use Strawbridge Studios for your school portraits and yearbook to get the best price guaranteed!</p>\r\n<p>&nbsp;</p>\r\n<h2>Plan 1 - Strawbridge Online Yearbooks</h2>\r\n<p>Design from any broadband Internet location.</p>\r\n<p>&nbsp;</p>\r\n<h2>Plan 2 - SSInc. Desktop</h2>\r\n<p>Fast and easy way to create your school\'s yearbook using your own computer! Yearbook will be printed as received from your school.</p>\r\n<p>&nbsp;</p>\r\n<h2>Plan 3 - Advanced Desktop</h2>\r\n<p>Includes free proofing, software, design consultation, and unlimited phone support!</p>\r\n<p>&nbsp;</p>\r\n<h2>Plan 4 - Designer Series</h2>\r\n<p>We design your yearbook based on your instructions. Simply send us your files and we&rsquo;ll do the work!</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Available Plans</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/41-yearbooks-program-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/42-online-vs-desktop\">Online vs. Desktop</a></li>\r\n    <li class=\"current\"><a href=\"/pages/63-available-plans\">Available Plans</a></li>\r\n    <li><a href=\"/pages/80-cover-designs\">Cover Designs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/yearbook_services.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" alt=\"\" src=\"/uploads/Image/yearbook_header_images2.jpg\" /></div>','Available Plans','','0',0,'2010-01-28 18:14:48','2010-10-27 14:24:03'),(68,'Customer Service: Return Policy',NULL,'<div id=\"interior_page_content\">\r\n<h1>Return Policy</h1>\r\n<div id=\"programs\">\r\n<p>If you\'re not satisfied with your portraits, and a retake date is available at your school, Strawbridge Studios will retake your photo (Fall only). Simply bring the entire package with you on retake day and return it to the photographer. If a retake date is not available at your school, you may request a refund.</p>\r\n<p>Complete satisfaction is guaranteed. Strawbridge Studios, Inc. will refund full payment if all portraits are returned within 10 days of receipt. To receive a refund, simply return the entire package to the address below with attention:</p>\r\n<p>Strawbridge Studios, Inc.<br>Refund Department <br>P.O. Box 3005 <br>Durham, NC 27715-3005</p>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Customer Service :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/38-customer-service-order-online\">Order Online</a></li>\r\n    <li class=\"current\"><a href=\"/pages/68-return-policy\">Return Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','Customer Service Return Policy','','0',0,'2010-01-28 18:14:48','2010-11-04 13:37:28'),(72,'Recipe Submission',NULL,'              <div id=\"interior_page_content\" style=\"width:608px;\"> \n<form method=\"post\" name=\"email_form_with_php\" action=\"/../cookbooksubmit.php\" enctype=\"multipart/form-data\"> <div style=\"margin:0;padding:0;display:inline\"><input name=\"authenticity_token\" type=\"hidden\" value=\"3LhddEKs2BF9doJaqZ7P7pUmyKu8lLX89ysrEhoSxOI=\" /></div>  \n	<div class=\"contactbox\"> \n		<h3>Recipe Information:</h3> \n		<p>Recipe Name: <input id=\"recipe_name\" name=\"recipe_name\" size=\"30\" style=\"\" type=\"text\" /></p> \n		<p>Full Name: <input id=\"full_name\" name=\"full_name\" size=\"30\" style=\"\" type=\"text\" /></p> \n		<p>Email: <input id=\"email\" name=\"email\" size=\"30\" style=\"\" type=\"text\" /></p> \n	</div>\n	<div class=\"cbcontactbox\"> \n		<h3>Ingredients</h3>\n		<font size=\"1\">Quantity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Measurement&nbsp;&nbsp;&nbsp;Ingredient</font>\n		<input id=\"Qty1\" name=\"qty1\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement1\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient1\" name=\"Ingredient1\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty2\" name=\"qty2\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement2\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient2\" name=\"Ingredient2\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty3\" name=\"qty3\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement3\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient3\" name=\"Ingredient3\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty4\" name=\"qty4\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement4\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient4\" name=\"Ingredient4\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty5\" name=\"qty5\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement5\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient5\" name=\"Ingredient5\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty6\" name=\"qty6\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement6\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient6\" name=\"Ingredient6\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty7\" name=\"qty7\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement7\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient7\" name=\"Ingredient7\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty8\" name=\"qty8\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement8\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient8\" name=\"Ingredient8\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty9\" name=\"qty9\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement9\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient9\" name=\"Ingredient9\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty10\" name=\"qty10\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement10\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient10\" name=\"Ingredient10\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty11\" name=\"qty11\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement11\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient11\" name=\"Ingredient11\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty12\" name=\"qty12\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement12\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient12\" name=\"Ingredient12\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty13\" name=\"qty13\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement13\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient13\" name=\"Ingredient13\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty14\" name=\"qty14\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement14\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient14\" name=\"Ingredient14\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty15\" name=\"qty15\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement15\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient15\" name=\"Ingredient15\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty16\" name=\"qty16\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement16\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient16\" name=\"Ingredient16\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty17\" name=\"qty17\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement17\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient17\" name=\"Ingredient17\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty18\" name=\"qty18\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement18\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient18\" name=\"Ingredient18\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty19\" name=\"qty19\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement19\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient19\" name=\"Ingredient19\" size=\"52\" style=\"\" type=\"text\" /><br>\n		<input id=\"Qty20\" name=\"qty20\" size=\"4\" style=\"\" type=\"text\" /><select name=\"Measurement20\"><option value=\"--\" selected=\"selected\">--</option><option value=\"box(es)\">box(es)</option><option value=\"can(s)\">can(s)</option><option value=\"cup(s)\">cup(s)</option><option value=\"each\">each</option><option value=\"lb(s).\">lb(s).</option><option value=\"oz.\">oz.</option><option value=\"pkg.\">pkg.</option><option value=\"pt(s).\">pt(s).</option><option value=\"qt(s).\">qt(s).</option><option value=\"tsp.\">tsp.</option><option value=\"tbsp.\">tbsp.</option></select><input id=\"Ingredient20\" name=\"Ingredient20\" size=\"52\" style=\"\" type=\"text\" /><br>\n    </div> \n	<div class=\"contactbox\"> \n		<h3>Instructions: </h3> \n		<p><textarea cols=\"40\" id=\"Instructions\" name=\"Instructions\" rows=\"40\" style=\"width:480px;height:480px;padding:15px;\"></textarea></p> \n	</div>\n	<div class=\"contactbox\"> \n	<h3>Photograph: </h3>\n	<p>Photo To Upload: <input type=\"file\" name=\"attachment\"><br>\n	(Please upload a photograph of the finished product if possible.)\n		<p style=\"padding-right:100px;margin-top:35px;\"><input src=\"/images/../images/theme/csubmit.png?1275399424\" style=\"width:227px;height:44px;padding:0px;border:none;\" type=\"image\" /></p> \n	</div> \n</form> \n</div> ','<div id=\"interior_sidebar\">\n<p class=\"heading\">Cookbook Submission :</p>\n<div id=\"interior_sidebar_menu\">\n<ul>\n    <li class=\"current\"><a href=\"/pages/70-cookbook\">Recipe Form</a></li>\n</ul>\n</div>\n</div>','<div id=\"main_message_other\"><img height=\"117\" width=\"378\" alt=\"\" src=\"/uploads/Image/customer_service_Title.png\" /></div>\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/customer_service_Image.png\" /></div>','Cookbook',NULL,'0',0,'2010-01-28 18:14:48','2010-06-03 19:26:55'),(80,'Standard Cover Designs',NULL,'<div id=\"interior_page_content\">\r\n<h1>Standard&nbsp;Cover Designs</h1>\r\n<div id=\"programs\">\r\n<p>Please e-mail all standard cover submissions to <a  href=\"mailto:coversubmissions@strawbridge.net?subject=Standard%20Cover%20Submission\">coversubmissions@strawbridge.net</a>.</p>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Yearbooks : Cover Designs</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/41-yearbooks-program-overview\">Overview</a></li>\r\n    <li><a href=\"/pages/42-online-vs-desktop\">Online vs. Desktop</a></li>\r\n    <li><a href=\"/pages/63-available-plans\">Available Plans</a></li>\r\n    <li class=\"current\"><a href=\"/pages/80-cover-designs\">Cover Designs</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img height=\"103\" width=\"343\" alt=\"\" src=\"/uploads/Image/yearbook_services.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"504\" alt=\"\" src=\"/uploads/Image/yearbook_header_images2.jpg\" /></div>','Standard Cover Designs','','0',1,'2010-01-28 18:14:48','2010-10-27 21:58:58'),(83,'Elementary Portraits Programs Copy',NULL,'<div id=\"interior_page_content\">\r\n<h1>Elementary Portraits Programs</h1>\r\n<div id=\"interior_half_box\">\r\n<div class=\"interior_half_box\"><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-fall-thumb.png\" /></a>\r\n<h2><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\">Fall Portraits</a></h2>\r\n<p><a href=\"/pages/16-elementary-portraits-programs-fall-portraits\">We make picture day easy!</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-Spring-thumb.png\" /></a>\r\n<h2><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\">Spring Portraits</a></h2>\r\n<p><a href=\"/pages/17-elementary-portraits-programs-spring-portraits\">We bring the Studio to you!&nbsp;</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary-ClassRoomGroup-thumb.png\" /></a>\r\n<h2><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\">Classroom Group</a></h2>\r\n<p><a href=\"/pages/18-elementary-portraits-programs-classroom-groups\">Do you remember all the fun clothes and hairstyles from your elementary days?</a></p>\r\n</div>\r\n<div class=\"interior_half_box\"><a href=\"/pages/19-elementary-portraits-programs-holiday-events\"><img width=\"276\" height=\"149\" alt=\"\" src=\"/uploads/Image/elementary_christmas.png\" /></a>\r\n<h2><a href=\"/pages/19-elementary-portraits-programs-holiday-events\">Holiday / Events</a></h2>\r\n<p><a href=\"/pages/19-elementary-portraits-programs-holiday-events\">Holidays and Special Events provide a great opportunity to raise extra funds for your school or organization!</a></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Portraits: Elementary</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li><a href=\"/pages/6-elementary-portraits-overview\">Overview</a></li>\r\n    <li class=\"current\"><a href=\"/pages/5-elementary-portraits-programs\">Programs</a></li>\r\n    <li><a href=\"/pages/7-elementary-portraits-gallery\">Gallery</a></li>\r\n    <li><a href=\"/pages/54-elementary-portraits-program-options\">Program Options</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"343\" height=\"103\" alt=\"\" src=\"/uploads/Image/elementary_portraits.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/elementery_portraits_header.jpg\" /></div>','Elementary Portraits Programs','','0',0,'2010-01-28 18:14:48','2010-06-07 16:00:36'),(79,'Order Online Code',NULL,'<div id=\"interior_page_content\">\r\n<h1>Order Online&nbsp;</h1>\r\n<div id=\"programs\">\r\n<p>Whether prepaying for your child&rsquo;s package or ordering additional portraits, ordering online is convenient, easy, and you&rsquo;re protected!&nbsp; Strawbridge Studios is committed to ensuring your satisfaction and we understand the importance of protecting your confidential information.</p>\r\n<p>&nbsp;</p>\r\n<div id=\"login_form\">\r\n<form method=\"post\" action=\"http://www.simplephoto.com/SC/index.cfm?fuseaction=EventLogin\" name=\"LoginForm\">\r\n    <input type=\"hidden\" value=\"20803\" name=\"id\" /> 		<input value=\"Enter Password or Code\" onfocus=\"prefillClear(this)\" onblur=\"prefillClear(this);\" size=\"10\" name=\"EventName\" id=\"inputs\" /><br />\r\n    <input type=\"image\" value=\"login\" style=\"border: medium none; padding: 0px; width: 227px; height: 44px; margin-right: 37px;\" src=\"/images/../images/theme/csubmit.png?1273070930\" />\r\n</form>\r\n</div>\r\n</div>\r\n</div>\r\n<p>&nbsp;</p>','<div id=\"interior_sidebar\">\r\n<p class=\"heading\">Order Online :</p>\r\n<div id=\"interior_sidebar_menu\">\r\n<ul>\r\n    <li class=\"current\"><a href=\"/pages/38-customer-service-order-online\">Order Online</a></li>\r\n    <li><a href=\"/pages/61-return-policy\">Return Policy</a></li>\r\n</ul>\r\n</div>\r\n</div>','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','Order Online','','0',0,'2010-01-28 18:14:48','2010-08-09 19:56:33'),(81,'Senior Expressions Ordering',NULL,'<div class=\"left_two_equal\"><a href=\"/pages/88-senior-orders-graduating-year\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/PlaceMyOrder.png\" /></a>\r\n<h1><a href=\"/pages/88-senior-orders-graduating-year\">Place My Order</a></h1>\r\n<p><a href=\"/pages/88-senior-orders-graduating-year\">View your proofs and place your order here.</a></p>\r\n</div>\r\n<div class=\"right_two_equal\"><a href=\"\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/ViewMyProofs.png\" /></a>\r\n<h1><a href=\"\">Reorders</a></h1>\r\n<p><a href=\"\">Order additional portraits and products.</a></p>\r\n</div>','','<div id=\"main_message_other\"><img height=\"117\" width=\"343\" alt=\"\" src=\"/uploads/Image/senior_expressions2.png\" /></div>\r\n<div id=\"main_message_image_other\"><img height=\"179\" width=\"423\" alt=\"\" src=\"/uploads/Image/senior_header.jpg\" /></div>','Senior Expressions Ordering','','0',0,'2010-01-28 18:14:48','2011-07-21 20:35:33'),(87,'Senior Orders - Choose Senior Catalog',NULL,'<div class=\"mid_three_equal\"><a href=\"https://vando.imagequix.com/strawbridge/\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/EliteCatalog.png\" /></a></div>\r\n<div class=\"mid_three_equal\"><a href=\"https://vando.imagequix.com/strawbridge/\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/nonEliteCatalog.png\" /></a></div>\r\n<div class=\"mid_three_equal\"><a href=\"http://vando.imagequix.com/strawbridge/expressions/enterCode\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/SSPCatalog.png\" /></a></div>','','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','Senior Orders - Choose Senior Catalog','','0',0,'2010-01-28 18:14:48','2011-06-20 20:24:51'),(88,'Senior Orders - Graduating Year',NULL,'<div class=\"left_two_equal\"><a href=\"http://www.simplephoto.com/StrawBridge_Senior2011OrderForm161267.htm\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/Senior2011.png\" /></a>\r\n<h1><a href=\"http://www.simplephoto.com/StrawBridge_Senior2011OrderForm161267.htm\">2011 Seniors</a></h1>\r\n</div>\r\n<div class=\"right_two_equal\"><a href=\"https://vando.imagequix.com/strawbridge/\"><img height=\"149\" width=\"276\" alt=\"\" src=\"/uploads/Image/Senior2012.png\" /></a> <center>\r\n<h1><a href=\"https://vando.imagequix.com/strawbridge/\">2012 Seniors</a></h1>\r\n</center></div>','','<div id=\"main_message_other\"><img width=\"378\" height=\"117\" alt=\"\" src=\"/uploads/Image/oder_online_total.png\" /></div>\r\n<div id=\"main_message_image_other\"><img width=\"423\" height=\"179\" alt=\"\" src=\"/uploads/Image/order_header.png\" /></div>','Senior Orders - Graduating Year','','0',0,'2010-01-28 18:14:48','2011-07-21 20:31:13'),(90,'Welcome to Strawbridge Studios! Copy',NULL,'<p><br />\r\n\r\n&nbsp;</p>\r\n<div id=\"home_buttons\">\r\n<div class=\"container\">\r\n<div class=\"home_buttons\">\r\n<p id=\"home_button_one\"><a href=\"/pages/2-school-potraits\">School Portraits</a></p>\r\n</div>\r\n<div id=\"home_button_two\" class=\"home_buttons_other\"><a href=\"/pages/3-senior-expressions\">Senior Expressions</a></div>\r\n<div id=\"home_button_three\" class=\"home_buttons_other\"><a href=\"/pages/4-yearbooks\">Yearbooks</a></div>\r\n</div>\r\n</div>\r\n<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/25-about-us\">About Us</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/25-about-us\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_left.png\" /></a></p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/25-about-us\">Information &gt;&gt;</a></p>\r\n</div>\r\n</div>\r\n<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/62-contact-us-info\">Customer Service</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/62-contact-us-info\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_right.png\" /></a></p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/62-contact-us-info\">Information &gt;&gt;</a></p>\r\n</div>\r\n</div>\r\n<div class=\"mid_three_equal\">\r\n<h1 style=\"margin-left: 14px; margin-top: 0px;\"><a href=\"/pages/38-customer-service-order-online\">Order Online</a></h1>\r\n<p style=\"margin-left: 3px; margin-bottom: 30px;\"><a href=\"/pages/38-customer-service-order-online\"><img width=\"308\" height=\"110\" alt=\"\" src=\"/uploads/Image/home_thumb_center.png\" /></a></p>\r\n<div class=\"home_read_more\">\r\n<p style=\"margin-left: 14px;\"><a href=\"/pages/38-customer-service-order-online\">Information &gt;&gt;</a></p>\r\n</div>\r\n</div>','','<p><img alt=\"\" src=\"http://strawbridge.net/system/photos/110/homeimage/Straw_Slide_E.png?1274732986\" /></p>\r\n<p>&nbsp;</p>','home','Website for Strawbridge Studios, Inc. Strawbridge Studios is the oldest school photography company in the southern United States region.','0',0,'2010-01-28 15:28:31','2011-09-30 18:51:43');
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `payment_notifications`
+--
+
+DROP TABLE IF EXISTS `payment_notifications`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `payment_notifications` (
+  `id` int(11) NOT NULL auto_increment,
+  `params` text,
+  `cart_id` int(11) default NULL,
+  `status` varchar(255) default NULL,
+  `transaction_id` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `payment_notifications`
+--
+
+LOCK TABLES `payment_notifications` WRITE;
+/*!40000 ALTER TABLE `payment_notifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment_notifications` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permissions`
+--
+
+DROP TABLE IF EXISTS `permissions`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL auto_increment,
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `permissions`
+--
+
+LOCK TABLES `permissions` WRITE;
+/*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
+INSERT INTO `permissions` VALUES (1,4,1,'2010-01-28 15:28:30','2010-01-28 15:28:30'),(2,1,2,'2010-09-03 02:17:08','2010-09-03 02:17:08'),(3,2,2,'2010-09-03 02:17:08','2010-09-03 02:17:08'),(4,3,2,'2010-09-03 02:17:08','2010-09-03 02:17:08'),(5,4,2,'2010-09-03 02:17:08','2010-09-03 02:17:08'),(6,1,2,'2010-09-03 02:22:48','2010-09-03 02:22:48'),(7,2,2,'2010-09-03 02:22:48','2010-09-03 02:22:48'),(8,3,2,'2010-09-03 02:22:48','2010-09-03 02:22:48'),(9,4,2,'2010-09-03 02:22:48','2010-09-03 02:22:48');
+/*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_sizes`
+--
+
+DROP TABLE IF EXISTS `product_sizes`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `product_sizes` (
+  `id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) default NULL,
+  `size_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `product_sizes`
+--
+
+LOCK TABLES `product_sizes` WRITE;
+/*!40000 ALTER TABLE `product_sizes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product_sizes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `price` decimal(10,2) default NULL,
+  `description` text,
+  `quantity` int(11) default NULL,
+  `active` int(11) default NULL,
+  `product_code` varchar(255) default NULL,
+  `download_file_name` varchar(255) default NULL,
+  `download_content_type` varchar(255) default NULL,
+  `download_file_size` int(11) default NULL,
+  `download_updated_at` datetime default NULL,
+  `image_file_name` varchar(255) default NULL,
+  `image_content_type` varchar(255) default NULL,
+  `image_file_size` int(11) default NULL,
+  `image_updated_at` datetime default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  `label_file_name` varchar(255) default NULL,
+  `label_content_type` varchar(255) default NULL,
+  `label_file_size` int(11) default NULL,
+  `label_updated_at` datetime default NULL,
+  `company_name` varchar(255) default NULL,
+  `warning` varchar(255) default NULL,
+  `rec_use` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products_producttags`
+--
+
+DROP TABLE IF EXISTS `products_producttags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `products_producttags` (
+  `id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) default NULL,
+  `producttag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `products_producttags`
+--
+
+LOCK TABLES `products_producttags` WRITE;
+/*!40000 ALTER TABLE `products_producttags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products_producttags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `producttagorizations`
+--
+
+DROP TABLE IF EXISTS `producttagorizations`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `producttagorizations` (
+  `id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) default NULL,
+  `metatag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `producttagorizations`
+--
+
+LOCK TABLES `producttagorizations` WRITE;
+/*!40000 ALTER TABLE `producttagorizations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producttagorizations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `producttags`
+--
+
+DROP TABLE IF EXISTS `producttags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `producttags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `producttags`
+--
+
+LOCK TABLES `producttags` WRITE;
+/*!40000 ALTER TABLE `producttags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `producttags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `related_products`
+--
+
+DROP TABLE IF EXISTS `related_products`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `related_products` (
+  `product_id` int(11) default NULL,
+  `related_product_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `related_products`
+--
+
+LOCK TABLES `related_products` WRITE;
+/*!40000 ALTER TABLE `related_products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `related_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL auto_increment,
+  `rolename` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'user','2010-01-28 15:28:27','2010-01-28 15:28:27'),(2,'buyer','2010-01-28 15:28:27','2010-01-28 15:28:27'),(3,'seller','2010-01-28 15:28:27','2010-01-28 15:28:27'),(4,'administrator','2010-01-28 15:28:27','2010-01-28 15:28:27');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+DROP TABLE IF EXISTS `schema_migrations`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `schema_migrations`
+--
+
+LOCK TABLES `schema_migrations` WRITE;
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+INSERT INTO `schema_migrations` VALUES ('20081111152357'),('20081111152932'),('20081111152956'),('20081223161354'),('20081223161528'),('20081223161702'),('20081223161842'),('20081223162029'),('20081223183117'),('20081223184024'),('20081223184526'),('20081223204416'),('20081224154409'),('20090114163801'),('20090119154756'),('20090119211600'),('20090408171804'),('20090408172829'),('20090408173059'),('20090408173258'),('20090415200753'),('20090417122347'),('20090417122548'),('20090421192814'),('20090421195417'),('20090428125814'),('20090625133213'),('20090625164355'),('20090629180152'),('20090722180502'),('20090910155307'),('20090910155757'),('20090922110946'),('20091113165030'),('20091113165143'),('20091113175730'),('20100115142138'),('20100115142205');
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seos`
+--
+
+DROP TABLE IF EXISTS `seos`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `seos` (
+  `id` int(11) NOT NULL auto_increment,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `seos`
+--
+
+LOCK TABLES `seos` WRITE;
+/*!40000 ALTER TABLE `seos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL auto_increment,
+  `article_seo` varchar(255) default NULL,
+  `page_seo` varchar(255) default NULL,
+  `site_desc` varchar(255) default NULL,
+  `articles_display` varchar(255) default NULL,
+  `full_rss` varchar(255) default NULL,
+  `site_name` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `settings`
+--
+
+LOCK TABLES `settings` WRITE;
+/*!40000 ALTER TABLE `settings` DISABLE KEYS */;
+INSERT INTO `settings` VALUES (1,'school, photography, portraits','school, photography, portraits','','','','Strawbridge Studios, Inc.','2010-01-28 15:28:32','2010-06-10 18:31:23');
+/*!40000 ALTER TABLE `settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subgroups`
+--
+
+DROP TABLE IF EXISTS `subgroups`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `subgroups` (
+  `id` int(11) NOT NULL auto_increment,
+  `group_id` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `permalink` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `subgroups`
+--
+
+LOCK TABLES `subgroups` WRITE;
+/*!40000 ALTER TABLE `subgroups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subgroups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subgroups_products`
+--
+
+DROP TABLE IF EXISTS `subgroups_products`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `subgroups_products` (
+  `id` int(11) NOT NULL auto_increment,
+  `product_id` int(11) default NULL,
+  `subgroup_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `subgroups_products`
+--
+
+LOCK TABLES `subgroups_products` WRITE;
+/*!40000 ALTER TABLE `subgroups_products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subgroups_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subgrouptagorizations`
+--
+
+DROP TABLE IF EXISTS `subgrouptagorizations`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `subgrouptagorizations` (
+  `id` int(11) NOT NULL auto_increment,
+  `subgroup_id` int(11) default NULL,
+  `metatag_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `subgrouptagorizations`
+--
+
+LOCK TABLES `subgrouptagorizations` WRITE;
+/*!40000 ALTER TABLE `subgrouptagorizations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subgrouptagorizations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) default NULL,
+  `position` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `tags`
+--
+
+LOCK TABLES `tags` WRITE;
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL auto_increment,
+  `login` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `crypted_password` varchar(40) default NULL,
+  `salt` varchar(40) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  `remember_token` varchar(255) default NULL,
+  `remember_token_expires_at` datetime default NULL,
+  `activation_code` varchar(40) default NULL,
+  `activated_at` datetime default NULL,
+  `password_reset_code` varchar(40) default NULL,
+  `enabled` tinyint(1) default '1',
+  `image` varchar(255) default NULL,
+  `name` varchar(255) default NULL,
+  `title` varchar(255) default NULL,
+  `description` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','james@cleverstart.com','3d21c3d7ec379ef51272c516341cd2a4614ac0a5','be051968a5b8118d285890891db4d5ef9c73f3ee','2010-01-28 15:28:27','2011-09-28 19:06:53','7da2873985cc7ea6c3f03637cf7e2dee41fbdd32','2011-10-12 19:06:53','3c7afe6e5f839bc8b7881efcbbfa02a1391f6220','2010-01-28 15:28:27',NULL,1,NULL,NULL,NULL,NULL),(2,'foxx','foxx@email.unc.edu','00eb64caea0df30c3a2cf6754d7c6f22820c67f6','8f8354268a0eb4f1611ca8167cd1274d593cd0e4','2010-09-03 02:22:18','2010-09-03 02:22:18',NULL,NULL,'a409ac9cf3afded337b3de7ad418c5ef06ed9bd1',NULL,NULL,1,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'strawsite'
+--
+DELIMITER ;;
+DELIMITER ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2011-10-05 17:49:53

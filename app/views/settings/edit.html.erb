@@ -1,0 +1,32 @@
+<h1>Editing setting</h1>
+
+<% form_for(@setting) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :article_seo %><br />
+    <%= f.text_field :article_seo %>
+  </p>
+  <p>
+    <%= f.label :page_seo %><br />
+    <%= f.text_field :page_seo %>
+  </p>
+  <p>
+    <%= f.label :site_desc %><br />
+    <%= f.text_field :site_desc %>
+  </p>
+  <p>
+    <%= f.label :articles_display %><br />
+    <%= f.text_field :articles_display %>
+  </p>
+  <p>
+    <%= f.label :full_rss %><br />
+    <%= f.text_field :full_rss %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @setting %> |
+<%= link_to 'Back', settings_path %>

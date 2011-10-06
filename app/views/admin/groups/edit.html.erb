@@ -1,0 +1,23 @@
+<div id="headingbg"><h2>Change a Group</h2></div>
+<div id="inner">
+<% form_for([:admin, @group]) do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :name %><br /><%= f.text_field :name %></p>
+  <p><%= f.label :position %><br /><%= f.text_field :position %></p>
+  <p><%= f.label :permalink %><br /><%= f.text_field :permalink %></p>
+  <div>
+    <h3>Tags</h3>
+    <ul>
+      <% for tag in Metatag.find(:all, :order => "name ASC") %>
+        <li>
+          <%= check_box_tag "group[metatag_ids][]", tag.id, @group.metatags.include?(tag) %>
+          <%= tag.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <p><h3>Description: Summarize group for front-end.</h3><%= fckeditor_textarea( "group", "description", :width => '100%', :height => '400px') %></p>
+  <p style="text-align:right;"><%= f.submit "Update Group" %></p>
+<% end %>
+</div>
+<%= link_to 'Back', admin_groups_path %>

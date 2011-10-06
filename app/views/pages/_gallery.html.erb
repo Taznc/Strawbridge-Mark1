@@ -1,0 +1,7 @@
+<div id="interior_page_content" style="margin-left:20px;width:595px;padding-top:16px;">
+  <% @page.galleries.each do |gallery| %>
+    <div class="gallery_page">
+		<a href="<%= gallery.photo.url %>" rel="lightbox[gallery]"><%= image_tag gallery.photo.url(:small) %></a>
+    </div>
+  <% end %>
+</div>

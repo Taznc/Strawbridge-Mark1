@@ -1,0 +1,134 @@
+<% content_for :title do %>First Do No Harm Health: <%= @product.name %><% end %>
+<div id="inner">
+  <h1><%=h @product.name %></h1>
+  <div id="productimage">
+    <p id="productimagepic"><%= image_tag @product.image.url(:small) %></p>
+    <p><%= link_to(image_tag("../images/theme/viewlabel.jpg", :alt => "FDNHHealth logo"), @product.label.url, :target=>"_blank") if @product.label?%></p>
+  </div>
+  <div style="float:left;width:291px;margin-left:10px;">
+    <p id="priceshow"><%=h number_to_currency(@product.price) %></p>
+    <p><i>Sugg Retail: <%=h number_to_currency(@product.retail_price) %> - You Save <%=h number_to_currency(@product.retail_difference) %></i></p>
+    <p><%=h @product.size %></p>
+    <div class="actions">
+      <% form_tag :controller => 'line_items', :method => :post do %>
+        <span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2, :style=>"margin-right:12px;" %>
+        <%= hidden_field_tag(:product_id, @product.id) %>
+        <%= hidden_field_tag(:weight, @product.weight) %>
+        <%= image_submit_tag("../images/theme/addtocart.jpg") %>
+      <% end -%>
+        <% unless @product.product_sizes.empty? %>
+          <br />
+          <p style="border-top:1px #CCC solid;padding-top:5px;padding-bottom:5px;"><b>Other Available Sizes</b></p>
+          <% for relatedsize in @product.product_sizes %>
+            <p id="priceshow" style="font-size:18px;border-top:1px solid #CCCCCC;border-bottom:none;padding-top:8px;padding-bottom:0px;"><%=h number_to_currency(relatedsize.price) %></p>
+            <p><i>Sugg Retail: <%=h number_to_currency(relatedsize.retail_price) %> - You Save <%=h number_to_currency(relatedsize.retail_difference) %></i></p>
+            <p style="margin:5px 0;"><%=h relatedsize.size %></p>
+            <% form_tag :controller => 'line_items', :method => :post do %>
+              <span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2, :style=>"margin-right:12px;" %>
+              <%= hidden_field_tag(:product_id, relatedsize.id) %>
+              <%= hidden_field_tag(:weight, relatedsize.weight) %>
+              <%= image_submit_tag("../images/theme/addtocart.jpg") %>
+              <br />
+            <% end -%>
+        <% end %>
+      <% end %>
+      <p style="text-align:left;margin-top:10px;border-top:1px #CCC solid;padding-top:5px;"><b>Recommended use:</b> <%= RedCloth.new(@product.rec_use).to_html %></p>
+      <p style="text-align:left;margin-top:10px;"><b>Warning:</b> <%= RedCloth.new(@product.warning).to_html %></p>
+    </div>
+  </div>
+  <br class="clear" />
+  <%= RedCloth.new(@product.description).to_html %>
+  <% unless @product.grouped_products.empty? %>
+    <h1 class="clear" style="margin:0px;padding-top:20px;padding-bottom:10px;">Products in this Package</h1>
+    <% for grouped in @product.grouped_products %>
+      <% if grouped.active? %>
+        <div class="clear" style="padding-top:15px;">
+          <div id="relatedimage">
+            <%= link_to image_tag(grouped.image.url(:thumb)), grouped %>
+          </div>
+          <div id="relatedcontent">
+            <h2><%= link_to h(grouped.name), grouped %></h2>
+            <p>
+              <% if grouped.short_description != nil %>
+                <%= RedCloth.new(grouped.short_description).to_html %>
+              <% else %>
+                <p>No Description</p>
+              <% end %>
+              <%=h number_to_currency(grouped.price) %>
+            </p>
+            <div class="clear">
+              <p class="left" style="padding-top:10px;"><%= link_to image_tag("../images/theme/learnmore.jpg"), grouped %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <p style="clear:both;"></p>
+  <!-- related products -->
+  <% unless @product.related_products.empty? %>
+    <h1 class="clear" style="margin:0px;padding-top:20px;padding-bottom:10px;">Related Products</h1>
+    <% for related in @product.related_products %>
+      <% if related.active? %>
+        <div class="clear" style="padding-top:15px;">
+          <div id="relatedimage">
+            <%= link_to image_tag(related.image.url(:thumb)), related %>
+          </div>
+          <div id="relatedcontent">
+            <h2><%= link_to h(related.name), related %></h2>
+            <p style="margin:0px;"><b><%=h number_to_currency(related.price) %></b></p>
+          <p style="margin:0px;"><i>Sugg Retail: <%=h number_to_currency(related.retail_price) %> - You Save <%=h number_to_currency(related.retail_difference) %></i></p>
+            <p>
+              <% if related.short_description != nil %>
+                <%= RedCloth.new(related.short_description).to_html %>
+              <% else %>
+                <p>No Description</p>
+              <% end %>
+            </p>
+            <div class="clear">
+              <p class="left" style="padding-top:10px;"><%= link_to image_tag("../images/theme/learnmore.jpg"), related %></p>
+              <div class="right">
+                <% form_tag :controller => 'line_items', :method => :post do%>
+                  <span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2 %>
+                  <%= hidden_field_tag(:product_id, related.id) %>
+                  <%= hidden_field_tag(:weight, related.weight) %>
+                  <%= image_submit_tag("../images/theme/addtocart.jpg") %>
+                <% end -%>
+              </div>
+            </div>
+          </div>
+        </div>
+       <% end %>
+     <% end %>
+   <% end %>
+   <br class="clear"/>
+   <% unless @product.comments.empty? %>
+    <h1 class="clear" style="padding-top:15px;">Comments and Feedback (<%= (pluralize(@product.comments.size, 'comment')) %>)</h1>
+    <!-- comments -->
+    <h1 style="padding: 0px; margin: 0px; margin-left: 16px;">Previous Comments</h1>
+    <% @product.comments.each do |comment| %>
+      <div style="border: 1px solid #CBC5B0; padding-left: 20px;">
+      <p style=""><a href="http://<%= comment.url %>"><%= comment.author %></a>- <%= comment.created_at.strftime('%b %d, %Y') %>
+      <p style=""><%=h comment.body %></p>
+      </div>
+    <% end %>
+  <% end %>
+  <!-- new comment -->
+  <div style="padding-top:15px;">
+    <div id="comment">
+      <h1>Make a Comment/Feedback</h1>
+      <% form_for [@product,@commentable, Comment.new] do |f| %>
+        <%= f.error_messages %>
+        <p style="margin-left: 24px;"><%= f.label :name %><%= f.text_field :author %></p>
+        <p style="margin-left: 26px;"><%= f.label :email %><%= f.text_field :email %></p>
+        <p style="margin-left: 42px;"><%= f.label :URL %><%= f.text_field :url %></p>
+        <p style="margin-left: 72px;"><label>Spam: What is 7 - 3?</label><%= f.text_field :spam, :style =>"width: 40px;" %></p>
+        <p><label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 445px; height: 100px;" %></p>
+        <p style="text-align:right; margin-right: 66px; padding-bottom: 10px;"><%= submit_tag 'Add Comment' %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="sidebar" style="text-align:left;">
+  <%= render :partial => "shared/cartsidebar" %>
+</div>

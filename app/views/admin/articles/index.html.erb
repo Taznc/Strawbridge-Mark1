@@ -1,0 +1,26 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'New article', new_admin_article_path %></p><h2>Your Articles</h2></div>
+<div id="inner">
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th></th>
+	<th>Title</th>
+    <th>Author(s)</th>
+    <th>Tags</th>
+    <th>MetaTags</th>
+	<th>Created On</th>
+  </tr>
+
+<% for article in @articles %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%= link_to 'View Article', article %></td>
+	<td><%=h article.title %></td>
+	<td><% for author in article.users %><%= author.name %><br /><% end %></td>
+	<td><%= (pluralize(article.tags.size, 'tag')) %></td>
+    <td><%= (pluralize(article.metatags.size, 'metatag')) %></td>
+	<td><%= article.created_at.strftime('%b-%d-%Y') %></td>
+    <td><%= link_to 'Edit', edit_admin_article_path(article) %></td>
+    <td><%= link_to 'Delete', [:admin, article], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>

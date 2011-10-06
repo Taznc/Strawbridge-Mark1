@@ -1,0 +1,17 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'New Subgroup', new_admin_subgroup_path %></p><h2>Product Subgroups</h2></div>
+<div id="inner">
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>Name</th>
+	<th>Group I Belong To</th>
+  </tr>
+
+<% @subgroups.each do |subgroup| %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%=h subgroup.name %> (<%=h subgroup.group.name%>)</td>
+    <td><%=h subgroup.group.name %></td>
+    <td><%= link_to 'Edit', edit_admin_subgroup_path(subgroup) %></td>
+    <td><%= link_to 'Destroy', [:admin, subgroup], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

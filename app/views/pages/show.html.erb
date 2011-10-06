@@ -1,0 +1,5 @@
+<% content_for :title, @page.title %>
+	<% if @page.extended? %>
+	<%= RedCloth.new(@page.extended).to_html %>
+	<% end %>
+	<%= RedCloth.new(@page.body).to_html %>

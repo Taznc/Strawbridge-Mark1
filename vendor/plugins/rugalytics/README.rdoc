@@ -1,0 +1,291 @@
+Rugalytics is a Ruby API for Google Analytics.
+
+= Warning - API under development
+
+The Rugalytics API is in early development so it may change slightly over time.
+It should be in working order, so please give it a test spin! Sometimes
+Google changes it's CSV export format, which can break Rugalytics. It's usually
+fixed within a week of such occurrences.
+
+The source code is hosted at github. Feel free to fork the code if you have
+something to contribute:
+
+ http://github.com/robmckinnon/rugalytics
+
+
+== Install as a Gem
+
+Should be up at rubyforge, so to install:
+
+ sudo gem install rugalytics
+
+
+== Authenticate
+
+Login with your Google Analytics user name and password:
+
+ require 'rubygems'
+ require 'rugalytics'
+
+ Rugalytics.login 'username', 'password'
+
+
+== Obtain Profile
+
+Get profile using account name and profile name:
+
+ profile = Rugalytics.find_profile('your_site.com', 'blog.your_site.com')
+
+
+If account name and profile name are the same:
+
+ profile = Rugalytics.find_profile('your_site.com')
+
+
+== Change Language Settings to English
+
+At present your language setting for your Google Analytics account
+must be set to English for Rugalytics to work.
+
+ Google: Settings -> Language: choose UK English
+
+ OR
+
+ Google: Settings -> Language: choose US English
+
+
+== Get Profile Summary Statistics
+
+Obtaining page views:
+
+ profile.pageviews # default period is one month ending today
+ => 160600
+
+ profile.pageviews :from=>'2007-01-01'
+ => 2267550
+
+ profile.pageviews :from=>'2007-01-01', :to=>'2007-01-02'
+ => 24980
+
+The +pageviews+ method is doing this under the hood:
+
+ report = profile.pageviews_report :from=>'2007-01-01', :to=>'2007-01-02'
+
+ report.pageviews_total
+ => 16600
+
+Using the report you can get +pageviews_by_day+:
+
+ report.pageviews_by_day
+ => [[Mon, 01 Jan 2007, 8200], [Tue, 02 Jan 2007, 8400]]
+
+In the report, there is a +pageviews_graph+ containing the points:
+
+ report.pageviews_graph.sum_of_points
+ => 16600
+
+ report.pageviews_graph.points_by_day
+ => [[Mon, 01 Jan 2007, 8200], [Tue, 02 Jan 2007, 8400]]
+
+
+== Lots of Reports!
+
+The report name comes from the Google Analytics URL for a CSV report export.
+The report name is the rpt parameter from the URL, e.g. 'Pageviews' or
+'TrafficSources':
+
+ https://www.google.com/analytics/reporting/export?fmt=2&...&&rpt=PageviewsReport&...
+ https://www.google.com/analytics/reporting/export?fmt=2&...&&rpt=TrafficSourcesReport&...
+
+If you are logged in to the Analytics website, you can find the CSV URL by
+clicking on the Export tab, and then mousing over the CSV option.
+
+To discover a list of report names, there's a method on profile:
+
+ profile.report_names
+ => ["ad_versions_report", "adwords_report", "all_sources_report",
+     "average_pageviews_report", "bounce_rate_report", "browsers_report",
+     "campaigns_report", "colors_report", "content_by_title_report",
+     "content_drilldown_report", "content_report", "dashboard_report",
+     "depth_of_visit_report", "direct_sources_report", "entrances_report",
+     "exits_report", "flash_report", "geo_map_report", "hostnames_report",
+     "java_report", "keyword_position_report", "keywords_report",
+     "languages_report", "length_of_visit_report", "loyalty_report",
+     "networks_report", "os_browsers_report", "pageviews_report",
+     "platforms_report", "recency_report", "referring_sources_report",
+     "resolutions_report", "search_engines_report", "speeds_report",
+     "time_on_site_report", "top_content_detail_keywords_report",
+     "top_content_detail_navigation_report", "top_content_detail_path_report",
+     "top_content_detail_sources_report", "top_content_report",
+     "traffic_sources_report", "unique_visitors_report",
+     "visitor_types_report", "visitors_overview_report", "visits_report"]
+
+
+== Load a Report
+
+Let's load the TrafficSources report:
+
+ report = profile.traffic_sources_report
+
+ report.name
+ => "Traffic Sources Overview"
+
+ report.start_date
+ => "28 May 2008"
+
+ report.end_date
+ => "4 June 2008"
+
+ report.source_items.collect{|s| "#{s.sources}: #{s.visits}"}.first
+ => "google (organic): 15210"
+
+ report.keyword_items.collect{|k| "#{k.keywords}: #{k.visits}"}[1]
+ => "oecd nz report summary 2007: 14"
+
+Let's try another report, VisitorsOverview:
+
+ report = profile.visitors_overview_report
+
+ report.browser_items[1]
+ => # Rugalytics::Item @percentage_visits="0.18", @visits="3140", @browser="Firefox"
+
+ report.connection_speed_items[3]
+ => # Rugalytics::Item @connection_speed="Dialup", @percentage_visits="0.06340057402849197", @visits="1100"
+
+Let's now grab 100 lines of the Networks report:
+
+ report = profile.networks_report :rows=>100
+
+ report.items.size
+ => 100
+
+ report.items.first.network_location
+ => "telecom xtra"
+
+
+== Report by URL
+
+Entrance search keywords by URL:
+
+ report = profile.top_content_detail_keywords_report(:url=>'/projects/abc')
+ report.name
+ => "Entrance Keywords:,/projects/abc"
+
+ report.items.collect{|i| "#{i.keyword} (#{i.unique_pageviews})"}
+ => ["project abc (200)", "abc project (110)"]
+
+Pageviews by URL:
+
+ report = profile.top_content_detail_report(:url => "/projects/abc")
+ report.name
+ => "Content Detail:,/projects/abc"
+
+ report.pageviews_total
+ => 179
+
+You can get a content drilldown report, for pages under a certain URL path:
+
+ report = profile.content_drilldown_report(:url => "/projects/abc/")
+ report.name
+ => "Content Drilldown,/projects/abc/"
+
+ report.items.first
+ => # Rugalytics::Item @bounce_rate="0.85", @unique_pageviews="155",
+          @percentage_exit="0.776536312849162", @time_on_page="165.75",
+          @pageviews="179", @path="/reports/", @dollar_index="0.0",
+          @url="http://your_site.com/projects/abc/reports/"
+
+Pageviews by page title:
+
+ report = profile.content_by_title_detail_report(:page_title => "Project ABC | Company XYZ")
+ report.name
+ => "Content by Title Detail:,Project ABC | Company XYZ"
+
+ report.items.first
+ => # Rugalytics::Item @bounce_rate="0.85", @unique_pageviews="1550",
+          @percentage_exit="0.776536312849162", @time_on_page="165.75",
+          @pageviews="179", @path="/projects/abc", @dollar_index="0.0",
+          @url="http://your_site.com/projects/abc"
+
+
+==Use in Rails
+
+To use from Rails, make a config file rails_root/config/rugalytics.yml
+with the following contents:
+
+ ---
+ account: your_account_name
+ profile: your_profile_name
+ username: your_user_name
+ password: your_pass_w
+
+Remember to tell your source control system to ignore this file! If you're
+using git, this means adding config/rugalytics.yml to your .gitignore
+file.
+
+ vi .gitignore
+ config/rugalytics.yml
+
+You can now use Rugalytics from within Rails, and login will be done
+automatically, e.g.:
+
+ profile = Rugalytics.default_profile
+ report = profile.top_content_report(:from=>(Date.today - 7) )
+ top_items_over_week = report.items.sort_by{|i| i.unique_pageviews.to_i}.reverse
+
+
+==Rugalytics on Rugrat - a Greasemonkey script for Firefox
+
+TO INSTALL:
+
+Create a rugalytics.yml config file containing:
+
+ ---
+ account: your_account_name
+ profile: your_profile_name
+ username: your_user_name
+ password: your_pass_w
+
+
+Run rugalytics executable on console in same directory as rugalytics.yml:
+
+ > rugalytics
+
+
+Add Greasemonkey to Firefox:
+ https://addons.mozilla.org/firefox/748/
+
+Go to:
+ http://localhost:8888/
+
+Add rugrat user script:
+ http://localhost:8888/rugrat.user.js
+
+Configure website for rugrat to run over:
+
+ Firefox -> Tools -> Greasemonkey -> Manage User Scripts
+ -> select rugrat -> press "Add"
+ -> add your site, e.g. http://your_site.com/*
+ -> press "Close"
+
+Browse your site!
+
+
+==Ruby Manor Presentation Slides - Nov 2008
+
+Rugalytics - making a Ruby API to Google Analytics data - presentation slides from Ruby Manor 2008:
+  http://www.slideshare.net/delineator/rugalytics-ruby-manor-nov-2008-presentation/
+
+
+==Acknowledgements
+
+Rugalytics started life as a fork of jnunemaker's Statwhore. As the code and
+project scope began to diverge significantly from Statwhore, a new project was
+initiated. Rugalytics makes use of the googlebase gem to login to Google.
+
+Rugalytics makes use of the morph gem to emerge Ruby class definitions at
+runtime based on the contents of the CSV reports from Google Analytics.
+
+==License
+
+See LICENSE for the terms of this software.

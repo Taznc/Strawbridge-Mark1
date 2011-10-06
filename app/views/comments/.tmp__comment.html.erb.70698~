@@ -1,0 +1,35 @@
+<div id="comment">
+	<% if @article == nil %>
+<% form_for([@deal, @comment]) do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :name %><%= f.text_field :author %>
+  <%= f.label :email %><%= f.text_field :url %></p>
+  <p style="float: left;">
+    <label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 380px; height: 100px;" %>
+  </p>
+  <p style="float:left; padding-top: 15px;">
+  	<%= f.radio_button :worked, '1' %>
+	<%= image_tag("../images/theme/worked.jpg", :alt => "CleverStart logo", :style => "height: 44px; margin-top: -15px;") %><br />
+	<%= f.radio_button :worked, '0' %><%= image_tag("../images/theme/sucked.jpg", :alt => "CleverStart logo", :style => "height: 42px; margin-top: -4px;") %>
+  </p>
+  <p>
+	<%= image_submit_tag("../images/theme/postcomment.jpg") %>
+  </p>
+  <p style="clear:left; height: 60px;"></p>
+<% end %>
+</div>
+<% else %>
+<% form_for([@article, @comment]) do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :name %><%= f.text_field :author %>
+  <%= f.label :email %><%= f.text_field :url %></p>
+  <p>
+    <label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 445px; height: 100px;" %>
+  </p>
+  <p>
+	<%= image_submit_tag("../images/theme/postcomment.png") %>
+  </p>
+<% end %>
+</div>
+<% end %>
+  

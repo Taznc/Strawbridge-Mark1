@@ -1,0 +1,151 @@
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to log/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with production environment...
+/home/strawbridge/strawmk1/app/models/cart.rb:64: warning: found = in conditional, should be ==
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require': no such file to load -- RedCloth (MissingSourceFile)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:158:in `require'
+	from /home/strawbridge/strawmk1/app/controllers/admin/articles_controller.rb:7
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:158:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:265:in `require_or_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:224:in `depend_on'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:136:in `require_dependency'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:414:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:413:in `each'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:413:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:411:in `each'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:411:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:197:in `process'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:113:in `send'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:113:in `run'
+	from /home/strawbridge/strawmk1/config/environment.rb:7
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+	from /usr/local/bin/mongrel_rails:19:in `load'
+	from /usr/local/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with production environment...
+/home/strawbridge/strawmk1/app/models/cart.rb:64: warning: found = in conditional, should be ==
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require': no such file to load -- RedCloth (MissingSourceFile)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:158:in `require'
+	from /home/strawbridge/strawmk1/app/controllers/admin/articles_controller.rb:7
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:158:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:265:in `require_or_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:224:in `depend_on'
+	from /usr/local/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/dependencies.rb:136:in `require_dependency'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:414:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:413:in `each'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:413:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:411:in `each'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:411:in `load_application_classes'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:197:in `process'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:113:in `send'
+	from /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/initializer.rb:113:in `run'
+	from /home/strawbridge/strawmk1/config/environment.rb:7
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+	from /usr/local/bin/mongrel_rails:19:in `load'
+	from /usr/local/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+** USR2 signal received.
+** Restarting with arguments:  ruby /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails start -p 3100 -e development -d
+** Daemonized, any open files are closed.  Look at log/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3100
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3100
+** Writing PID file to log/mongrel.pid
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+** TERM signal received.

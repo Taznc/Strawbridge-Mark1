@@ -1,0 +1,8 @@
+<h1>Editing Page</h1>
+<%= link_to "Page Gallery", new_admin_page_gallery_path(@page) %>
+<%= error_messages_for :page %>
+
+<%= render :partial => @page, 
+  :locals => { :button_name => "Update Page"} %>
+
+<%= link_to 'Back', admin_pages_path %>

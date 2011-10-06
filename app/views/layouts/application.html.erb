@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= yield(:title) ? "#{yield(:title)} " : '' %></title>
+    <% if controller.controller_name == 'articles' and controller.action_name != 'show' %>
+    <meta name="Description" content="<%= this_blog.site_desc %>" />
+    <meta name="Keywords" content="<%= this_blog.article_seo %>" />
+    <% elsif controller.controller_name == 'pages' and controller.action_name != 'show' %>
+    <meta name="Description" content="<%= this_blog.site_desc %>" />
+    <meta name="Keywords" content="<%= this_blog.page_seo %>" />
+    <% elsif controller.controller_name == 'articles' and controller.action_name == 'show' %>
+    <meta name="Description" content="<%= @article.keywords %>" />
+    <meta name="Keywords" content="<% for tag in @article.metatags -%><%=h tag.name -%>, <% end %>" />
+    <% elsif controller.controller_name == 'pages' and controller.action_name == 'show' %>
+    <meta name="Description" content="<%= @page.keywords %>" />
+    <meta name="Keywords" content="<% for tag in @page.metatags -%><%=h tag.name -%>, <% end %>" />
+    <% elsif controller.controller_name == 'products' and controller.action_name == 'show' %>
+    <meta name="Description" content="<%= @product.short_description.gsub(/<\/?[^>]*>/,  "") %>" />
+    <meta name="Keywords" content="<% for tag in @product.metatags -%><%=h tag.name -%>, <% end %>" />
+    <% elsif controller.controller_name == 'groups' and controller.action_name == 'show' %>
+    <meta name="Description" content="<%= this_blog.site_desc %>" />
+    <meta name="Keywords" content="<% for tag in @group.metatags -%><%=h tag.name -%>, <% end %>" />
+    <% end %>
+    <%= stylesheet_link_tag 'application', :media => 'all' %>
+    <%= stylesheet_link_tag 'print', :media => 'print' %>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/articles.rss" />
+    <script type="text/javascript">
+      function prefillClear(field) {
+      if (field.defaultValue==field.value) {field.value = '';}
+      else if (field.value == '') {field.value = field.defaultValue;}
+      }
+    </script>
+  </head>
+  <body>
+    <% if controller.controller_name == 'pages' and params[:id].to_s == '1' %>
+      <%= render :partial => "pages/homeheader" %>
+    <% else %>
+      <%= render :partial => "pages/otherheader" %>
+    <% end %>
+      <div id="content" style="overflow: hidden;">
+        <div class="container">
+          <div id="main_content" <%= 'style="padding:0 0 0 0;"' if controller.controller_name == 'pages' and params[:id].to_s != '1' %>>
+            <% flash.each do |key, msg| %>
+              <%= content_tag :div, msg, :id => key %>
+            <% end %>
+            <%= yield %>
+			<% if params[:searchterm] == nil %>
+           	 	<% if controller.controller_name == "pages" and @page.is_gallery? and params[:id].to_s != '1' %>
+					<%= javascript_include_tag :defaults %>
+					<%= javascript_include_tag "builder", "scriptaculous" %>                                   
+					<%= javascript_include_tag "lightbox" %>
+					<%= stylesheet_link_tag 'lightbox', :media => 'all' %>
+	              	<%= render :partial => "pages/gallery" %>
+	            <% end %>
+			<% end %>
+            <% if controller.controller_name == "pages" and controller.action_name == "show" and params[:id].to_s == "31-contact-us" %>
+              <%= render :partial => "shared/contactus" %>
+            <% end %>
+            <p class="clear"></p>
+          </div>
+        </div>
+      </div><!-- End of Container !-->
+    <p class="clear"></p>
+    <% if controller.controller_name == 'pages' and params[:id].to_s == '1' %>
+      <%= render :partial => "shared/footer" %>
+    <% else %>
+      <%= render :partial => "shared/footerother" %>
+    <% end %>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17903209-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<h1>Step 3: Specific Conditions</h1>
+<p style="float:left;width:320px;">For each of the conditions listed below, you will find a Health Brief written by Dr. Rawls to assist you in developing an effective health regimen.  These Health Briefs will assist you in choosing products that meet your needs and will provide guidance on how to best use each product.  For a complete list of products related to each condition, click the product button located at the top & bottom of each page. <i>*Products and recommendations in this section work best when paired with the supplements in Part 1: Basic Essentials.</i></p>
+<p style="float:left;width:258px;"><%= image_tag("../images/theme/seal.png", :alt => "First Do No Harm Product Group", :style => "") %></p>
+<br class="clear" style="padding-bottom:20px;" />
+<%for grouper in @groups %>
+  <%if grouper.id != 1 and grouper.id != 2 and grouper.id != 3 and grouper.id != 4 and grouper.id != 44 and grouper.id != 45 and grouper.id != 46 and grouper.id != 48 and grouper.id != 64 and grouper.id != 65 and grouper.id != 66 and grouper.id != 67 and grouper.id != 69 and grouper.id != 70 and grouper.id != 77 and grouper.id != 76 and grouper.id != 80 and grouper.id != 81 and grouper.id != 63 %>
+    <div class="specificconditions">
+      <p class="stepthree">> <%= link_to grouper.name, group_path(grouper) %></p>
+    </div>
+  <%end%>
+<%end%>

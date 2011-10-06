@@ -1,0 +1,29 @@
+<div id="footer_interior">
+	<div class="container">
+    <div id="footer_search">
+      <% form_tag search_site_path, :method => 'get' do %>
+          <p id="search_header"><%= text_field_tag :searchterm, params[:searchterm], :value=> params[:searchterm] || "enter your search", :onfocus=>'prefillClear(this)', :onblur=>'prefillClear(this);', :style => "height:22px;margin-top:1px;font-size:14px;padding-left:10px;width:187px;border:none;color:#575B5E;" %>
+          <%= image_submit_tag ("../images/theme/search_button.gif"), :name => nil, :style=>'' %></p>
+      <% end %>             
+    </div>
+    <%= link_to image_tag("../images/theme/order_online_button.png", :class=>'footer_img'), '/pages/38-customer-service-order-online' %>
+    <%= link_to image_tag("../images/theme/customer_service_button.png", :class=>'footer_img'), '/pages/62-contact-us-info' %>
+    <p class="clear"></p>
+  </div>
+  <div class="container" style="padding-left:38px;">
+    <ul>
+      <li><a href="/">Home</a> |</li>
+      <li><a href="/pages/25-about-us">About</a> |</li>
+      <li><a href="/pages/38-customer-service-order-online">Order Online</a> |</li>
+      <li><a href="/pages/2-school-potraits">Portraits</a> |</li>
+      <li><a href="/pages/3-senior-expressions">Seniors</a> |</li>
+      <li><a href="/pages/4-yearbooks">Yearbooks</a> |</li>
+	  <li><a href="/pages/31-contact-us">Customer Service</a> |</li>
+	  <li><a href="/pages/29-privacy-policy">Privacy Policy</a> |</li>
+	  <li><a href="/pages/68-customer-service-return-policy">Return Policy</a> |</li>
+      <li><a href="/pages/62-contact-us-info">Contact</a></li>
+    </ul>
+    <br />
+    <p>© 2010 STRAWBRIDGE STUDIOS INC.<span>|</span><a href="http://cleverstart.com">WEBSITE DESIGN BY CLEVERSTART</a></p>
+  </div>
+</div>

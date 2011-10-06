@@ -1,0 +1,128 @@
+<h1>Your Address and Shipping</h1>
+<h2>Step 1: Your Email</h2>
+<% form_for :user, :url => users_path do |order_form| %>
+	<div style="width:371px;">
+		<p style="text-align:right;" id="email_box">Email* <%= order_form.text_field :login %></p>
+		
+		<p style="text-align:right;" id="confirm_email_box">Confirm Email* <%= order_form.text_field :email %></p>
+		
+		<p style="text-align:right;" id="user_password_box">Password* <%= order_form.password_field :password %></p>
+		<p style="text-align:right;" id="confirm_password_box">Confirm Password* <%= order_form.password_field :password_confirmation %></p>
+	</div>
+<div id="loginpagecheckout">
+	<div class="leftforty" style="width:371px;margin-left:0px;float:left;">
+		<h2>Step 2: Your Billing Address</h2>
+		<p style="text-align:right;" id="user_country_box">Country* <%= order_form.select(:country, {"US"=>"US"}, :include_blank => true)%></p>
+		<p style="text-align:right;" id="user_first_name_box">First Name* <%= order_form.text_field :first_name %></p>
+		<p style="text-align:right;" id="user_last_name_box">Last Name* <%= order_form.text_field :last_name %></p>
+		<p style="text-align:right;">Company <%= order_form.text_field :company %></p>
+		<p style="text-align:right;" id ="user_home_address_box">Address 1* <%= order_form.text_field :home_address %></p>
+		<p style="text-align:right;">Address 2 <%= order_form.text_field :home_address_two %></p>
+		<p style="text-align:right;" id="user_city_box">City* <%= order_form.text_field :city %></p>
+		<p style="text-align:right;">State / Province* <%= us_state_select 'user', 'state'%></p>
+		<p style="text-align:right;" id ="user_zipcode_box">Postal Code* <%= order_form.text_field :zipcode %></p>
+		<p style="text-align:right;" id="user_phone_box">Phone* <%= order_form.text_field :phone %></p>
+		<p style="margin-left:140px;"><%= order_form.check_box :same_address %> Billing address is the same as my shipping address.</p>
+	</div>
+	<div class="leftforty" style="width:371px;margin-left:135px;float:left;">
+	<div id="shipping">
+	<h2>Step 2a: Your Shipping Address</h2>
+	<% @user.build_address unless @user.address %>
+	<% order_form.fields_for :address do |shipping_form| %>
+		<p style="text-align:right;" id ="user_address_country_box">Country* <%= shipping_form.select(:country, {"US"=>"US"}, :include_blank => true)%></p>
+		<p style="text-align:right;" id ="user_address_first_name_box">First Name* <%= shipping_form.text_field :first_name %></p>
+		<p style="text-align:right;" id="user_address_last_name_box">Last Name* <%= shipping_form.text_field :last_name %></p>
+		<p style="text-align:right;">Company <%= shipping_form.text_field :company %></p>
+		<p style="text-align:right;" id="user_address_address_1_box">Address 1* <%= shipping_form.text_field :address_1 %></p>
+		<p style="text-align:right;">Address 2 <%= shipping_form.text_field :address_2 %></p>
+		<p style="text-align:right;" id="user_address_city_box">City* <%= shipping_form.text_field :city %></p>
+		<p style="text-align:right;" id="user_address_state_box">State / Province* <%= shipping_form.us_state_select :state, :include_blank => true%></p>
+		<p style="text-align:right;" id="user_address_zipcode_box">Postal Code* <%= shipping_form.text_field :zipcode %></p>
+		<p style="text-align:right;" id="user_address_phone_box">Phone* <%= shipping_form.text_field :phone %></p>
+	<% end %>
+	</div>
+	</div>
+	<p style="text-align:right;clear:both;"><%= submit_tag 'Confirm Order' %></p>
+<% end %>
+</div>
+
+<script type="text/javascript">
+   function handleValid(){
+     $(this.element).highlight();
+   }
+
+
+   var validators = new Array()
+
+   function addPresValidator(id){
+       i = validators.length
+       validators[i] = new LiveValidation(id,{onlyOnBlur:true,onValid:handleValid,insertAfterWhatNode:id+"_box"});
+       validators[i].add(Validate.Presence);
+       
+   }
+
+   var billing_validators = new Array()
+   function addBillValidator(id){
+       i = billing_validators.length
+       billing_validators[i] = new LiveValidation(id,{onlyOnBlur:true,onValid:handleValid,insertAfterWhatNode:id+"_box"});
+       billing_validators[i].add(Validate.Presence);
+       billing_validators[i].disable();
+   }
+
+   function enableBillValidators(){
+      billing_validators.each(function(item){
+           item.enable()
+      })
+   }
+
+    function disableBillValidators(){
+      billing_validators.each(function(item){
+           item.disable()
+      })
+   }
+
+
+    var user_login= new LiveValidation('user_login',{onlyOnBlur: true,validMessage:"Ok",insertAfterWhatNode:"email_box",onValid:handleValid});
+	user_login.add(Validate.Email);
+    user_login.add(Validate.Presence);
+
+    var confirm_email = new LiveValidation('user_email',{onlyOnBlur: true,validMessage:"Ok", onValid:handleValid,insertAfterWhatNode:"confirm_email_box"})
+    confirm_email.add(Validate.Confirmation,{ match: 'user_login', failureMessage: "Email address does not match" });
+
+    addPresValidator('user_password')
+
+
+    var conf_password_val = new LiveValidation('user_password_confirmation',{onlyOnBlur: true,validMessage:"Ok", onValid:handleValid,insertAfterWhatNode:"confirm_password_box"})
+    conf_password_val.add(Validate.Confirmation,{match:'user_password',failureMessage: "Your passwords do not match"});
+
+    addPresValidator('user_country')
+    addPresValidator('user_first_name')
+    addPresValidator('user_last_name')
+    addPresValidator('user_home_address')
+    addPresValidator('user_city')
+    addPresValidator('user_zipcode')
+    addPresValidator('user_phone')
+
+
+    addBillValidator('user_address_country')
+    addBillValidator('user_address_first_name')
+    addBillValidator('user_address_last_name')
+    addBillValidator('user_address_address_1')
+    addBillValidator('user_address_city')
+	addBillValidator('user_address_state')
+    addBillValidator('user_address_zipcode')
+    addBillValidator('user_address_phone')
+
+    if($('user_same_address').checked){
+      disableBillValidators()
+    }
+    
+    $('user_same_address').observe('click', function(event){
+       if(Event.element(event).checked){
+         disableBillValidators();
+       }else{
+         enableBillValidators();
+       }
+ });
+
+</script>

@@ -1,0 +1,133 @@
+<% form_for([:admin, @product], :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <div id="headingbg"><h2>Product Details</h2></div>
+  <div id="inner">
+    <div style="float:left; width: 50%;">
+      <h3>Active? <%= f.check_box :active %></h3>
+      <h3>Name of Product</h3>
+        <%= f.text_field :name %>
+      <h3>Size of Product (ex: 100 capsules, 500mg (apx 3 month supply) )</h3>
+        <%= f.text_field :size %>
+      <h3>Weight</h3>
+        <%= f.text_field :weight %>
+      <h3>Product's Company</h3>
+        <%= f.text_field :company_name %>
+      <h3>Product Code</h3>
+        <%= f.text_field :product_code %>
+      <h3>Price</h3>
+        <%= f.text_field :price %>
+      <h3>Retail Price</h3>
+        <%= f.text_field :retail_price %>
+      <h3>Retail Savings (Retail Price minus Price)</h3>
+        <%= f.text_field :retail_difference %>
+      <h3>Long Description</h3>
+        <%= fckeditor_textarea( "product", "description", :toolbarSet => 'Simple', :width => '100%', :height => '560px') %>
+      <h3>Short Description</h3>
+        <%= fckeditor_textarea( "product", "short_description", :toolbarSet => 'Simple', :width => '100%', :height => '560px') %>
+    </div>
+  <div style="float:left; width: 50%;">
+    <h3>Product Groups</h3>
+      <ul>
+      <% for group in Group.find(:all, :order => "position ASC") %>
+        <li>
+          <%= check_box_tag "product[group_ids][]", group.id, @product.groups.include?(group) %>
+          <%= group.name %>
+        </li>
+      <% end %>
+      </ul>
+    <h3>Product Sub-Groups</h3>
+      <ul>
+      <% for subgroup in Subgroup.find(:all, :order => "position ASC", :conditions => ['has_product != ?', '0']) %>
+        <li>
+          <%= check_box_tag "product[subgroup_ids][]", subgroup.id, @product.subgroups.include?(subgroup) %>
+          <%= subgroup.name %><%= subgroup.group.name%>
+        </li>
+      <% end %>
+      </ul>
+  </div>
+  <p style="clear:both;"></p>
+  </div>
+  <div id="headingbg"><h2>Product Image</h2></div>
+  <div id="inner">
+          <% if @product.image? %>
+          <h3>Current Image (Thumb + Show Version)</h3>
+          <%= image_tag @product.image.url(:thumb) %>
+          <%= image_tag @product.image.url(:small) %>
+          <h3>Replace Image</h3>
+          <%= f.file_field :image %>
+          <% else %>
+    <h3>Upload Image</h3>
+      <%= f.file_field :image %>
+          <% end %>
+    </div>
+  <div id="headingbg"><h2>Label Image</h2></div>
+  <div id="inner">
+          <% if @product.label? %>
+          <h3>Current Image (Thumb + Show Version)</h3>
+          <%= image_tag @product.label.url(:thumb) %>
+          <%= image_tag @product.label.url(:small) %>
+          <h3>Replace Image</h3>
+          <%= f.file_field :label %>
+          <% else %>
+    <h3>Upload Image</h3>
+      <%= f.file_field :label%>
+          <% end %>
+  </div>
+  <div id="headingbg"><h2>Product Digital Asset</h2></div>
+  <div id="inner">
+    <% if @product.download? %>
+      <h3>Digitial Assets for Sale</h3>
+    <%= @product.download.url(:original) %>
+      <h3>Replace Asset</h3>
+      <%= f.file_field :download %>
+    <% else %>
+    <h3>Upload Asset</h3>
+    <%= f.file_field :download %>
+    <% end %>
+  </div>
+  <div id="headingbg"><h2>Warnings & Recommended Use</h2></div>
+  <div id="inner">
+    <h3>Warning</h3>
+      <%= fckeditor_textarea( "product", "warning", :toolbarSet => 'Simple', :width => '100%', :height => '200px') %>
+    <h3>Recommended Use</h3>
+      <%= fckeditor_textarea( "product", "rec_use", :toolbarSet => 'Simple', :width => '100%', :height => '200px') %>
+  </div>
+  <div id="headingbg"><h2>Related Products</h2></div>
+    <div id="inner">
+      <h3>Only 5 Will be Shown on Site</h3>
+      <%= f.collection_select(:related_product_ids, Product.find(:all, :order => :name), :id, :name, {:include_blank => true}, :multiple => true) %>
+    </div>
+  <div id="headingbg"><h2>Related Product Sizes</h2></div>
+    <div id="inner">
+      <%= f.collection_select(:product_size_ids, Product.find(:all, :order => :name), :id, :name, {:include_blank => true}, :multiple => true) %>
+    </div>
+  <div id="headingbg"><h2>Package Products (Several Products may make up a package deal)</h2></div>
+    <div id="inner">
+      <%= f.collection_select(:grouped_product_ids, Product.find(:all, :order => :name), :id, :name, {:include_blank => true}, :multiple => true ) %>
+    </div>
+  <div id="headingbg"><h2>Product Tags (These are used for a categorized search)</h2></div>
+    <div id="inner">
+      <ul>
+        <% for producttag in Producttag.find(:all, :order => "name ASC") %>
+          <li style="float:left;width:180px;">
+            <%= check_box_tag "product[producttag_ids][]", producttag.id, @product.producttags.include?(producttag) %>
+            <%= producttag.name %>
+          </li>
+        <% end %>
+      </ul>
+      <br style="clear:both;" />
+    </div>
+  <div id="headingbg"><h2>Product MetaTags (These are used for a SEO metatags)</h2></div>
+  <div id="inner">
+    <h3>Meta Tags</h3>
+    <ul>
+      <% for tag in Metatag.find(:all, :order => "name ASC") %>
+        <li>
+          <%= check_box_tag "product[metatag_ids][]", tag.id, @product.metatags.include?(tag) %>
+          <%= tag.name %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <p style="float: right; padding-top: 20px;"><%= f.submit "Save Product" %></p>
+<% end %>

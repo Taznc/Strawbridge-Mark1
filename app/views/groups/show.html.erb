@@ -1,0 +1,86 @@
+<% content_for :title do %>First Do No Harm Health: <%= @group.name %><% end %>
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+  $j(document).ready(function() {
+    <% for subgroup in @group.subgroups %>
+      $j('#<%= subgroup.id %>').hide();
+    <% end %>
+    <% for subgroup in @group.subgroups %>
+    $j('a#<%= subgroup.id %>-toggle').click(function() {
+      $j('#<%= subgroup.id %>').slideToggle(450);
+      return false;
+    });
+    <% end %>
+  });
+</script>
+<div id="inner">
+  <div id="bread">
+    <p><a href="/groups?step=basic">Products</a> > <u><%= @group.name %></u></p>
+  </div>
+  <h1><%=h @group.name %></h1>
+  <% if @group.description != nil %>
+    <%= RedCloth.new(@group.description).to_html %>
+  <%else%>
+    <p>No Description</p>
+  <% end %>
+  <% for subgroup in @group.subgroups %>
+    <hr>
+    <h3><%=h subgroup.name %></h3>
+    <p>
+      <% if subgroup.description != nil %>
+        <%= RedCloth.new(subgroup.description).to_html %>
+        <% unless subgroup.has_product %>
+          <p style="text-align:right;"><%= link_to 'Read Full Description', "#", :id=>subgroup.id.to_s + '-toggle' %>
+        <% end %>
+      <% end %>
+    </p>
+   <% unless subgroup.has_product %>
+      <div id="<%= subgroup.id %>" style="display:block;">
+        <p>
+          <% if subgroup.hidden_text != nil %>
+            <%= RedCloth.new(subgroup.hidden_text).to_html %>
+          <% end %>
+        </p>
+      </div>
+   <% end %>
+   <% unless subgroup.products.empty? %>
+    <p><%= link_to image_tag("../images/theme/showhide.jpg"), "#", :id=>subgroup.id.to_s + '-toggle' %></p>
+    <% end %>
+    <div id="<%= subgroup.id %>" style="display:block;">
+    <% for product in subgroup.products %>
+      <% if product.active? %>
+      <div class="clear" style="padding-top:15px;">
+        <div id="relatedimage">
+          <%= link_to image_tag(product.image.url(:thumb)), product %>
+        </div>
+        <div id="relatedcontent">
+          <h2><%= link_to h(product.name), product %></h2>
+          <p style="margin:0px;"><b><%=h number_to_currency(product.price) %></b></p>
+          <p style="margin:0px;"><i>Sugg Retail: <%=h number_to_currency(product.retail_price) %> - You Save <%=h number_to_currency(product.retail_difference) %></i></p>
+            <% if product.short_description != nil %>
+              <%= RedCloth.new(product.short_description).to_html %>
+            <% else %>
+              <p>No Description</p>
+            <% end %>
+            
+        <div class="clear">
+          <p class="left" style="padding-top:10px;"><%= link_to image_tag("../images/theme/learnmore.jpg"), product %></p>
+          <div class="right">
+            <% form_tag :controller => 'line_items', :method => :post do%>
+              <span id="quantityspan">Qty</span><%= text_field_tag :quantity, nil, :size => 2 %>
+              <%= hidden_field_tag(:product_id, product.id) %>
+              <%= hidden_field_tag(:weight, product.weight) %>
+              <%= image_submit_tag("../images/theme/addtocart.jpg") %>
+            <% end -%>
+          </div>
+        </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+</div>
+<div id="sidebar" style="text-align:left;">
+  <%= render :partial => "shared/cartsidebar" %>
+</div>

@@ -1,0 +1,45 @@
+<div id="aboutusdetailedengaging" style="margin-left: -1px;">
+<div id="aboutusdetailedleft">
+<div id="aboutusengagingimage"><img height="454" width="294" alt="" src="/uploads/Image/engagingdesignimg.png" /></div>
+<div id="engagingleftsidebar" style="padding-top:45px;">
+<h2>Contact Us Directly</h2>
+<p style="margin-bottom: 0px;"><b>Nick Jordan</b></p>
+<p style="margin-top: 0px; margin-bottom: 0px;"><a href="mailto:nick@cleverstart.com?subject=Email%20from%20Cleverstart.com">nick@cleverstart.com</a></p>
+<p style="margin-top: 0px;">919.265.4746</p>
+<p style="margin-bottom: 0px;"><b>James Rissler</b></p>
+<p style="margin-top: 0px; margin-bottom: 0px;"><a href="mailto:james@cleverstart.com?subject=Email%20Me%20from%20Cleverstart.com">james@cleverstart.com</a></p>
+<p style="margin-top: 0px;">336.324.4935</p>
+<p style="margin-bottom: 0px;"><b>Chrissy Freeman</b></p>
+<p style="margin-top: 0px; margin-bottom: 0px;"><a href="mailto:chrissy@cleverstart.com?subject=Email%20Me%20from%20Cleverstart.com">chrissy@cleverstart.com</a></p>
+<p style="margin-top: 0px;">336.509.3546</p>
+</div>
+</div>
+<div id="aboutusdetailedright"><img height="23" width="123" src="/uploads/Image/contactuscontact.png" alt="" /><br />
+<p>Ready to Get Started?  Great!  We are looking forward to helping your team accomplish your goals or just answer whatever questions you may have about web design, development, and marketing.</p>
+<p>Fill out the form below with info about you and your project, and a member of our team will be in touch with you within 24 hours.</p>
+<p style="margin-top: 60px;">&nbsp;</p>
+
+<div style="float:left; width: 110px;">
+<p style="text-align: right; margin-right: 15px;">Name</p>
+<p style="text-align: right; margin-right: 15px;">Company</p>
+<p style="text-align: right; margin-right: 15px;">Email Address</p>
+<p style="text-align: right; margin-right: 15px;">Telephone</p>
+<p style="text-align: right; margin-right: 15px;">Location</p>
+<p style="text-align: right; margin-right: 15px;">Talk to Us</p>
+</div>
+
+<div style="float:left;">
+	<% form_tag :action => 'send_contact_form' do %>
+	<p><%= text_field "author", "name", :style => "border:1px solid #CCCCCC;" %></p>
+	<p><%= text_field "author", "company", :style => "border:1px solid #CCCCCC;" %></p>
+	<p><%= text_field "author", "email", :style => "border:1px solid #CCCCCC;" %></p>
+	<p><%= text_field "author", "phone", :style => "border:1px solid #CCCCCC;" %></p>
+	<p><%= text_field "author", "location", :style => "border:1px solid #CCCCCC" %></p>
+	<p><%= text_area "author", "message", :cols => "45", :rows => "10", :style => "border:1px solid #CCCCCC" %></p>
+	<p style="text-align:right;"><%= image_submit_tag "/uploads/Image/getstartednow.jpg", :name => "submit" %></p>
+<% end %>
+</div>
+
+
+</div>
+</div>

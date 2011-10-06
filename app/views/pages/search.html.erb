@@ -1,0 +1,16 @@
+<% content_for :title, "Search Strawbridge" %>
+<div id="interior_sidebar">
+	<div id="interior_sidebar_menu"></div>
+</div> 
+
+
+	<div id="interior_page_content">
+	   	<h1><%= @pages.size %> Results for "<%= params[:searchterm] %>"</h1>
+		<div id="search">
+       	 	<% for page in @pages %>
+				<h2 style="font-size:18px;font-family:Arial;padding-left:51px;margin-bottom:12px;"><%= link_to page.title, page %></h1>
+				<p style="padding-left:51px;margin-bottom:46px;"><%= truncate(page.body.gsub(/<\/?[^>]*>/,  ""), 180, "...") %></p>
+			<% end %>
+		</div>
+	</div>
+</div>

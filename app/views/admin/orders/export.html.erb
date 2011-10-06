@@ -1,0 +1,115 @@
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>orderNum</th>
+    <th>orderRef</th>
+    <th>orderShipMethod</th>
+    <th>orderComments</th>
+    <th>custEmail</th>
+    <th>custPhone</th>
+    <th>custFName</th>
+    <th>custLName</th>
+    <th>custCompany</th>
+    <th>custAddress1</th>
+    <th>custAddress2</th>
+    <th>custCity</th>
+    <th>custState</th>
+    <th>custZip</th>
+    <th>custCountry</th>
+    <th>custBillFName</th>
+    <th>custBillLName</th>
+    <th>custBillCompany</th>
+    <th>custBillAddress1</th>
+    <th>custBillAddress2</th>
+    <th>custBillCity</th>
+    <th>custBillState</th>
+    <th>custBillZip</th>
+    <th>custBillCountry</th>
+    <th>orderCOD</th>
+    <th>orderInsurance</th>
+    <th>orderReqSignature</th>
+    <th>items</th>
+    <th>sku1</th>
+    <th>qty1</th>
+    <th>sku2</th>
+    <th>qty2</th>
+    <th>sku3</th>
+    <th>qty3</th>
+    <th>sku4</th>
+    <th>qty4</th>
+    <th>sku5</th>
+    <th>qty5</th>
+    <th>sku6</th>
+    <th>qty6</th>
+    <th>sku7</th>
+    <th>qty7</th>
+    <th>sku8</th>
+    <th>qty8</th>
+    <th>sku9</th>
+    <th>qty9</th>
+    <th>sku10</th>
+    <th>qty10</th>
+    <th>sku11</th>
+    <th>qty11</th>
+    <th>sku12</th>
+    <th>qty12</th>
+    <th>sku13</th>
+    <th>qty13</th>
+    <th>sku14</th>
+    <th>qty14</th>
+    <th>sku15</th>
+    <th>qty15</th>
+  </tr>
+
+<% for order in @orders %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%=h order.id %></td>
+    <td><%=h order.id %></td>
+    <td><%=h order.cart.shipping_choice %></td>
+    <td>Thank you <%=h order.first_name %> <%=h order.last_name %> for your order</td>
+    <td><%=h order.user.email %></td>
+    <td><%=h order.user.phone %></td>
+    <td><%=h order.user.first_name %></td>
+    <td><%=h order.user.last_name %></td>
+    <td><%=h order.user.company %></td>
+    <% if order.user.same_address == "1" %>
+      <td><%=h order.user.home_address %></td>
+      <td><%=h order.user.home_address_two %></td>
+      <td><%=h order.user.city %></td>
+      <td><%=h order.user.state %></td>
+      <td><%=h order.user.zipcode %></td>
+    <% else %>
+      <% if order.user.address != nil %>
+      <td><%=h order.user.address.address_1 %></td>
+      <td><%=h order.user.address.address_2 %></td>
+      <td><%=h order.user.address.city %></td>
+      <td><%=h order.user.address.state %></td>
+      <td><%=h order.user.address.zipcode %></td>
+      <% else %>
+      <td>problem</td>
+      <td>problem</td>
+      <td>problem</td>
+      <td>problem</td>
+      <td>problem</td>
+      <% end %>
+    <% end %>
+    <td>United States</td>
+    <td><%=h order.first_name %></td>
+    <td><%=h order.last_name %></td>
+    <td></td>
+    <td><%=h order.user.home_address %></td>
+    <td><%=h order.user.home_address_two %></td>
+    <td><%=h order.user.city %></td>
+    <td><%=h order.user.state %></td>
+    <td><%=h order.user.zipcode %></td>
+    <td>United States</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%=h order.cart.total_quantity %></td>
+    <% for line in order.cart.line_items %>
+    <td><%=h line.product.product_code %></td>
+    <td><%=h line.quantity %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

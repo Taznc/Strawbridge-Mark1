@@ -1,0 +1,36 @@
+<div id="headingbg"><p style="float:right;"><%= link_to 'Re-Position Product Order', admin_sortproducts_path %><%= link_to 'New Product', new_admin_product_path %></p><h2>Listing Products</h2></div>
+<div id="inner">
+<h2>Search</h2>
+<div style="margin-right:10px; border: 1px gray solid; padding-left:10px; padding-bottom: 10px; margin-left: 10px;">
+<% form_tag admin_products_path, :method => 'get' do %>
+  <p>Search For Products</p>
+	<p>Product Name: <%= text_field_tag :searchname, params[:searchname], :style => "width:140px; margin-left:4px; margin-right: 13px;" %>
+	Product Code: <%= text_field_tag :searchproductcode, params[:searchproductcode], :style => "width:140px; margin-left:4px;  margin-right: 13px;" %>
+	Company Name: <%= text_field_tag :searchcompanyname, params[:searchcompanyname], :style => "width:140px; margin-left:4px;" %>
+	<%= submit_tag "Search", :style => "margin-left:30px;", :name => nil %></p>
+	<% end %>
+</div>
+<%= will_paginate @places, :inner_window => 4, :outer_window => 1, :style => "margin-top:30px; margin-bottom:10px;" %>
+</div>
+<div id="inner">
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>Vendor Name</th>
+    <th>Name</th>
+    <th>Product Code</th>
+    <th>Price</th>
+  <tr />
+<% for product in @products %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%=h product.company_name %></td>
+    <td><%=h product.name %></td>
+    <td><%=h product.product_code %></td>
+    <td><%=h product.price %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
+    <td><%= link_to 'Copy', copy_admin_product_url(product),  :title=>product.image_file_name %></td>
+    <td><%= link_to 'Destroy', [:admin, product], :confirm => 'Are you sure?', :method => :delete %></td>
+  <tr />
+<% end %>
+</table>
+</div>

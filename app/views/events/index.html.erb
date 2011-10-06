@@ -1,0 +1,9 @@
+<div id="blogcontent">
+<h1>News and Events</h1>
+<% @events.each do |event| %>
+    <h2><%=h event.title %></h2>
+    <%= RedCloth.new(event.body).to_html %>
+    <p class="right"><%= link_to 'Read More', event %></p>
+<% end %>
+</div>
+<br class="clear" />

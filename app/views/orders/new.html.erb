@@ -1,0 +1,52 @@
+<% if logged_in? %>
+  <div id="loginpagecheckout">
+    <h1>Your Shipping and Payment</h1>
+    <div class="leftforty" style="width:341px;margin-left:20px;float:left;">
+    <h2>Step 3: Shipping & Subtotal</h2>
+    <p>Merchandise Total:  <%=h number_to_currency @cart.total_price %></p>
+    <p><%=h (@cart.discount + @cart.user_discount_percent) * 100 %>% Discount</p>
+    <p>Subtotal: <%=h number_to_currency @cart.total_discounts %></p>
+    <p>Sales Tax <%= number_to_currency @cart.sales_tax %></p>
+    <% if @cart.shipping_choice != nil %>
+    <p>Shipping <%= @cart.shipping_choice %></p>
+    <p><b>Order Total <%= number_to_currency @cart.grand_total %></b></p>
+<% else %>
+    <% form_for(@cart) do |f| %>
+      <p>Please Select a Shipping Option</p>
+      <% if current_user.zipcode == '00000' %>
+      <%= f.select :shipping_choice, ["Pickup $0.00"] %>
+      <% else %>
+      <p><%= f.select :shipping_choice, @ups_rates[7] %></p>
+      <% end %>
+      <%= image_submit_tag "../images/theme/shippingcalc.jpg", :style => "" %>
+    <% end %>
+      <p>Please Update Shipping Before Completing Order</p>
+<% end %>
+  </div>
+  <% if @cart.shipping_choice != nil %>
+    <div>
+  <% else %>
+    <div style="display:none;">
+  <% end %>
+  <% form_for @order do |order_form| %>
+    <%= order_form.error_messages %>
+    <div class="leftforty" style="width:371px;margin-left:5px;float:left;text-align:right;">
+    <h2 style="text-align:center;">Step 4: Payment Method</h2>
+      <p class="getstartedtext">First Name* <%= order_form.text_field :first_name %></p>
+      <p class="getstartedtext">Last Name* <%= order_form.text_field :last_name %></p>
+      <p class="getstartedtext">Card Type* <%= order_form.select :card_type, [["", ""], ["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %></p>
+      <p class="getstartedtext">Card Number* <%= order_form.text_field :card_number %></p>
+      <p class="getstartedtext">Card Id Code (C V V)* <%= order_form.text_field :card_verification, :style=>"width:134px;" %></p>
+      <p class="getstartedtext">Card Expiration* <%= order_form.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true, :order=>[:month,:year], :style=>"max-width:100px;min-width:100px;" %></p>
+      <% if @cart.shipping_choice != nil %>
+        <p class="aright"><%= image_submit_tag "../images/theme/checkout.jpg", :style => "" %></p>
+      <% end %>
+      <br />
+    <% end %>
+    </div>
+  </div>
+</div>
+<% else %>
+  <p>You need to <a href="/login">login</a> or <a href="/login">create an account</a> before we can process your order. Thanks.</p>
+<% end %>
+<%= javascript_include_tag :defaults %>

@@ -1,0 +1,51 @@
+<%= image_tag("../images/theme/sidebartop.jpg", :alt => "First Do No Harm Product Group") %>
+<div class="sidebarpiece" style="margin-bottom:0px;">
+  <%= image_tag("../images/theme/yourshoppingcart.png", :alt => "First Do No Harm Product Group", :style => "margin-left:24px;") %>
+  <% if current_cart %>
+  <%= link_to image_tag("../images/theme/check_out.gif", :alt => "First Do No Harm Product Group", :style => "margin-left:82px;padding-top:0px;height:36px;"), '/cart' %>
+    <% for line_item in current_cart.line_items %>
+    <h4><b><%=h line_item.product.name %></b></h4>
+    <div id="cartsidebarproduct">
+      <%= RedCloth.new(line_item.product.short_description).to_html %>
+    </div>
+    <div id="cartsidebarprice">
+      <p class="price" style="text-align:right;"><%=h number_to_currency line_item.unit_price %></p>
+      <p class="price" style="text-align:right;">Qty: <%=h line_item.quantity %></p>
+    </div>
+    <br class="clear" />
+    <p style="border-bottom:1px #EEE9E5 solid;height:1px;margin:0px;"></p>
+    <% end %>
+    <% unless current_cart.nextlevel == 0 %>
+    <p id="cartsidebardiscount">Spend <%= number_to_currency(current_cart.nextlevel - current_cart.total_price) %> more and get a <%=h current_cart.discount * 100 + 5 %>% discount!</p>
+    <% end %>
+    <h4 style="border:none;text-align:right;">Merchandise Total:  <%=h number_to_currency current_cart.total_price %></h4>
+    <h4 style="border:none;text-align:right;"><%=h current_cart.discount * 100 %>% Discount: <%=h number_to_currency(current_cart.total_price - current_cart.sub_total_price) %></h4>
+    <h4 style="border:none;text-align:right;font-size:18px;font-weight:bold;font-family:Georgia;">Subtotal: <%=h number_to_currency current_cart.sub_total_price %></h4>
+    <p style="border-bottom:1px #3C332A solid;height:1px;"></p>
+  <% else %>
+    <h4 style="margin-left:34px;">Your Cart is empty.</h4>
+  <% end %>
+  <br />
+  <h4>Guiding You to Better Health: Have You Completed These Steps?</h4>
+  <% if params[:step].to_s == "basic"%>
+    <%= link_to image_tag("../images/theme/steponeimageactive.jpg", :class=>"shopnow"), groups_path(:step=>"basic") %>
+  <% else %>
+    <%= link_to image_tag("../images/theme/steponeimage.jpg", :class=>"shopnow"), groups_path(:step=>"basic") %>
+  <% end %>
+  <% if params[:step].to_s == "beyond"%>
+    <%= link_to image_tag("../images/theme/stepthreeimageactive.jpg", :class=>"shopnow"), groups_path(:step=>"beyond") %>
+  <% else %>
+    <%= link_to image_tag("../images/theme/step2image.jpg", :class=>"shopnow"), groups_path(:step=>"beyond") %>
+  <% end %>
+  <% if params[:step].to_s == "specific" %>
+    <%= link_to image_tag("../images/theme/stepthreeactive.jpg", :class=>"shopnow"), groups_path(:step=>"specific") %>
+  <% else %>
+    <%= link_to image_tag("../images/theme/stepthreeimage.jpg", :class=>"shopnow"), groups_path(:step=>"specific") %>
+  <% end %>
+  <% if params[:step].to_s == "learnmore" %>
+    <%= link_to image_tag("../images/theme/step_four_learn_more_active.png", :class=>"shopnow"), groups_path(:step=>"learnmore") %>
+  <% else %>
+    <%= link_to image_tag("../images/theme/step_four_learn_more.png", :class=>"shopnow"), groups_path(:step=>"learnmore") %>
+  <% end %>
+</div>
+<%= image_tag("../images/theme/sidebarbottom.jpg", :alt => "First Do No Harm Product Group") %>

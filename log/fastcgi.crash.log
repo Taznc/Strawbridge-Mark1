@@ -1,0 +1,193 @@
+[05/Feb/2010:16:28:42 :: 11767] starting
+[05/Feb/2010:16:32:17 :: 12797] starting
+[07/Feb/2010:11:12:33 :: 1684] starting
+[07/Feb/2010:13:04:29 :: 1684] asked to stop immediately
+[07/Feb/2010:13:04:30 :: 1684] stopping after explicit exit
+[08/Feb/2010:08:04:19 :: 31248] starting
+[08/Feb/2010:09:16:26 :: 31248] asked to stop immediately
+[08/Feb/2010:09:16:26 :: 31248] stopping after explicit exit
+[08/Feb/2010:09:18:06 :: 17152] starting
+[08/Feb/2010:09:18:09 :: 17243] starting
+[08/Feb/2010:09:24:46 :: 17243] asked to stop immediately
+[08/Feb/2010:09:24:46 :: 17243] stopping after explicit exit
+[08/Feb/2010:09:24:46 :: 17152] asked to stop immediately
+[08/Feb/2010:09:24:46 :: 17152] stopping after explicit exit
+[08/Feb/2010:09:48:05 :: 24169] starting
+[08/Feb/2010:09:48:13 :: 24239] starting
+[08/Feb/2010:09:55:18 :: 24169] asked to stop immediately
+[08/Feb/2010:09:55:18 :: 24239] asked to stop immediately
+[08/Feb/2010:09:55:18 :: 24169] stopping after explicit exit
+[08/Feb/2010:09:55:18 :: 24239] stopping after explicit exit
+[08/Feb/2010:10:27:33 :: 9362] starting
+[08/Feb/2010:13:14:36 :: 9362] asked to stop immediately
+[08/Feb/2010:13:14:37 :: 9362] stopping after explicit exit
+[08/Feb/2010:13:24:57 :: 19790] starting
+[08/Feb/2010:16:18:42 :: 30204] starting
+[08/Feb/2010:16:18:44 :: 30224] starting
+[08/Feb/2010:16:30:52 :: 30224] asked to stop immediately
+[08/Feb/2010:16:30:52 :: 30224] stopping after explicit exit
+[09/Feb/2010:08:16:59 :: 30248] starting
+[09/Feb/2010:08:38:20 :: 30248] asked to stop immediately
+[09/Feb/2010:08:38:20 :: 30248] stopping after explicit exit
+[09/Feb/2010:10:53:10 :: 12671] starting
+[09/Feb/2010:12:31:24 :: 5841] starting
+[09/Feb/2010:16:13:28 :: 31728] starting
+[10/Feb/2010:09:45:30 :: 22494] starting
+[10/Feb/2010:16:35:12 :: 2752] starting
+[11/Feb/2010:09:30:40 :: 8641] starting
+[11/Feb/2010:09:57:00 :: 8641] asked to stop immediately
+[11/Feb/2010:09:57:00 :: 8641] stopping after explicit exit
+[11/Feb/2010:13:31:41 :: 14416] starting
+[12/Feb/2010:12:44:25 :: 24124] starting
+[12/Feb/2010:13:06:21 :: 24124] asked to stop immediately
+[12/Feb/2010:13:06:21 :: 24124] stopping after explicit exit
+[12/Feb/2010:15:12:07 :: 25841] starting
+[13/Feb/2010:14:05:25 :: 9778] starting
+[15/Feb/2010:07:58:19 :: 12646] starting
+[15/Feb/2010:16:16:16 :: 9786] starting
+[16/Feb/2010:10:09:15 :: 10861] starting
+[17/Feb/2010:08:35:17 :: 31286] starting
+[17/Feb/2010:08:35:24 :: 31286] asked to stop immediately
+[17/Feb/2010:08:35:24 :: 31286] stopping after explicit exit
+[17/Feb/2010:08:35:44 :: 31486] starting
+[17/Feb/2010:08:36:16 :: 31486] asked to stop immediately
+[17/Feb/2010:08:36:16 :: 31486] stopping after explicit exit
+[17/Feb/2010:08:39:06 :: 32551] starting
+[17/Feb/2010:08:39:14 :: 32551] asked to stop immediately
+[17/Feb/2010:08:39:14 :: 32551] stopping after explicit exit
+[17/Feb/2010:08:56:24 :: 5632] starting
+[17/Feb/2010:10:47:13 :: 2372] starting
+[17/Feb/2010:13:20:56 :: 19378] starting
+[18/Feb/2010:08:12:40 :: 6226] starting
+[18/Feb/2010:10:31:52 :: 10883] starting
+[22/Feb/2010:12:03:06 :: 32097] starting
+[22/Feb/2010:13:03:54 :: 32097] asked to stop immediately
+[22/Feb/2010:13:03:58 :: 32097] stopping after explicit exit
+[22/Feb/2010:16:08:19 :: 19317] starting
+[25/Feb/2010:08:31:18 :: 3260] starting
+[25/Feb/2010:09:03:07 :: 3260] asked to reload ASAP
+[25/Feb/2010:09:03:07 :: 3260] Dispatcher failed to catch: undefined method `reset_application!' for ActionController::Dispatcher:Class (NoMethodError)
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:219:in `restore!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:207:in `reload!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:177:in `reload_handler'
+  /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `to_proc'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `call'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `each'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `process_each_request'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:76:in `catch'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:76:in `process_each_request'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:51:in `process!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:23:in `process!'
+  dispatch.fcgi:23
+retrying after unhandled exception
+[25/Feb/2010:09:03:07 :: 3260] starting
+[25/Feb/2010:09:03:08 :: 3260] asked to stop immediately
+[25/Feb/2010:09:03:08 :: 3260] stopping after explicit exit
+[25/Feb/2010:09:49:07 :: 26033] starting
+[26/Feb/2010:09:14:01 :: 31796] starting
+[26/Feb/2010:17:39:28 :: 22606] starting
+[11/Mar/2010:08:40:58 :: 7414] starting
+[11/Mar/2010:09:52:05 :: 7414] asked to stop immediately
+[11/Mar/2010:09:52:06 :: 7414] stopping after explicit exit
+[12/Mar/2010:08:19:33 :: 8688] starting
+[12/Mar/2010:13:29:20 :: 17369] starting
+[12/Mar/2010:15:49:05 :: 17369] asked to stop immediately
+[12/Mar/2010:15:49:07 :: 17369] asked to stop immediately
+[12/Mar/2010:15:49:07 :: 17369] stopping after explicit exit
+[15/Mar/2010:14:24:39 :: 15165] starting
+[17/Mar/2010:09:48:31 :: 27595] starting
+[17/Mar/2010:09:48:31 :: 27618] starting
+[17/Mar/2010:09:54:31 :: 27618] asked to stop immediately
+[17/Mar/2010:09:54:31 :: 27595] asked to stop immediately
+[17/Mar/2010:09:54:31 :: 27595] stopping after explicit exit
+[17/Mar/2010:09:54:31 :: 27618] stopping after explicit exit
+[18/Mar/2010:13:31:36 :: 30326] starting
+[18/Mar/2010:14:04:07 :: 30326] asked to stop immediately
+[18/Mar/2010:14:04:08 :: 30326] stopping after explicit exit
+[18/Mar/2010:14:04:57 :: 7925] starting
+[18/Mar/2010:16:01:52 :: 17742] starting
+[22/Mar/2010:10:29:55 :: 8390] starting
+[22/Mar/2010:10:35:35 :: 10120] starting
+[23/Mar/2010:16:23:51 :: 17315] starting
+[23/Mar/2010:16:23:53 :: 17345] starting
+[23/Mar/2010:16:31:35 :: 17315] asked to stop immediately
+[23/Mar/2010:16:31:35 :: 17315] stopping after explicit exit
+[24/Mar/2010:16:42:16 :: 5409] starting
+[26/Mar/2010:17:02:44 :: 14822] starting
+[27/Mar/2010:08:17:06 :: 11197] starting
+[29/Mar/2010:16:57:38 :: 30242] starting
+[29/Mar/2010:16:57:39 :: 30275] starting
+[29/Mar/2010:17:03:58 :: 30275] asked to stop immediately
+[29/Mar/2010:17:03:58 :: 30275] stopping after explicit exit
+[30/Mar/2010:14:06:55 :: 19446] starting
+[30/Mar/2010:14:11:24 :: 19446] asked to stop immediately
+[30/Mar/2010:14:11:24 :: 19446] stopping after explicit exit
+[30/Mar/2010:15:18:55 :: 13274] starting
+[30/Mar/2010:17:09:41 :: 13274] asked to reload ASAP
+[30/Mar/2010:17:09:50 :: 13274] Dispatcher failed to catch: undefined method `reset_application!' for ActionController::Dispatcher:Class (NoMethodError)
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:219:in `restore!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:207:in `reload!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:177:in `reload_handler'
+  /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `to_proc'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `call'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `each'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:77:in `process_each_request'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:76:in `catch'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:76:in `process_each_request'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:51:in `process!'
+  /usr/local/lib/ruby/gems/1.8/gems/rails-2.3.2/lib/fcgi_handler.rb:23:in `process!'
+  dispatch.fcgi:23
+retrying after unhandled exception
+[30/Mar/2010:17:09:50 :: 13274] starting
+[05/Apr/2010:14:56:09 :: 20892] starting
+[05/Apr/2010:14:56:13 :: 20902] starting
+[05/Apr/2010:15:02:17 :: 20892] asked to stop immediately
+[05/Apr/2010:15:02:17 :: 20892] stopping after explicit exit
+[05/Apr/2010:15:02:17 :: 20902] asked to stop immediately
+[05/Apr/2010:15:02:17 :: 20902] stopping after explicit exit
+[05/Apr/2010:16:49:41 :: 22884] starting
+[05/Apr/2010:16:49:41 :: 22878] starting
+[05/Apr/2010:16:56:23 :: 22884] asked to stop immediately
+[05/Apr/2010:16:56:23 :: 22884] stopping after explicit exit
+[05/Apr/2010:16:56:23 :: 22878] asked to stop immediately
+[05/Apr/2010:16:56:23 :: 22878] stopping after explicit exit
+[06/Apr/2010:11:29:48 :: 16136] starting
+[06/Apr/2010:11:29:48 :: 16182] starting
+[06/Apr/2010:11:33:12 :: 17342] starting
+[06/Apr/2010:11:33:12 :: 17352] starting
+[06/Apr/2010:11:39:27 :: 17352] asked to stop immediately
+[06/Apr/2010:11:39:27 :: 17352] stopping after explicit exit
+[07/Apr/2010:11:42:27 :: 1597] starting
+[07/Apr/2010:11:42:31 :: 1611] starting
+[07/Apr/2010:11:48:50 :: 1611] asked to stop immediately
+[07/Apr/2010:11:48:50 :: 1611] stopping after explicit exit
+[07/Apr/2010:11:48:50 :: 1597] asked to stop immediately
+[07/Apr/2010:11:48:50 :: 1597] stopping after explicit exit
+[08/Apr/2010:16:06:38 :: 20195] starting
+[08/Apr/2010:17:03:25 :: 5226] starting
+[09/Apr/2010:09:25:06 :: 24687] starting
+[09/Apr/2010:10:15:00 :: 9043] starting
+[09/Apr/2010:11:40:33 :: 3681] starting
+[09/Apr/2010:14:16:59 :: 28409] starting
+[09/Apr/2010:14:17:19 :: 28443] starting
+[09/Apr/2010:14:23:42 :: 28443] asked to stop immediately
+[09/Apr/2010:14:23:42 :: 28443] stopping after explicit exit
+[09/Apr/2010:14:23:42 :: 28409] asked to stop immediately
+[09/Apr/2010:14:23:42 :: 28409] stopping after explicit exit
+[09/Apr/2010:14:25:49 :: 30796] starting
+[09/Apr/2010:14:38:38 :: 2162] starting
+[09/Apr/2010:16:10:22 :: 31607] starting
+[10/Apr/2010:11:09:47 :: 31472] starting
+[12/Apr/2010:10:32:45 :: 27542] starting
+[12/Apr/2010:10:47:31 :: 32480] starting
+[12/Apr/2010:14:53:00 :: 31073] starting
+[13/Apr/2010:10:02:50 :: 11725] starting
+[13/Apr/2010:16:11:21 :: 25222] starting
+[13/Apr/2010:16:31:54 :: 32584] starting
+[13/Apr/2010:16:31:54 :: 32724] starting
+[13/Apr/2010:16:39:27 :: 32724] asked to stop immediately
+[13/Apr/2010:16:39:27 :: 32724] stopping after explicit exit
+[13/Apr/2010:18:03:24 :: 32584] asked to stop immediately
+[13/Apr/2010:18:03:25 :: 32584] stopping after explicit exit
+[14/Apr/2010:09:24:24 :: 15896] starting
+[15/Apr/2010:09:56:36 :: 18140] starting

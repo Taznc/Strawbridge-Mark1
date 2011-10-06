@@ -1,0 +1,10 @@
+CHANGELOG
+examples/forger.rb
+examples/hubbit.rb
+lib/morph.rb
+LICENSE
+README
+spec/morph_spec.rb
+spec/morph_spec_helper.rb
+spec/spec.opts
+Manifest

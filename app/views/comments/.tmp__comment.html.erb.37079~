@@ -1,0 +1,13 @@
+<div id="comment">
+<% form_for([@article, @comment]) do |f| %>
+  <%= f.error_messages %>
+  <p><%= f.label :name %><%= f.text_field :author %>
+  <%= f.label :email %><%= f.text_field :url %></p>
+  <p>
+    <label for="comment_body">Comment</label><%= f.text_area :body, :style => "width: 445px; height: 100px;" %>
+  </p>
+  <p>
+	<%= image_submit_tag("../images/theme/postcomment.png") %>
+  </p>
+<% end %>
+</div>

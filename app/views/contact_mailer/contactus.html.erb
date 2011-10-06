@@ -1,0 +1,19 @@
+<h2>The following message has just been sent via the contact form on your website:</h2>
+	<p>Student first name-<%= @fname %></p>
+	<p>Student last name- <%= @lname %></p> 
+	<p>Email: <%= @email %></p>
+	<p>Telephone Number: <%= @number %></p>
+	<p>Street Address: <%= @address %></p>
+	<p>City: <%= @city %></p>
+	<p>State: <%= @state %></p>
+	<p>Zipcode: <%= @zipcode %></p>
+	<p>Reason for contact: <%= @reason %></p>   
+	<p>School Name: <%= @school_name %></p>
+	<p>Teacher Name: <%= @teacher_name %></p>
+	<p>Grade: <%= @grade %></p>
+	<p>Team Name: <%= @team_name %></p>
+	<p>Package Information: <%= @package_information %></p>
+	<p>Parent/Guardian Name: <%= @parent %></p>
+	<p>Message: <%= @message %></p>
+	<br />
+	<p>Form Submitted at: <%=Time.now.to_s %></p>

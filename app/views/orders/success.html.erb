@@ -1,0 +1,61 @@
+<h1>Your Order was successful!</h1>
+<p>Your order has been processed. An email will be sent to you when your order ships. Feel free to print this page for your records.</p>
+<br />
+<% for order in @ordercom.to_a %>
+  <li>Your order number is: #<%= order.id %></li>
+  <br />
+  <h2>Billing Information:</h2>
+  <p>Your order was billed as follows:
+  <ul>
+    <li><%= order.first_name %> <%= order.last_name %></li>
+    <li><%= order.user.home_address %></li>
+    <li><%= order.user.home_address_two %></li>
+    <li><%= order.user.city %>, <%= order.user.state %> <%= order.user.zipcode %></li>
+  </ul>
+  <h2>Shipping Information:</h2>
+  <p>Your order will be shipped to the following location:
+  <ul>
+    <% if order.user.same_address == '0' %>
+      <li><%= order.user.address.first_name %> <%= order.user.address.last_name %></li>
+      <li><%= order.user.address.address_1%>  <%= order.user.address.address_2%></li>
+      <li><%= order.user.address.city %>, <%= order.user.address.state %> <%= order.user.address.zipcode %></li>
+    <% else %>
+      <li><%= order.first_name %> <%= order.last_name %></li>
+      <li><%= order.user.home_address %>  <%= order.user.home_address_two %></li>
+      <li><%= order.user.city %>, <%= order.user.state %> <%= order.user.zipcode %></li>
+    <% end %>
+  </ul>
+<h2>Order Summary</h2>
+  <table id="line_items">
+    <tr>
+      <th width="19%">Quantity</th>
+      <th width="10%">Product</th>
+      <th width="40%">Description</th>
+      <th class="price">Price</th>
+      <th class="price">Subtotal</th>
+    </tr>
+  <% for line_item in order.cart.line_items %>
+    <tr class="<%= cycle :odd, :even %>">
+      <td class="qty" ><%=h line_item.quantity %></td>
+      <td><%=h line_item.product.name %></td>
+      <td><%= RedCloth.new(line_item.product.short_description).to_html %></td>
+      <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+      <td class="price"><%= number_to_currency(line_item.full_price) %></td>
+    </tr>
+  <% end %>
+    <tr>
+      <td class="total"></td>
+      <td class="total" colspan="4">
+        Subtotal: <%= number_to_currency @cart.sub_total_price %>
+        <br /><br />
+        <%=h (@cart.discount + @cart.user_discount_percent) * 100 %>% Discount
+        <br /><br />
+        Shipping Charges: <%= @cart.shipping_choice %>
+        <br /><br />
+        Sales Tax <%= number_to_currency @cart.sales_tax %>
+         <br /><br />
+        Grand Total: <%= number_to_currency @cart.grand_total %>
+      </td>
+    </tr>
+  </table>
+<% end %>

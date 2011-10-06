@@ -1,0 +1,10 @@
+<h1>Page Views for the Last 30 Days</h1>
+<h2><%= @profile %></h2>
+<% for test in @test %><br />
+	<p style="font-size: 18px; color: green; margin: 0px; padding: 0px;">
+		Pageviews: <%= test[1] %>
+	</p>
+	<p style="font-size: 14px; margin: 0px; padding: 0px;">
+	<%= test[0].strftime("%A, %B, %d %Y") %>
+	</p>
+<% end %>

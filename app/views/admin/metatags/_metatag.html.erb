@@ -1,0 +1,4 @@
+<li id="metatag_<%= metatag.id %>">
+  	<%=h metatag.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_metatag_path(metatag) %> | <%= link_to_remote('Delete', :url => admin_metatag_path(metatag), :method => 'delete', :complete => "Effect.Puff('metatag_#{metatag.id}')")%></p>
+</li>
+	

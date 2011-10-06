@@ -1,0 +1,18 @@
+<div id="inner">
+<% if params[:step].to_s == "basic"%>
+  <%= render :partial => "stepone" %>
+<% elsif params[:step].to_s == "beyond"%>
+  <%= render :partial => "steptwo" %>
+<% elsif params[:step].to_s == "specific"%>
+  <%= render :partial => "stepthree" %>
+<% elsif params[:step].to_s == "learnmore"%>
+  <%= render :partial => "stepfour" %>
+<% else %>
+<h1>Please Check out Step 1 or Step 2</h1>
+  <p>Go to <a href="/groups?step=basic">Step 1</a></p>
+  <p>Go to <a href="/groups?step=beyond">Step 2</a></p>
+<% end %>
+</div>
+<div id="sidebar" style="text-align:left;">
+  <%= render :partial => "shared/cartsidebar" %>
+</div>

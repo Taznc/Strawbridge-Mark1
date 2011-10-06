@@ -1,0 +1,27 @@
+<div id="headingbg"><h2>Categories</h2></div>
+<div id="inner">
+	<div id="add_subject">
+	<% form_remote_tag(:url => {:action => 'create'},
+	    :update => "category", :position => :bottom, :before => "Element.show('spinner')",
+        :success => "Element.hide('spinner')",
+	    :html => {:id => 'category_form'}) do %>
+	<%= text_field "category", "name" %>
+	<%= submit_tag 'Create Category' %>
+	<% end %>
+	<p style="margin-left: 20px;">Refresh Browser to drag and drop new categories</p>
+	</div>
+	<%= image_tag("/images/spinner.gif", :align => "absmiddle", :border => 0, :id => "spinner", :style =>"display: none; margin-left: 180px;" ) %>
+</div>
+<div id="inner">
+<h2>Your Categories</h2>
+<p style="margin-left: 20px;">Drag and Drop items to determine order on the main site</p>
+<ul id="category">
+<% for category in @categories %>
+	<% content_tag_for :li, category do %>
+	<span class="handle">[drag]</span>
+  	<%=h category.name %><p style="text-align: right;"><%= link_to 'Edit', edit_admin_category_path(category) %> | <%= link_to_remote('Delete', :url => admin_category_path(category), :method => 'delete', :complete => "Effect.Puff('category_#{category.id}')")%></p>
+	<% end %>
+<% end %>
+</ul>
+<%= sortable_element("category", :url => sort_admin_categories_path, :handle => "handle")%>
+</div>

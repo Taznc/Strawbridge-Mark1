@@ -1,0 +1,25 @@
+<div id="headingbg"><h2>Listing Comments</h2></div>
+<div id="inner">
+<table width=100%>
+  <tr style="background-color: #579941; color: #fff;">
+    <th>Author</th>
+    <th>Url</th>
+    <th>Body</th>
+    <th>Status</th>
+    <th>Ip</th>
+  </tr>
+
+<% for comment in @comments %>
+  <tr style="background-color: #fff; color: #356AA0; text-align: center;">
+    <td><%=h comment.author %></td>
+    <td><%=h comment.url %></td>
+    <td><%=h comment.body %></td>
+    <td><%=h comment.status %></td>
+    <td><%=h comment.ip %></td>
+    <td><%= link_to 'Show', admin_comment_path(comment) %></td>
+    <td><%= link_to 'Edit', edit_admin_comment_path(comment) %></td>
+    <td><%= link_to 'Destroy', [:admin, comment], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
